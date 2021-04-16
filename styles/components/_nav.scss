@@ -1,0 +1,22 @@
+.nav {
+  width: 90%;
+  margin: 0 auto;
+  height: 3rem;
+  background: orange;
+
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+
+    &--item {
+      list-style: none;
+    }
+
+    &--link {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
