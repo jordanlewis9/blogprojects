@@ -1,0 +1,12 @@
+.admin {
+  &__add-button {
+    text-decoration: none;
+    background: blue;
+    color: white;
+    border-radius: 20px;
+    height: 2rem;
+    width: 5rem;
+    display: block;
+    padding-top: 8px;
+  }
+}

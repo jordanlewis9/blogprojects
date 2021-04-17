@@ -23,6 +23,13 @@ body {
   row-gap: 2rem;
 }
 
+.admin__container {
+  width: 100vw;
+  margin-left: 150px;
+  background: green;
+  min-height: 100vh;
+}
+
 .nav {
   width: 90%;
   margin: 0 auto;
@@ -45,4 +52,39 @@ body {
 
 .home__header {
   text-align: center;
+}
+
+.admin__nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 150px;
+  background: blue;
+  padding: 0 1rem;
+}
+.admin__nav--list {
+  display: flex;
+  height: 80%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.admin__nav--item {
+  list-style: none;
+}
+.admin__nav--item-link {
+  text-decoration: none;
+  color: white;
+}
+
+.admin__add-button {
+  text-decoration: none;
+  background: blue;
+  color: white;
+  border-radius: 20px;
+  height: 2rem;
+  width: 5rem;
+  display: block;
+  padding-top: 8px;
 }
