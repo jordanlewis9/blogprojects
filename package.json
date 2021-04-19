@@ -19,6 +19,6 @@
   "scripts": {
     "css:build": "webpack --config webpack.config.js --watch"
   },
-  "author": "",
+  "author": "Jordan Lewis",
   "license": "ISC"
 }
