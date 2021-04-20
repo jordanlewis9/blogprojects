@@ -19,15 +19,15 @@ class Database {
     }
   }
 
-  public function delete($table, $id) {
-    $stmt = $this->connection->prepare("DELETE FROM {$table} WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->store_result();
-    if ($stmt->affected_rows === 1) {
-      return true;
-    } else {
-      return false;
+  public function query($sql) {
+    $result = $this->connection->query($sql);
+    $this->confirm_query($result);
+    return $result;
+  }
+
+  private function confirm_query($result) {
+    if (!$result) {
+      die("Query failed " . $this->connection->error);
     }
   }
 }
