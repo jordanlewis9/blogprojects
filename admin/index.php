@@ -10,9 +10,6 @@
     echo $single_user->username;
     echo "<br>";
   }
-  $user->first_name = "Sarah";
-  $user->username = "sarah";
-  $user->simple_update_item("users");
 ?>
 
 

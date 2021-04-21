@@ -36,4 +36,9 @@ class Methods {
     echo "UPDATE {$table} SET " . implode(", ", $main_query) . " WHERE id = " . $this->id;
     $result = $db->query("UPDATE {$table} SET " . implode(", ", $main_query) . " WHERE id = " . $this->id);
   }
+
+  public static function delete_item($table, $id) {
+    global $db;
+    $result = $db->query("DELETE FROM {$table} WHERE id = {$id}");
+  }
 }
