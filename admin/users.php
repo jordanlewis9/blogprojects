@@ -23,9 +23,12 @@ foreach ($all_users as $user) {
     <th>{$user->last_name}</th>
     <th>{$user->role}</th>
     <th><a href='edit_user.php?user_id={$user->id}'>Edit</a></th>
-    <th><a href='delete_user.php?user_id={$user->id}'>Delete</th>
+    <th><a href='#' data-id='{$user->id}' data-table='user' data-single='{$user->username}' class='delete__link'>Delete</th>
   </tr>
   ";
 }
 ?>
   </table>
+</div>
+<?php require_once("includes/delete_modal.php"); ?>
+<?php require_once("includes/admin_footer.php"); ?>
