@@ -8,6 +8,14 @@ body {
   width: 100vw;
 }
 
+.gen-btn {
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 .container {
   width: 90%;
   height: auto;
@@ -24,11 +32,13 @@ body {
 }
 
 .admin__container {
-  width: 100vw;
+  max-width: 100vw;
   margin-left: 150px;
-  background: green;
+  background: white;
   min-height: 100vh;
   position: relative;
+  padding: 3rem 1rem 0 1rem;
+  border-top: 2rem solid #363636;
 }
 
 .nav {
@@ -61,7 +71,7 @@ body {
   left: 0px;
   height: 100vh;
   width: 150px;
-  background: blue;
+  background: #363636;
   padding: 0 1rem;
   z-index: 2;
 }
@@ -79,16 +89,47 @@ body {
   text-decoration: none;
   color: white;
 }
+.admin__nav--item-link:hover {
+  color: #ddd;
+}
 
 .admin__add-button {
   text-decoration: none;
-  background: blue;
+  background: #2baabd;
   color: white;
   border-radius: 20px;
   height: 2rem;
   width: 5rem;
   display: block;
-  padding-top: 8px;
+}
+.admin__add-button:hover {
+  background: #1c707d;
+}
+.admin__table {
+  width: 100%;
+  margin-top: 1rem;
+  text-align: center;
+  border-collapse: collapse;
+}
+.admin__table--header-row {
+  background: #363636;
+}
+.admin__table--heading {
+  color: white;
+  border: 1px solid #363636;
+}
+.admin__table--row {
+  border-bottom: 2px solid #363636;
+}
+.admin__table--row:nth-child(even) {
+  background: #f2f2f2;
+}
+.admin__table--row:hover {
+  background: #ddd;
+}
+.admin__table--entry {
+  padding: 2px 0;
+  border: 1px solid #363636;
 }
 
 .delete__modal {
@@ -103,14 +144,81 @@ body {
 .delete__modal--container {
   height: auto;
   width: 50vw;
-  margin: 0 auto;
-  background: #e6e6e6;
+  margin: 200px auto;
+  background: #fafafa;
+  border-radius: 5px;
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  padding: 2rem 0;
+  gap: 1rem;
+}
+.delete__modal--headline {
+  grid-column: 1/3;
+  justify-self: center;
+  align-self: center;
+}
+.delete__modal--confirm-link {
+  text-decoration: none;
+  justify-self: center;
+  align-self: center;
 }
 .delete__modal--confirm-button {
-  height: 2rem;
-  text-decoration: none;
+  background-color: red;
+  color: white;
+}
+.delete__modal--confirm-button:hover {
+  background-color: #b30000;
+}
+.delete__modal--cancel-button {
+  justify-self: center;
+  align-self: center;
+  cursor: pointer;
+  background-color: #2baabd;
+  color: white;
+}
+.delete__modal--cancel-button:hover {
+  background-color: #1c707d;
 }
 
 .hide__modal {
   display: none;
+}
+
+.admin__form {
+  width: 100%;
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.admin__form--inputs {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2rem;
+}
+.admin__form--inputs > label {
+  justify-self: end;
+}
+.admin__form--inputs > input {
+  justify-self: start;
+}
+.admin__form--inputs > input[type=submit] {
+  grid-column: 1/3;
+  justify-self: center;
+  background: #2baabd;
+  color: white;
+}
+.admin__form--inputs > input[type=submit]:hover {
+  background: #1c707d;
+}
+.admin__form--inputs > select {
+  justify-self: start;
+}
+.admin__form--inputs > select:hover {
+  cursor: pointer;
+}
+.admin__form--inputs > select > option:hover {
+  cursor: pointer;
 }

@@ -1,12 +1,48 @@
 .admin {
   &__add-button {
     text-decoration: none;
-    background: blue;
+    background: $positiveAction;
     color: white;
     border-radius: 20px;
     height: 2rem;
     width: 5rem;
     display: block;
-    padding-top: 8px;
+
+    &:hover {
+      background: $positiveActionHover;
+    }
+  }
+
+  &__table {
+    width: 100%;
+    margin-top: 1rem;
+    text-align: center;
+    border-collapse: collapse;
+
+    &--header-row {
+      background: $navbarColor;
+    }
+
+    &--heading {
+      color: white;
+      border: 1px solid $navbarColor;
+    }
+
+    &--row {
+      border-bottom: 2px solid $navbarColor;
+
+      &:nth-child(even) {
+        background: #f2f2f2;
+      }
+
+      &:hover {
+        background: #ddd;
+      }
+    }
+
+    &--entry {
+      padding: 2px 0;
+      border: 1px solid $navbarColor;
+    }
   }
 }

@@ -15,9 +15,11 @@
 }
 
 .admin__container {
-  width: 100vw;
+  max-width: 100vw;
   margin-left: 150px;
-  background: green;
+  background: white;
   min-height: 100vh;
   position: relative;
+  padding: 3rem 1rem 0 1rem;
+  border-top: 2rem solid $navbarColor;
 }

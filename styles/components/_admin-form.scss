@@ -1,0 +1,45 @@
+.admin__form {
+  width: 100%;
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  &--inputs {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 2rem;
+
+    & > label {
+      justify-self: end;
+    }
+
+    & > input {
+      justify-self: start;
+    }
+
+    & > input[type="submit"] {
+      grid-column: 1 / 3;
+      justify-self: center;
+      background: $positiveAction;
+      color: white;
+
+      &:hover {
+        background: $positiveActionHover;
+      }
+    }
+
+    & > select {
+      justify-self: start;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      & > option:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

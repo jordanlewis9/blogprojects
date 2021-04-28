@@ -4,7 +4,7 @@
   left: 0px;
   height: 100vh;
   width: 150px;
-  background: blue;
+  background: $navbarColor;
   padding: 0 1rem;
   z-index: 2;
 
@@ -22,6 +22,10 @@
     &-link {
       text-decoration: none;
       color: white;
+
+      &:hover {
+        color: #ddd;
+      }
     }
   }
 }
