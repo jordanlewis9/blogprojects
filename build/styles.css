@@ -99,8 +99,8 @@ body {
   color: white;
   border-radius: 20px;
   height: 2rem;
-  width: 5rem;
-  display: block;
+  width: auto;
+  display: inline-block;
 }
 .admin__add-button:hover {
   background: #1c707d;
@@ -221,4 +221,7 @@ body {
 }
 .admin__form--inputs > select > option:hover {
   cursor: pointer;
+}
+.admin__form--inputs > textarea {
+  justify-self: start;
 }

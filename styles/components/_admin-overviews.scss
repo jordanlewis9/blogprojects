@@ -5,8 +5,8 @@
     color: white;
     border-radius: 20px;
     height: 2rem;
-    width: 5rem;
-    display: block;
+    width: auto;
+    display: inline-block;
 
     &:hover {
       background: $positiveActionHover;

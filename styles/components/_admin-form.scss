@@ -41,5 +41,9 @@
         cursor: pointer;
       }
     }
+
+    & > textarea {
+      justify-self: start;
+    }
   }
 }
