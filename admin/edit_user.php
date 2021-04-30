@@ -10,7 +10,7 @@ if (isset($_POST['update'])) {
   $user_to_edit->last_name = $_POST['last_name'];
   $user_to_edit->password = $_POST['password'];
   $user_to_edit->role = $_POST['role'];
-  $user_to_edit->simple_update_item('users');
+  $user_to_edit->update_item('users');
   redirect("users.php");
 }
 ?>

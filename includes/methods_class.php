@@ -39,13 +39,12 @@ class Methods {
     return $all_items;
   }
 
-  public function simple_update_item($table) {
+  public function update_item($table) {
     global $db;
     $main_query = [];
     foreach ($this->class_properties as $prop) {
       $main_query[] = "{$prop} = '{$this->$prop}'";
     }
-    echo "UPDATE {$table} SET " . implode(", ", $main_query) . " WHERE id = " . $this->id;
     $result = $db->query("UPDATE {$table} SET " . implode(", ", $main_query) . " WHERE id = " . $this->id);
   }
 

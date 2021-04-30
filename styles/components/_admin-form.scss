@@ -17,6 +17,10 @@
 
     & > input {
       justify-self: start;
+
+      &[type="file"] {
+        display: none;
+      }
     }
 
     & > input[type="submit"] {
@@ -44,6 +48,35 @@
 
     & > textarea {
       justify-self: start;
+    }
+  }
+
+  &--picture {
+    &-preview {
+      height: 200px;
+      width: auto;
+    }
+    &-label {
+      justify-self: center;
+    }
+  }
+}
+
+#admin__form--picture-container {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 0.25rem;
+
+  & > label {
+    justify-self: center;
+    cursor: pointer;
+    background: $pictureUploadBtn;
+    color: white;
+
+    &:hover {
+      background: $pictureUploadHover;
     }
   }
 }

@@ -10,7 +10,7 @@ class Project extends Methods {
   public $tmp_path;
   public $class_properties = ['id', 'title', 'description', 'picture', 'snippet', 'link'];
 
-  public function save_project() {
+  public function new_project() {
     global $db;
     if ($this->transfer_image()) {
       $sql = "INSERT INTO projects (" . implode(", ", array_slice($this->class_properties, 1)) . ") VALUES ";
@@ -19,6 +19,14 @@ class Project extends Methods {
       redirect("projects.php");
     } else {
       redirect("projects.php?message=Project save unsuccessful");
+    }
+  }
+
+  public function update_project() {
+    if ($this->transfer_image()) {
+      $this->update_item("projects");
+    } else {
+      redirect("projects.php?message=Project update unsuccessful");
     }
   }
 

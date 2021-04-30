@@ -1,15 +1,13 @@
 <?php require_once("includes/admin_header.php"); ?>
-<?php 
+<?php
+
 if (isset($_POST['submit'])) {
-  $project = new Project;
-  $project->title = $_POST['title'];
-  $project->description = $_POST['description'];
-  $project->snippet = $_POST['snippet'];
-  $project->link = $_POST['link'];
-  if ($project->set_file($_FILES['picture'])) {
-    $project->new_project();
+  $blog = new Blog;
+  $blog->title = $_POST['title'];
+  $blog->content = $_POST['content'];
+  if ($blog->set_file($_FILES['picture'])) {
+    $blog->new_blog();
   } else {
-    print_r($project->custom_errors);
     print_r($_FILES);
   }
 }
@@ -26,19 +24,11 @@ if (isset($_POST['submit'])) {
     <input type="text" name="title" id="title">
   </div>
   <div class="admin__form--inputs">
-    <label for="description">Description</label>
-    <input type="text" name="description" id="description">
+    <label for="content">Content</label>
+    <input type="text" name="content" id="content">
   </div>
   <div class="admin__form--inputs">
-    <label for="snippet">Snippet</label>
-    <textarea id="snippet" name="snippet" rows="4" cols="40"></textarea>
-  </div>
-  <div class="admin__form--inputs">
-    <label for="link">Link</label>
-    <input type="text" name="link" id="link">
-  </div>
-  <div class="admin__form--inputs">
-    <input class="gen-btn" type="submit" name="submit" value="Add Project">
+    <input class="gen-btn" type="submit" name="submit" value="Add Blog">
   </div>
 </form>
 
