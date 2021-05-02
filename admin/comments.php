@@ -1,6 +1,6 @@
 <?php require_once("includes/admin_header.php"); ?>
 <?php 
-$all_comments = Comment::get_all_items("comments");
+$all_comments = Comment::get_all_comments();
 ?>
 <div class="comments__container">
   <table class="admin__table">
@@ -8,6 +8,7 @@ $all_comments = Comment::get_all_items("comments");
       <th class="admin__table--heading">ID</th>
       <th class="admin__table--heading">Username</th>
       <th class="admin__table--heading">Preview</th>
+      <th class="admin__table--heading">For Blog...</th>
       <th class="admin__table--heading">Status</th>
       <th class="admin__table--heading">Approve</th>
       <th class="admin__table--heading">Deny</th>
@@ -15,12 +16,13 @@ $all_comments = Comment::get_all_items("comments");
       <th class="admin__table--heading">Delete</th>
     </tr>
 <?php
-foreach ($all_comments as $user) {
+foreach ($all_comments as $comment) {
   echo "
   <tr class='admin__table--row'>
     <td class='admin__table--entry'>{$comment->id}</td>
     <td class='admin__table--entry'>{$comment->username}</td>
-    <td class='admin__table--entry'>{$comment->preview}</td>
+    <td class='admin__table--entry'>{$comment->content}</td>
+    <td class='admin__table--entry'>{$comment->title}</td>
     <td class='admin__table--entry'>{$comment->status}</td>
     <td class='admin__table--entry'><a href='#'>Approve</a></td>
     <td class='admin__table--entry'><a href='#'>Deny</a></td>
