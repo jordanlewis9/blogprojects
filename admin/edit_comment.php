@@ -3,12 +3,24 @@
 if (isset($_GET['comment_id'])) {
   $comment = Comment::get_comment_by_id($_GET['comment_id']);
 }
+
+if (isset($_POST['update'])) {
+  $comment->content = $_POST['content'];
+  $comment->status = $_POST['status'];
+  $comment->blog_id = $_POST['blog_id'];
+  $comment->update_item("comments", array_slice($comment->class_properties, 2, 4));
+  redirect("comments.php");
+}
 ?>
 
 <form method="POST" action="" class="admin__form">
   <div class="admin__form--inputs">
     <p>Comment created by user <?php echo $comment->username; ?></p>
     <p>Comment for blog <?php echo $comment->title; ?></p>
+  </div>
+  <div class="admin__form--inputs">
+    <label for="blog_id">Blog Id</label>
+    <input type="text" name="blog_id" id="blog_id" value="<?php echo $comment->blog_id; ?>">
   </div>
   <div class="admin__form--inputs">
     <label for="content">Content</label>
@@ -19,11 +31,17 @@ if (isset($_GET['comment_id'])) {
     <input type="radio" name="status" id="approve" value="approved" <?php echo ($comment->status === "approved") ? "checked" : ""; ?>>
     <label for="deny">Deny</label>
     <input type="radio" name="status" id="deny" value="denied" <?php echo ($comment->status === "denied") ? "checked" : ""; ?>>
-    <label for="pending">Pending</label>
-    <input type="radio" name="status" id="pending" value="pending" <?php echo ($comment->status === "pending") ? "checked" : ""; ?>>
+<?php 
+if ($comment->status === "pending") {
+  echo "
+  <label for='pending'>Pending</label>
+  <input type='radio' name='status' id='pending' value='pending' checked>
+  ";
+}
+?>
   </div>
   <div class="admin__form--inputs">
-    <input class="gen-btn" type="submit" name="update" value="Update Comment">
+    <input class="gen-btn" type="submit" name="update" value="Update User">
   </div>
 </form>
 

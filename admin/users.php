@@ -8,8 +8,7 @@ $all_users = User::get_all_items("users");
     <tr class="admin__table--header-row">
       <th class="admin__table--heading">ID</th>
       <th class="admin__table--heading">Username</th>
-      <th class="admin__table--heading">First Name</th>
-      <th class="admin__table--heading">Last Name</th>
+      <th class="admin__table--heading">Email</th>
       <th class="admin__table--heading">Role</th>
       <th class="admin__table--heading">Edit</th>
       <th class="admin__table--heading">Delete</th>
@@ -20,8 +19,7 @@ foreach ($all_users as $user) {
   <tr class='admin__table--row'>
     <td class='admin__table--entry'>{$user->id}</td>
     <td class='admin__table--entry'>{$user->username}</td>
-    <td class='admin__table--entry'>{$user->first_name}</td>
-    <td class='admin__table--entry'>{$user->last_name}</td>
+    <td class='admin__table--entry'>{$user->email}</td>
     <td class='admin__table--entry'>{$user->role}</td>
     <td class='admin__table--entry'><a href='edit_user.php?user_id={$user->id}'>Edit</a></td>
     <td class='admin__table--entry'><a href='#' data-id='{$user->id}' data-table='user' data-single='{$user->username}' class='delete__link'>Delete</td>

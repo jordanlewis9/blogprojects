@@ -3,6 +3,7 @@
 if (isset($_POST['submit'])) {
   $new_user = new User;
   $new_user->username = $_POST['username'];
+  $new_user->email = $_POST['email'];
   $new_user->first_name = $_POST['first_name'];
   $new_user->last_name = $_POST['last_name'];
   $new_user->password = $_POST['password'];
@@ -14,6 +15,10 @@ if (isset($_POST['submit'])) {
   <div class="admin__form--inputs">
     <label for="username">Username</label>
     <input type="text" name="username" id="username">
+  </div>
+  <div class="admin__form--inputs">
+    <label for="email">Email</iabel>
+    <input type="email" name="email" id="email">
   </div>
   <div class="admin__form--inputs">
     <label for="first_name">First Name</label>

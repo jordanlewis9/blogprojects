@@ -15,4 +15,8 @@ if (isset($_GET['user_id'])) {
   redirect("users.php");
 }
 
+if (isset($_GET['comment_id'])) {
+  Comment::delete_item('comments', $_GET['comment_id']);
+  redirect("comments.php");
+}
 ?>
