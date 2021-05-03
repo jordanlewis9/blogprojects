@@ -16,6 +16,22 @@ class User extends Methods {
     $sql .= "('{$this->username}', '{$this->first_name}', '{$this->last_name}', '{$this->password}')";
     $db->query($sql);
   }
+
+  public static function get_all_users() {
+    global $db;
+    $sql = "SELECT id, username, email, role FROM users ORDER BY id ASC";
+    $result = $db->query($sql);
+    $all_users = [];
+    while ($row = $result->fetch_array()) {
+      $single_user = new self;
+      $single_user->id = $row['id'];
+      $single_user->username = $row['username'];
+      $single_user->email = $row['email'];
+      $single_user->role = $row['role'];
+      $all_users[] = $single_user;
+    }
+    return $all_users;
+  }
 }
 
 

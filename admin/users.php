@@ -1,6 +1,6 @@
 <?php require_once("includes/admin_header.php"); ?>
 <?php 
-$all_users = User::get_all_items("users");
+$all_users = User::get_all_users();
 ?>
 <div class="users__container">
   <a href="add_user.php" class="admin__add-button gen-btn">Add User</a>

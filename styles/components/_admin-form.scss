@@ -80,6 +80,10 @@
       background: $deleteColorHover;
     }
   }
+
+  &--login-btn {
+    grid-column: 1 / 3;
+  }
 }
 
 #admin__form--picture-container {
