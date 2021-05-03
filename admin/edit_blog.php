@@ -37,6 +37,7 @@ if (isset($_POST['update'])) {
     <input type="text" name="content" id="content" value="<?php echo $blog->content; ?>">
   </div>
   <div class="admin__form--inputs">
+    <a href="delete_item.php?blog_id=<?php echo $blog->id; ?>" class="gen-btn admin__form--delete">Delete</a>
     <input class="gen-btn" type="submit" name="update" value="Update Blog">
   </div>
 </form>

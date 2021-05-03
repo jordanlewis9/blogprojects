@@ -47,6 +47,7 @@ if (isset($_POST['update'])) {
     <input type="text" name="link" id="link" value="<?php echo $project->link; ?>">
   </div>
   <div class="admin__form--inputs">
+    <a href="delete_item.php?project_id=<?php echo $project->id; ?>" class="gen-btn admin__form--delete">Delete</a>
     <input class="gen-btn" type="submit" name="update" value="Update Project">
   </div>
 </form>

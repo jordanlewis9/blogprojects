@@ -14,7 +14,7 @@ if (isset($_POST['update'])) {
 ?>
 
 <form method="POST" action="" class="admin__form">
-  <div class="admin__form--inputs">
+  <div class="admin__form--inputs comment__info">
     <p>Comment created by user <?php echo $comment->username; ?></p>
     <p>Comment for blog <?php echo $comment->title; ?></p>
   </div>
@@ -41,7 +41,8 @@ if ($comment->status === "pending") {
 ?>
   </div>
   <div class="admin__form--inputs">
-    <input class="gen-btn" type="submit" name="update" value="Update User">
+    <a href="delete_item.php?comment_id=<?php echo $comment->id; ?>" class="gen-btn admin__form--delete">Delete</a>
+    <input class="gen-btn" type="submit" name="update" value="Update">
   </div>
 </form>
 
