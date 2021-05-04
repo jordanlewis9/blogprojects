@@ -1,5 +1,10 @@
 <?php require_once("../includes/init.php"); ?>
 <?php
+if (!$auth->signed_in || $auth->role !== "admin") {
+  redirect("../index.php");
+}
+?>
+<?php
 if (isset($_GET['blog_id'])) {
   Blog::delete_item('blogs', $_GET['blog_id']);
   redirect("blogs.php");

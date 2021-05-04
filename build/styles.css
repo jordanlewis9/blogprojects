@@ -60,6 +60,12 @@ body {
   text-decoration: none;
   color: white;
 }
+.nav__list--link.gen-btn {
+  background: #2baabd;
+}
+.nav__list--link.gen-btn:hover {
+  background: #1c707d;
+}
 
 .home__header {
   text-align: center;

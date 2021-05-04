@@ -1,3 +1,4 @@
+<?php require_once("includes/init.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,5 +14,10 @@
       <a href="index.php" class="nav__list--link"><li class="nav__list--item">Home</li></a>
       <a href="projects.php" class="nav__list--link"><li class="nav__list--item">Projects</li></a>
       <a href="blogs.php" class="nav__list--link"><li class="nav__list--item">Blog</li></a>
+<?php if($auth->signed_in): ?>
+      <a href="logout.php" class="nav__list--link gen-btn"><li class="nav__list--item">Logout</li></a>
+<?php else: ?>
+      <a href="login.php" class="nav__list--link gen-btn"><li class="nav__list--item">Login</li></a>
+<?php endif; ?>
     </ul>
   </nav>

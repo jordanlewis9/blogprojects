@@ -1,5 +1,10 @@
 <?php require_once("../includes/init.php"); ?>
 <?php
+if (!$auth->signed_in || $auth->role !== "admin") {
+  redirect("../index.php");
+}
+?>
+<?php
 
 if (isset($_GET['comment_id']) && isset($_GET['status'])) {
   if ($_GET['status'] === 'approved' || $_GET['status'] === 'denied') {

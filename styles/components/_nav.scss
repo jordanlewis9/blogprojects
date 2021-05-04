@@ -17,6 +17,14 @@
     &--link {
       text-decoration: none;
       color: white;
+
+      &.gen-btn {
+        background: $positiveAction;
+
+        &:hover {
+          background: $positiveActionHover;
+        }
+      }
     }
   }
 }

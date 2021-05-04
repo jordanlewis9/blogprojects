@@ -1,6 +1,18 @@
-<?php require_once("includes/admin_header.php"); ?>
-<?php print_r(session_id()); ?>
+<?php require_once("includes/header.php"); ?>
+<?php 
+  if (isset($_POST['login'])) {
+    if($auth->login_user($_POST['username'], $_POST['password'])) {
+      redirect("index.php");
+    } else {
+      $message->set_message("Username or password incorrect");
+      redirect("login.php");
+    }
+  }
+?> 
 
+<?php if (isset($message->current_message)): ?>
+<p><?php echo $message->current_message; ?></p>
+<?php endif; ?>
 <form action="" method="POST" class="admin__form">
   <div class="admin__form--inputs">
     <label for="username">Username</label>
@@ -15,4 +27,4 @@
   </div>
 </form>
 
-<?php require_once("includes/admin_footer.php"); ?>
+<?php require_once("includes/footer.php"); ?>
