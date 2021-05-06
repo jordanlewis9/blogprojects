@@ -16,6 +16,9 @@ class Methods {
   public static function get_item_by_id($table, $id) {
     global $db;
     $result = $db->query("SELECT * FROM {$table} WHERE id = {$id}");
+    if ($result->num_rows === 0) {
+      return false;
+    }
     $retreived_item = new static;
     while ($row = $result->fetch_array()) {
       foreach ($retreived_item->class_properties as $prop) {
@@ -27,7 +30,10 @@ class Methods {
 
   public static function get_all_items($table) {
     global $db;
-    $result = $db->query("SELECT * FROM {$table} ORDER BY id ASC");
+    $result = $db->query("SELECT * FROM {$table} ORDER BY id DESC");
+    if ($result->num_rows === 0) {
+      return false;
+    }
     $all_items = [];
     while ($row = $result->fetch_array()) {
       $single_item = new static;

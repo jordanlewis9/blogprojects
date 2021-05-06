@@ -2,6 +2,7 @@
 <?php 
 $all_users = User::get_all_users();
 ?>
+<p class="admin__headline">Users</p>
 <div class="users__container">
   <a href="add_user.php" class="admin__add-button gen-btn">Add User</a>
   <table class="admin__table">

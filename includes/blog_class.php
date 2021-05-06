@@ -44,4 +44,18 @@ class Blog extends Methods {
     }
   }
 
+  public static function get_latest_blog() {
+    global $db, $message;
+    $result = $db->query("SELECT * FROM blogs ORDER BY id DESC LIMIT 1");
+    if ($result->num_rows === 0) {
+      return false;
+    }
+    $retreived_blog = new self;
+    while ($row = $result->fetch_array()) {
+      foreach ($retreived_blog->class_properties as $prop) {
+        $retreived_blog->$prop = $row[$prop];
+      }
+    }
+    return $retreived_blog;
+  }
 }

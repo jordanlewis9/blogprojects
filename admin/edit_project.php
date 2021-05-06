@@ -33,7 +33,7 @@ if (isset($_POST['update'])) {
   </div>
   <div class="admin__form--inputs">
     <label for="description">Description</label>
-    <input type="text" name="description" id="description" value="<?php echo $project->description; ?>">
+    <textarea name="description" id="description" rows="4" cols="40"><?php echo $project->description; ?></textarea>
   </div>
   <div class="admin__form--inputs">
     <label for="snippet">Snippet</label>

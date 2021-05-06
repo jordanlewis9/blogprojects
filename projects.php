@@ -1,30 +1,20 @@
+<?php require_once("includes/header.php"); ?>
 <?php
-require_once("includes/header.php");
+  $all_projects = Project::get_all_items('projects');
 ?>
 <div class="container">
   <div class="container__content">
+<?php
+  foreach($all_projects as $project) {
+    echo "
     <section>
-      <h2>Project Title</h2>
-      <p>This is where the image goes.</p>
-      <p>Small snippet of the Project.</p>
+    <a href='project.php?project_id={$project->id}'><h2>{$project->title}</h2></a>
+    <a href='project.php?project_id={$project->id}'><img src='admin/images/{$project->picture}'></a>
+    <a href='project.php?project_id={$project->id}'><p>{$project->snippet}</p></a>
     </section>
-    <section>
-      <h2>Project Title</h2>
-      <p>This is where the image goes.</p>
-      <p>Small snippet of the Project.</p>
-    </section>
-    <section>
-      <h2>Project Title</h2>
-      <p>This is where the image goes.</p>
-      <p>Small snippet of the Project.</p>
-    </section>
-    <section>
-      <h2>Project Title</h2>
-      <p>This is where the image goes.</p>
-      <p>Small snippet of the Project.</p>
-    </section>
+    ";
+  }
+?>
   </div>
 </div>
-<?php
-require_once("includes/footer.php");
-?>
+<?php require_once("includes/footer.php"); ?>

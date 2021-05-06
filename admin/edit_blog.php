@@ -25,13 +25,13 @@ if (isset($_POST['update'])) {
     <label for="picture" class="admin__form--picture-label gen-btn">Upload Picture</label>
     <input type="file" name="picture" id="picture" accept=".png, .jpg, .jpeg">
   </div>
-  <div class="admin__form--inputs">
+  <div class="admin__form--inputs-blog">
     <label for="title">Title</label>
     <input type="text" name="title" id="title" value="<?php echo $blog->title; ?>">
   </div>
-  <div class="admin__form--inputs">
+  <div class="admin__form--inputs-blog">
     <label for="content">Content</label>
-    <input type="text" name="content" id="content" value="<?php echo $blog->content; ?>">
+    <textarea class="editor" name="content" id="content"><?php echo $blog->content; ?></textarea>
   </div>
   <div class="admin__form--inputs">
     <a href="delete_item.php?blog_id=<?php echo $blog->id; ?>" class="gen-btn admin__form--delete">Delete</a>

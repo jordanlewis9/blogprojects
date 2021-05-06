@@ -1,28 +1,20 @@
-<?php
-require_once("includes/header.php");
+<?php require_once("includes/header.php"); ?>
+<?php 
+  $all_blogs = Blog::get_all_items('blogs');
 ?>
 <div class="container">
   <div class="container__content">
-    <section>
-      <h2>Blog Title</h2>
-      <p>This is where the image goes.</p>
-      <p>Small snippet of the blog.</p>
-    </section>
-    <section>
-      <h2>Blog Title</h2>
-      <p>This is where the image goes.</p>
-      <p>Small snippet of the blog.</p>
-    </section>
-    <section>
-      <h2>Blog Title</h2>
-      <p>This is where the image goes.</p>
-      <p>Small snippet of the blog.</p>
-    </section>
-    <section>
-      <h2>Blog Title</h2>
-      <p>This is where the image goes.</p>
-      <p>Small snippet of the blog.</p>
-    </section>
+<?php
+  foreach ($all_blogs as $blog) {
+    echo "
+    <a href='blog.php?blog_id={$blog->id}'><section>
+    <h2>{$blog->title}</h2>
+    <img src='admin/images/{$blog->picture}'>
+    <p>{$blog->content}</p>
+  </section></a>
+    ";
+  }
+?>
   </div>
 </div>
 <?php

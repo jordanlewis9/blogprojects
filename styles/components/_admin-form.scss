@@ -18,6 +18,10 @@
     & > input {
       justify-self: start;
 
+      &:not([type="submit"]) {
+        width: 250px;
+      }
+
       &[type="file"] {
         display: none;
       }
@@ -56,6 +60,22 @@
 
     & > input[type="radio"] {
       align-self: center;
+    }
+
+    &-blog {
+      display: grid;
+      grid-template-rows: auto auto;
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 0.5rem;
+
+      & > label {
+        justify-self: center;
+      }
+
+      & > input {
+        width: 250px;
+      }
     }
   }
 

@@ -11,6 +11,7 @@ if (!$auth->signed_in || $auth->role !== "admin") {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../build/styles.css" rel="stylesheet">
+  <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
   <title>Document</title>
 </head>
 <body>
@@ -22,6 +23,7 @@ if (!$auth->signed_in || $auth->role !== "admin") {
       <a href="blogs.php" class="admin__nav--item-link"><li class="admin__nav--item">Blogs</li></a>
       <a href="comments.php" class="admin__nav--item-link"><li class="admin__nav--item">Comments</li></a>
       <a href="users.php" class="admin__nav--item-link"><li class="admin__nav--item">Users</li></a>
+      <a href="../logout.php" class="admin__nav--item-link"><li class="admin__nav--item">Logout</li></a>
     </ul>
   </nav>
   <div class="admin__container">

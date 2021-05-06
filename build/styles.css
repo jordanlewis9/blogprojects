@@ -33,12 +33,6 @@ body {
   border-top: 2rem solid #363636;
 }
 
-.admin__message {
-  margin: 0 auto 2rem;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
 .gen-btn {
   padding: 0.5rem;
   outline: none;
@@ -143,6 +137,25 @@ body {
   padding: 2px 0;
   border: 1px solid #363636;
 }
+.admin__message {
+  margin: 0 auto 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.admin__welcome {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+.admin__no-comments {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+.admin__headline {
+  font-size: 1.25rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
 .delete__modal {
   z-index: 1000;
@@ -216,6 +229,9 @@ body {
 .admin__form--inputs > input {
   justify-self: start;
 }
+.admin__form--inputs > input:not([type=submit]) {
+  width: 250px;
+}
 .admin__form--inputs > input[type=file] {
   display: none;
 }
@@ -245,6 +261,19 @@ body {
 }
 .admin__form--inputs > input[type=radio] {
   align-self: center;
+}
+.admin__form--inputs-blog {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 0.5rem;
+}
+.admin__form--inputs-blog > label {
+  justify-self: center;
+}
+.admin__form--inputs-blog > input {
+  width: 250px;
 }
 .admin__form--picture-preview {
   height: 200px;

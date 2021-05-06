@@ -30,7 +30,7 @@ class Project extends Methods {
   public function update_project() {
     global $message;
     if ($this->transfer_image()) {
-      if ($this->update_item("projects")) {
+      if ($this->update_item("projects", $this->class_properties)) {
         $message->set_message("Project {$this->title} updated successfully. <a href='../project.php?project_id={$this->id}'>View here.</a>");
         redirect("projects.php");
       } else {

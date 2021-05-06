@@ -2,6 +2,7 @@
 <?php
   $all_blogs = Blog::get_all_items("blogs");
 ?>
+<p class="admin__headline">Blogs</p>
 <div class="blogs__container">
 <a href="add_blog.php" class="admin__add-button gen-btn">Add Blog</a>
   <table class="admin__table">

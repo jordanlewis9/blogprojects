@@ -2,6 +2,7 @@
 <?php 
 $all_comments = Comment::get_all_comments();
 ?>
+<p class="admin__headline">Comments</p>
 <div class="comments__container">
   <table class="admin__table">
     <tr class="admin__table--header-row">

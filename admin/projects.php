@@ -1,6 +1,6 @@
 <?php require_once("includes/admin_header.php"); ?>
 <?php $all_projects = Project::get_all_items("projects"); ?>
-
+<p class="admin__headline">Projects</p>
 <div class="projects__container">
 <a href="add_project.php" class="admin__add-button gen-btn">Add Project</a>
   <table class="admin__table">

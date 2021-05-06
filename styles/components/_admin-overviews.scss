@@ -45,4 +45,27 @@
       border: 1px solid $navbarColor;
     }
   }
+
+  &__message {
+    margin: 0 auto 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  &__welcome {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  &__no-comments {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  &__headline {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
 }

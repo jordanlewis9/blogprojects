@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
   </div>
   <div class="admin__form--inputs">
     <label for="description">Description</label>
-    <input type="text" name="description" id="description">
+    <textarea name="description" id="description" rows="4" cols="40"></textarea>
   </div>
   <div class="admin__form--inputs">
     <label for="snippet">Snippet</label>

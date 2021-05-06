@@ -16,20 +16,20 @@ if (isset($_POST['submit'])) {
     <label for="picture" class="admin__form--picture-label gen-btn">Upload Picture</label>
     <input type="file" name="picture" id="picture" accept=".png, .jpg, .jpeg">
   </div>
-  <div class="admin__form--inputs">
+  <div class="admin__form--inputs-blog">
     <label for="title">Title</label>
     <input type="text" name="title" id="title">
   </div>
-  <div class="admin__form--inputs">
+  <div class="admin__form--inputs-blog">
     <label for="content">Content</label>
 <?php if (isset($message->blog_content)): ?>
-    <input type="text" name="content" id="content" value="<?php echo $message->blog_content; ?>">
+    <textarea name="content" class="editor" id="content" cols="40" rows="8"><?php echo $message->blog_content; ?></textarea>
 <?php else: ?>
-    <input type="text" name="content" id="content">
+    <textarea name="content" class="editor" id="content" cols="40" rows="8"></textarea>
 <?php endif; ?>
   </div>
   <div class="admin__form--inputs">
-    <input class="gen-btn" type="submit" name="submit" value="Add Blog" id="add_item">
+    <input class="gen-btn" type="submit" name="submit" value="Publish Blog" id="add_item">
   </div>
 </form>
 
