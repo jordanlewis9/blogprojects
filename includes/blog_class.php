@@ -19,7 +19,7 @@ class Blog extends Methods {
       $db->query($sql);
       redirect("blogs.php");
     } else {
-      redirect("blogs.php?message=Blog save unsuccessful");
+      redirect("add_blog.php");
     }
   }
 

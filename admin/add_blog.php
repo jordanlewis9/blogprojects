@@ -5,11 +5,8 @@ if (isset($_POST['submit'])) {
   $blog = new Blog;
   $blog->title = $_POST['title'];
   $blog->content = $_POST['content'];
-  if ($blog->set_file($_FILES['picture'])) {
-    $blog->new_blog();
-  } else {
-    print_r($_FILES);
-  }
+  $blog->set_file($_FILES['picture']);
+  $blog->new_blog();
 }
 ?>
 
@@ -25,10 +22,14 @@ if (isset($_POST['submit'])) {
   </div>
   <div class="admin__form--inputs">
     <label for="content">Content</label>
+<?php if (isset($message->blog_content)): ?>
+    <input type="text" name="content" id="content" value="<?php echo $message->blog_content; ?>">
+<?php else: ?>
     <input type="text" name="content" id="content">
+<?php endif; ?>
   </div>
   <div class="admin__form--inputs">
-    <input class="gen-btn" type="submit" name="submit" value="Add Blog">
+    <input class="gen-btn" type="submit" name="submit" value="Add Blog" id="add_item">
   </div>
 </form>
 

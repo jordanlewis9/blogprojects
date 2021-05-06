@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
     <input type="text" name="link" id="link">
   </div>
   <div class="admin__form--inputs">
-    <input class="gen-btn" type="submit" name="submit" value="Add Project">
+    <input class="gen-btn" type="submit" name="submit" value="Add Project" id="add_item">
   </div>
 </form>
 

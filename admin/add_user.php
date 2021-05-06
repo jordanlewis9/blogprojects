@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
     <input type="text" name="username" id="username">
   </div>
   <div class="admin__form--inputs">
-    <label for="email">Email</iabel>
+    <label for="email">Email</label>
     <input type="email" name="email" id="email">
   </div>
   <div class="admin__form--inputs">
@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
     <input type="password" name="password" id="password">
   </div>
   <div class="admin__form--inputs">
-    <input class="gen-btn" type="submit" name="submit" value="Add User">
+    <input class="gen-btn" type="submit" name="submit" value="Add User" id="add_item">
   </div>
 </form>
 
