@@ -7,10 +7,11 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto-fill, 1fr);
+    grid-auto-rows: auto;
     justify-items: center;
     margin-top: 4rem;
     row-gap: 2rem;
+    margin-bottom: 3rem;
   }
 }
 
@@ -30,4 +31,9 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
+}
+
+hr {
+  border: 0.5px solid black;
+  width: 100%;
 }

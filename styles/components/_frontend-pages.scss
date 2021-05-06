@@ -1,0 +1,37 @@
+.blogs {
+  &__section {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(3, auto);
+    justify-items: center;
+    gap: 1.5rem;
+
+    &--link {
+      color: black;
+    }
+
+    &--image {
+      height: 200px;
+      width: auto;
+    }
+  }
+}
+
+.projects {
+  &__section {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(3, auto);
+    justify-items: center;
+    gap: 1.5rem;
+
+    &--link {
+      color: black;
+    }
+
+    &--image {
+      height: 200px;
+      width: auto;
+    }
+  }
+}

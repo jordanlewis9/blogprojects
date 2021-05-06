@@ -17,10 +17,11 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-auto-rows: auto;
   justify-items: center;
   margin-top: 4rem;
   row-gap: 2rem;
+  margin-bottom: 3rem;
 }
 
 .admin__container {
@@ -39,6 +40,11 @@ body {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+}
+
+hr {
+  border: 0.5px solid black;
+  width: 100%;
 }
 
 .nav {
@@ -67,6 +73,20 @@ body {
   background: #1c707d;
 }
 
+.home__blog {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(4, auto);
+  justify-items: center;
+  gap: 1.5rem;
+}
+.home__blog--image {
+  height: 200px;
+  width: auto;
+}
+.home__blog--link {
+  color: black;
+}
 .home__header {
   text-align: center;
 }
@@ -315,4 +335,34 @@ body {
 
 #add_item {
   grid-column: 1/3;
+}
+
+.blogs__section {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(3, auto);
+  justify-items: center;
+  gap: 1.5rem;
+}
+.blogs__section--link {
+  color: black;
+}
+.blogs__section--image {
+  height: 200px;
+  width: auto;
+}
+
+.projects__section {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(3, auto);
+  justify-items: center;
+  gap: 1.5rem;
+}
+.projects__section--link {
+  color: black;
+}
+.projects__section--image {
+  height: 200px;
+  width: auto;
 }

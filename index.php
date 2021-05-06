@@ -10,27 +10,28 @@
   <p><?php echo $message->current_message; ?></p>
 <?php endif; ?>
     <div class="container__content">
-      <section>
-        <h2 class="home__header">Latest Blog Post</h2>
+      <section class="home__blog">
+        <h2 class="home__blog--header">Latest Blog Post</h2>
 <?php
   echo "
-  <a href='blog.php?blog_id={$latest_blog->id}'><h2>{$latest_blog->title}</h2></a>
-  <a href='blog.php?blog_id={$latest_blog->id}'><img src='admin/images/{$latest_blog->picture}'></a>
-  <a href='blog.php?blog_id={$latest_blog->id}'><p>{$latest_blog->content}</p></a>
+  <a href='blog.php?blog_id={$latest_blog->id}' class='home__blog--link'><h3 class='home__blog--title'>{$latest_blog->title}</h3></a>
+  <a href='blog.php?blog_id={$latest_blog->id}' class='home__blog--link'><img src='admin/images/{$latest_blog->picture}' class='home__blog--image'></a>
+  <p class='home__blog--snippet'>{$latest_blog->content}</p>
   ";
 ?>
       </section>
-      <section>
+      <hr>
+      <section class="home__blog">
+          <h2 class="home__blog--header">Checkout this project!</h2>
       <?php
   echo "
-  <a href='project.php?project_id={$random_project->id}'><h2>{$random_project->title}</h2></a>
-  <a href='project.php?project_id={$random_project->id}'><img src='admin/images/{$random_project->picture}'></a>
-  <a href='project.php?project_id={$random_project->id}'><p>{$random_project->snippet}</p></a>
+  <a href='project.php?project_id={$random_project->id}' class='home__blog--link'><h3 class='home__blog--title'>{$random_project->title}</h3></a>
+  <a href='project.php?project_id={$random_project->id}' class='home__blog--link'><img src='admin/images/{$random_project->picture}' class='home__blog--image'></a>
+  <p class='home__blog--snippet'>{$random_project->snippet}</p>
   ";
 ?>
       </section>
     </div>
-  </div>
 <?php
 require_once("includes/footer.php");
 ?>
