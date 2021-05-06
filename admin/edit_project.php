@@ -13,11 +13,8 @@ if (isset($_POST['update'])) {
   if (empty($_FILES['picture']['name'])) {
     $project->update_project();
   } else {
-    if ($project->set_file($_FILES['picture'])) {
-      $project->update_project();
-    } else {
-      print_r($_FILES);
-    }
+    $project->set_file($_FILES['picture']);
+    $project->update_project();
   }
 }
 

@@ -26,8 +26,10 @@ class Database {
   }
 
   private function confirm_query($result) {
+    global $message;
     if (!$result) {
-      die("Query failed " . $this->connection->error);
+      $message->set_message("Query failed " . $this->connection->error);
+      redirect("index.php");
     }
   }
 }

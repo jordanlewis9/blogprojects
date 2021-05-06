@@ -6,12 +6,8 @@ if (isset($_POST['submit'])) {
   $project->description = $_POST['description'];
   $project->snippet = $_POST['snippet'];
   $project->link = $_POST['link'];
-  if ($project->set_file($_FILES['picture'])) {
-    $project->new_project();
-  } else {
-    print_r($project->custom_errors);
-    print_r($_FILES);
-  }
+  $project->set_file($_FILES['picture']);
+  $project->new_project();
 }
 ?>
 

@@ -33,6 +33,12 @@ body {
   border-top: 2rem solid #363636;
 }
 
+.admin__message {
+  margin: 0 auto 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
 .gen-btn {
   padding: 0.5rem;
   outline: none;

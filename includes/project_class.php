@@ -11,22 +11,34 @@ class Project extends Methods {
   public $class_properties = ['id', 'title', 'description', 'picture', 'snippet', 'link'];
 
   public function new_project() {
-    global $db;
+    global $db, $message;
     if ($this->transfer_image()) {
       $sql = "INSERT INTO projects (" . implode(", ", array_slice($this->class_properties, 1)) . ") VALUES ";
       $sql .= "('{$this->title}', '{$this->description}', '{$this->picture}', '{$this->snippet}', '{$this->link}')";
-      $db->query($sql);
-      redirect("projects.php");
+      if($db->query($sql)) {
+        $message->set_message("Project {$this->title} inserted successfully. <a href='../project.php?project_id={$this->id}'>View here.</a>");
+        redirect("projects.php");
+      } else {
+        $message->set_message("There was an error saving project {$this->title}. Please try again.");
+        redirect("add_project.php");
+      }
     } else {
-      redirect("projects.php?message=Project save unsuccessful");
+      redirect("projects.php");
     }
   }
 
   public function update_project() {
+    global $message;
     if ($this->transfer_image()) {
-      $this->update_item("projects");
+      if ($this->update_item("projects")) {
+        $message->set_message("Project {$this->title} updated successfully. <a href='../project.php?project_id={$this->id}'>View here.</a>");
+        redirect("projects.php");
+      } else {
+        $message->set_message("There was an error updating project {$this->title}. Please try again.");
+        redirect("edit_project.php?project_id={$this->id}");
+      }
     } else {
-      redirect("projects.php?message=Project update unsuccessful");
+      redirect("edit_project.php?project_id={$this->id}");
     }
   }
 

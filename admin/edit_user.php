@@ -11,8 +11,13 @@ if (isset($_POST['update'])) {
   $user->last_name = $_POST['last_name'];
   $user->password = $_POST['password'];
   $user->role = $_POST['role'];
-  $user->update_item('users', $user->class_properties);
-  redirect("users.php");
+  if ($user->update_item('users', $user->class_properties)) {
+    $message->set_message("User {$user->username} updated successfully.");
+    redirect("users.php");
+  } else {
+    $message->set_message("User {$user->username} could not be updated. Please try again.");
+    redirect("edit_user.php?user_id={$user->id}");
+  }
 }
 ?>
 

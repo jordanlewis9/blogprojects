@@ -26,5 +26,5 @@ if (!$auth->signed_in || $auth->role !== "admin") {
   </nav>
   <div class="admin__container">
 <?php if (isset($message->current_message)): ?>
-<p><?php echo $message->current_message; ?></p>
+<p class="admin__message"><?php echo $message->current_message; ?></p>
 <?php endif; ?>

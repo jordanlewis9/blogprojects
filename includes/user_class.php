@@ -11,10 +11,16 @@ class User extends Methods {
   public $class_properties = ['id', 'username', 'email', 'first_name', 'last_name', 'password', 'role'];
 
   public function add_user() {
-    global $db;
+    global $db, $message;
     $sql = "INSERT INTO users (" . implode(", ", array_slice($this->class_properties, 1, 5)) . ") VALUES ";
     $sql .= "('{$this->username}', '{$this->email}', '{$this->first_name}', '{$this->last_name}', '{$this->password}')";
-    $db->query($sql);
+    if ($db->query($sql)) {
+      $message->set_message("User {$this->username} added successfully.");
+      redirect("users.php");
+    } else {
+      $message->set_message("User {$this->username} could not be added. Please try again.");
+      redirect("add_user.php");
+    }
   }
 
   public static function get_all_users() {

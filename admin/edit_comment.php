@@ -8,8 +8,13 @@ if (isset($_POST['update'])) {
   $comment->content = $_POST['content'];
   $comment->status = $_POST['status'];
   $comment->blog_id = $_POST['blog_id'];
-  $comment->update_item("comments", array_slice($comment->class_properties, 2, 4));
-  redirect("comments.php");
+  if ($comment->update_item("comments", array_slice($comment->class_properties, 2, 4))) {
+    $message->set_message("Comment updated successfully.");
+    redirect("comments.php");
+  } else {
+    $message->set_message("Comment update could not be saved. Please try again.");
+    redirect("edit_comment.php?comment_id={$this->id}");
+  }
 }
 ?>
 

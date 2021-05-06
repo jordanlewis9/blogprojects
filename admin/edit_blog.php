@@ -11,11 +11,8 @@ if (isset($_POST['update'])) {
   if (empty($_FILES['picture']['name'])) {
     $blog->update_blog();
   } else {
-    if ($blog->set_file($_FILES['picture'])) {
-      $blog->update_blog();
-    } else {
-      print_r($_FILES);
-    }
+    $blog->set_file($_FILES['picture']);
+    $blog->update_blog();
   }
 }
 
