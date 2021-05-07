@@ -5,7 +5,6 @@
   $random_number = rand(0, (count($all_projects) - 1));
   $random_project = $all_projects[$random_number];
 ?>
-  <div class="container">
 <?php if(isset($message->current_message)): ?>
   <p><?php echo $message->current_message; ?></p>
 <?php endif; ?>
@@ -32,6 +31,4 @@
 ?>
       </section>
     </div>
-<?php
-require_once("includes/footer.php");
-?>
+<?php require_once("includes/footer.php"); ?>

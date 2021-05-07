@@ -2,16 +2,17 @@
 <?php 
   $all_blogs = Blog::get_all_items('blogs');
 ?>
-<div class="container">
   <div class="container__content">
     <h1 class="page__headline">Blog Posts</h1>
 <?php
   foreach ($all_blogs as $blog) {
     echo "
-    <section class='blogs__section'>
-      <a href='blog.php?blog_id={$blog->id}' class='blogs__section--link'><h2 class='blogs__section--title'>{$blog->title}</h2></a>
-      <a href='blog.php?blog_id={$blog->id}' class='blogs__section--link'><img src='admin/images/{$blog->picture}' class='blogs__section--image'></a>
-      <p class='blogs__section--snippet'>{$blog->content}</p>
+    <section class='content__section'>
+      <div class='content__section--content'>
+        <a href='blog.php?blog_id={$blog->id}' class='content__section--link content__section--link-title'><h2 class='content__section--title'>{$blog->title}</h2></a>
+        <p class='content__section--snippet'>{$blog->content}</p>
+      </div>
+      <a href='blog.php?blog_id={$blog->id}' class='content__section--link content__section--link-picture'><img src='admin/images/{$blog->picture}' class='content__section--image'></a>
     </section>
     <hr>
     ";

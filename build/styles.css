@@ -337,19 +337,41 @@ hr {
   grid-column: 1/3;
 }
 
-.blogs__section {
+.content__section--content {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.content__section--link-title {
+  color: black;
+  justify-self: center;
+  margin-bottom: 0.5rem;
+}
+.content__section--link-title--link-picture {
+  grid-area: pic;
+  width: 100%;
+}
+.content__section:nth-of-type(odd) {
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: repeat(3, auto);
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "content pic";
   justify-items: center;
   gap: 1.5rem;
 }
-.blogs__section--link {
-  color: black;
+.content__section:nth-of-type(even) {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "pic content";
+  justify-items: center;
+  gap: 1.5rem;
 }
-.blogs__section--image {
+.content__section--image {
   height: 200px;
-  width: auto;
+  max-width: 100%;
 }
 
 .projects__section {

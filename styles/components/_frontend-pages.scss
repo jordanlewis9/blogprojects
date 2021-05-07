@@ -1,18 +1,45 @@
-.blogs {
+.content {
   &__section {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: repeat(3, auto);
-    justify-items: center;
-    gap: 1.5rem;
+    &--content {
+      grid-area: content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
 
-    &--link {
+    &--link-title {
       color: black;
+      justify-self: center;
+      margin-bottom: 0.5rem;
+
+      &--link-picture {
+        grid-area: pic;
+        width: 100%;
+      }
+    }
+
+    &:nth-of-type(odd) {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "content pic";
+      justify-items: center;
+      gap: 1.5rem;
+    }
+
+    &:nth-of-type(even) {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "pic content";
+      justify-items: center;
+      gap: 1.5rem;
     }
 
     &--image {
       height: 200px;
-      width: auto;
+      max-width: 100%;
     }
   }
 }
