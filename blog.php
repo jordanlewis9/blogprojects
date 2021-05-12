@@ -19,27 +19,33 @@
 <div class="container__content">
   <h1><?php echo $blog->title; ?></h1>
   <img src="admin/images/<?php echo $blog->picture; ?>">
+  <p>By <?php echo $blog->author; ?></p>
   <p>
 <?php if ($blog->updated): ?>
   <span>Updated on </span>
 <?php endif; ?>
 <?php echo $blog->created; ?>
   </p>
-  <p><?php echo $blog->content; ?></p>
+  <article><?php echo $blog->content; ?></article>
+  <div class="comment__container">
 <?php if (count($comments) >= 1) {
   foreach ($comments as $comment) {
     echo "
-    <p>{$comment->username}</p>
-    <p>{$comment->content}</p>
+    <section class='comment'>
+      <p class='comment__username'>{$comment->username}</p>
+      <p class='comment__created'>{$comment->created}</p>
+      <p class='comment__content'>{$comment->content}</p>
+    </section>
     ";
   }
 }
 ?>
+</div>
 <?php if ($auth->signed_in): ?>
-  <form method="POST" action="">
-    <label for="comment">Enter Comment</label>
-    <textarea id="comment" name="comment" cols="40" rows="6" placeholder="Enter comment here..."></textarea>
-    <input type="submit" name="submit" value="Post Comment" class="gen-btn">
+  <form method="POST" action="" class="comment__form">
+    <label for="comment" class="comment__form--label">Enter Comment</label>
+    <textarea id="comment" name="comment" rows="6" placeholder="Enter comment here..." class="comment__form--content"></textarea>
+    <input type="submit" name="submit" value="Post Comment" class="gen-btn comment__form--button">
   </form>
 <?php else: ?>
   <p>Sign up or login to comment on this post.</p>

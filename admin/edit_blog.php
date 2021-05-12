@@ -7,6 +7,7 @@ if (isset($_GET['blog_id'])) {
 
 if (isset($_POST['update'])) {
   $blog->title = $_POST['title'];
+  $blog->author = $_POST['author'];
   $blog->content = $_POST['content'];
   if (empty($_FILES['picture']['name'])) {
     $blog->update_blog();
@@ -28,6 +29,10 @@ if (isset($_POST['update'])) {
   <div class="admin__form--inputs-blog">
     <label for="title">Title</label>
     <input type="text" name="title" id="title" value="<?php echo $blog->title; ?>">
+  </div>
+  <div class="admin__form--inputs-blog">
+    <label for="author">Author</label>
+    <input type="text" name="author" id="author" value="<?php echo $blog->author; ?>">
   </div>
   <div class="admin__form--inputs-blog">
     <label for="content">Content</label>

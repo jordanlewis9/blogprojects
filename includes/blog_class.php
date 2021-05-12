@@ -4,18 +4,19 @@ class Blog extends Methods {
   public $id;
   public $title;
   public $content;
+  public $author;
   public $picture;
   public $created;
   public $views;
   public $tmp_path;
   public $updated;
-  public $class_properties = ["created", "updated", "views", "id", "title", "content", "picture"];
+  public $class_properties = ["created", "updated", "views", "id", "title", "content", "picture", "author"];
 
   public function new_blog() {
     global $db, $message;
     if ($this->transfer_image()) {
       $sql = "INSERT INTO blogs (" . implode(", ", array_slice($this->class_properties, 4)) . ") VALUES (";
-      $sql .= "'{$this->title}', '{$this->content}', '{$this->picture}')";
+      $sql .= "'{$this->title}', '{$this->content}', '{$this->picture}', '{$this->author}')";
       $db->query($sql);
       $message->set_message("Blog {$this->title} was successfully created! <a href='../blog.php?blog_id={$this->id}'>View here.</a>");
       redirect("blogs.php");

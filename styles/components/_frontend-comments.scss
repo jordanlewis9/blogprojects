@@ -1,0 +1,58 @@
+.comment {
+  background-color: #f2faf5;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 400px;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 2px;
+
+  &__container {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  &__content {
+    grid-columns: 1 / 3;
+  }
+
+  &__form {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 400px auto;
+    gap: 0 0.5rem;
+
+    &--label {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1px;
+      height: 1px;
+    }
+
+    &--button {
+      background-color: $positiveAction;
+      color: white;
+      justify-self: start;
+      align-self: end;
+
+      &:hover {
+        background-color: $positiveActionHover;
+      }
+    }
+
+    &--content {
+      box-sizing: border-box;
+      resize: vertical;
+      width: 400px;
+    }
+  }
+}
