@@ -47,6 +47,12 @@ hr {
   width: 100%;
 }
 
+.frontend__body {
+  background-color: #222233;
+  color: #bbddff;
+  font-family: "Verdana", sans-serif;
+}
+
 .nav {
   width: 90%;
   margin: 0 auto;
@@ -345,7 +351,7 @@ hr {
   justify-content: flex-start;
 }
 .content__section--link-title {
-  color: black;
+  color: #bbddff;
   justify-self: center;
   margin-bottom: 0.5rem;
 }
@@ -382,15 +388,21 @@ hr {
   gap: 1.5rem;
 }
 .projects__section--link {
-  color: black;
+  color: #bbddff;
 }
 .projects__section--image {
   height: 200px;
   width: auto;
 }
 
+.blog__content {
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+  font-family: "Brush Script MT", cursive;
+}
+
 .comment {
-  background-color: #f2faf5;
+  background-color: rgba(201, 87, 0, 0.4);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -406,6 +418,7 @@ hr {
   justify-items: start;
   width: 100%;
   gap: 1rem;
+  margin-top: 5rem;
 }
 .comment__content {
   grid-columns: 1/3;

@@ -9,7 +9,7 @@
     }
 
     &--link-title {
-      color: black;
+      color: $frontendText;
       justify-self: center;
       margin-bottom: 0.5rem;
 
@@ -53,12 +53,20 @@
     gap: 1.5rem;
 
     &--link {
-      color: black;
+      color: $frontendText;
     }
 
     &--image {
       height: 200px;
       width: auto;
     }
+  }
+}
+
+.blog {
+  &__content {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    font-family: 'Brush Script MT', cursive;
   }
 }

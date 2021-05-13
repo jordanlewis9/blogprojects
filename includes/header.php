@@ -8,7 +8,7 @@
   <title>Document</title>
   <link href="build/styles.css" rel="stylesheet">
 </head>
-<body>
+<body class="frontend__body">
   <nav class="nav">
     <ul class="nav__list">
       <a href="index.php" class="nav__list--link"><li class="nav__list--item">Home</li></a>

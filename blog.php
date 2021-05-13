@@ -26,8 +26,9 @@
 <?php endif; ?>
 <?php echo $blog->created; ?>
   </p>
-  <article><?php echo $blog->content; ?></article>
+  <article class="blog__content"><?php echo $blog->content; ?></article>
   <div class="comment__container">
+    <h3 class="comment__headline">Comments</h3>
 <?php if (count($comments) >= 1) {
   foreach ($comments as $comment) {
     echo "
