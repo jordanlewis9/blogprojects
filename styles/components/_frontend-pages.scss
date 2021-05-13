@@ -67,6 +67,20 @@
   &__content {
     font-size: 1.5rem;
     letter-spacing: 0.5px;
-    font-family: 'Brush Script MT', cursive;
+    font-family: "Brush Script MT", cursive;
+  }
+
+  &__image {
+    width: 100%;
+  }
+}
+
+.project {
+  &__headline {
+    text-align: center;
+  }
+
+  &__image {
+    width: 100%;
   }
 }

@@ -11,9 +11,11 @@
     redirect("projects.php");
   }
 ?>
-<h1><?php echo $project->title; ?></h1>
-<a href="<?php echo $project->link; ?>"><img src="admin/images/<?php echo $project->picture; ?>"></a>
-<p><?php echo $project->description; ?></p>
-<p>Click <a href="<?php echo $project->link; ?>">here</a> to check it out!</p>
+<div class="container__content">
+  <h1 class="project__headline"><?php echo $project->title; ?></h1>
+  <a href="<?php echo $project->link; ?>" target="_blank"><img src="admin/images/<?php echo $project->picture; ?>" class="project__image"></a>
+  <p class="project__description"><?php echo $project->description; ?></p>
+  <p class="project__link">Click <a href="<?php echo $project->link; ?>" target="_blank" class="cta-link">here</a> to check it out!</p>
+</div>
 
 <?php require_once("includes/footer.php"); ?>

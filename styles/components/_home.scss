@@ -12,7 +12,15 @@
     }
 
     &--link {
-      color: black;
+      color: $frontendText;
+    }
+
+    &--title {
+      color: $frontendText;
+    }
+
+    &--header {
+      color: #eee;
     }
   }
   &__header {

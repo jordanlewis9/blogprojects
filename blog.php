@@ -17,12 +17,12 @@
   }
 ?>
 <div class="container__content">
-  <h1><?php echo $blog->title; ?></h1>
-  <img src="admin/images/<?php echo $blog->picture; ?>">
-  <p>By <?php echo $blog->author; ?></p>
-  <p>
+  <h1 class="blog__headline"><?php echo $blog->title; ?></h1>
+  <img src="admin/images/<?php echo $blog->picture; ?>" class="blog__image">
+  <p class="blog__author">By <?php echo $blog->author; ?></p>
+  <p class="blog__time">
 <?php if ($blog->updated): ?>
-  <span>Updated on </span>
+  <span class="blog__updated">Updated on </span>
 <?php endif; ?>
 <?php echo $blog->created; ?>
   </p>
@@ -49,7 +49,7 @@
     <input type="submit" name="submit" value="Post Comment" class="gen-btn comment__form--button">
   </form>
 <?php else: ?>
-  <p>Sign up or login to comment on this post.</p>
+  <p>Sign up or <a href="login.php" class="cta-link">login</a> to comment on this post.</p>
 <?php endif; ?>
 </div>
 

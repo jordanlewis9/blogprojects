@@ -2,8 +2,12 @@
   width: 90%;
   margin: 0 auto;
   height: 3rem;
-  background: orange;
-
+  background: linear-gradient(
+    to bottom,
+    $frontendNavBackground -400%,
+    $frontendBackground
+  );
+  border-radius: 200px;
   &__list {
     display: flex;
     justify-content: space-around;
@@ -26,5 +30,11 @@
         }
       }
     }
+  }
+}
+
+@include phone {
+  .nav {
+    width: 100%;
   }
 }
