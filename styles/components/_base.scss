@@ -7,3 +7,9 @@
 body {
   width: 100vw;
 }
+
+@include phone {
+  body {
+    font-size: 0.75rem;
+  }
+}
