@@ -13,18 +13,20 @@
 <?php if (isset($message->current_message)): ?>
 <p><?php echo $message->current_message; ?></p>
 <?php endif; ?>
-<form action="" method="POST" class="admin__form">
-  <div class="admin__form--inputs">
+<div class="container__content">
+<form action="" method="POST" class="login__form">
+  <div class="login__form--inputs">
     <label for="username">Username</label>
     <input type="text" id="username" name="username">
   </div>
-  <div class="admin__form--inputs">
+  <div class="login__form--inputs">
     <label for="password">Password</label>
     <input type="password" id="password" name="password">
   </div>
-  <div class="admin__form--inputs">
-    <input type="submit" name="login" value="Login" class="gen-btn admin__form--login-btn">
+  <div class="login__form--inputs">
+    <input type="submit" name="login" value="Login" class="gen-btn login__form--btn">
   </div>
 </form>
+</div>
 
 <?php require_once("includes/footer.php"); ?>

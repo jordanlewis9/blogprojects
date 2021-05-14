@@ -1,13 +1,12 @@
 .nav {
-  width: 90%;
-  margin: 0 auto;
+  align-self: start;
+  width: 100%;
   height: 3rem;
   background: linear-gradient(
     to bottom,
     $frontendNavBackground -400%,
     $frontendBackground
   );
-  border-radius: 200px;
   &__list {
     display: flex;
     justify-content: space-around;
@@ -20,7 +19,7 @@
 
     &--link {
       text-decoration: none;
-      color: white;
+      color: $nonContentText;
 
       &.gen-btn {
         background: $positiveAction;

@@ -9,7 +9,8 @@
   <link href="build/styles.css" rel="stylesheet">
 </head>
 <body class="frontend__body">
-  <nav class="nav">
+<div class="container">
+<nav class="nav">
     <ul class="nav__list">
       <a href="index.php" class="nav__list--link"><li class="nav__list--item">Home</li></a>
       <a href="blogs.php" class="nav__list--link"><li class="nav__list--item">Blog Posts</li></a>
@@ -24,4 +25,3 @@
 <?php endif; ?>
     </ul>
   </nav>
-  <div class="container">
