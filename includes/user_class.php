@@ -23,6 +23,20 @@ class User extends Methods {
     }
   }
 
+  public function public_add_user() {
+    global $db, $message, $auth;
+    $sql = "INSERT INTO users (" . implode(", ", array_slice($this->class_properties, 1, 5)) . ") VALUES ";
+    $sql .= "('{$this->username}', '{$this->email}', '{$this->first_name}', '{$this->last_name}', '{$this->password}')";
+    if ($db->query($sql)) {
+      $message->set_message("Welcome to the site, {$this->username}!");
+      $auth->login_user($this->username, $this->password);
+      redirect("index.php");
+    } else {
+      $message->set_message("There has been an error. Please try again.");
+      redirect("signup.php");
+    }
+  }
+
   public static function get_all_users() {
     global $db;
     $sql = "SELECT id, username, email, role FROM users ORDER BY id ASC";

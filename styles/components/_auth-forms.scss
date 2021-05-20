@@ -81,11 +81,11 @@
 @include phone {
   .login {
     &__form {
-      justify-self: start;
-      justify-items: start;
-
       &--inputs {
-        grid-template-columns: 70px auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 0.25rem;
         & > label {
           justify-self: start;
         }

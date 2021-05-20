@@ -1,5 +1,6 @@
 .nav {
   align-self: start;
+  position: relative;
   width: 100%;
   height: 3rem;
   background: linear-gradient(
@@ -21,7 +22,7 @@
       text-decoration: none;
       color: $nonContentText;
 
-      &.gen-btn {
+      &.nav__list--log {
         background: $positiveAction;
 
         &:hover {
@@ -29,11 +30,119 @@
         }
       }
     }
+
+    &--grouping {
+      display: flex;
+    }
+
+    &--signup {
+      margin-left: 0.5rem;
+      background-color: $signUpButton;
+
+      &:hover {
+        background-color: $signUpButtonHover;
+      }
+    }
+  }
+
+  &__hamburger {
+    display: none;
   }
 }
 
 @include phone {
   .nav {
     width: 100%;
+
+    &__list {
+      display: none;
+    }
+
+    &__hamburger {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      width: 2.25rem;
+      height: 2.25rem;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      border: 1px solid $nonContentText;
+      border-radius: 5px;
+      background-color: transparent;
+
+      &--line {
+        width: 1.5rem;
+        height: 2px;
+        border: 1px solid $nonContentText;
+      }
+    }
+
+    &__x--top {
+      position: absolute;
+      width: 2rem;
+      transform: rotate(45deg);
+      animation-name: turnDown;
+      animation-duration: 1s;
+    }
+
+    &__x--bottom {
+      position: absolute;
+      width: 2rem;
+      transform: rotate(-45deg);
+      animation-name: turnUp;
+      animation-duration: 1s;
+    }
+
+    &__hide {
+      display: none;
+    }
+
+    &__hide--border {
+      border: none;
+    }
+
+    &__expand {
+      height: auto;
+    }
+
+    &__list--expand {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-left: 1rem;
+      padding-top: 46px;
+      font-size: 1rem;
+    }
+
+    &__list--link {
+      margin-top: 0.75rem;
+    }
+
+    &__list--grouping {
+      margin-top: 0.75rem;
+    }
+
+    @keyframes turnDown {
+      0% {
+        transform: rotate(0);
+      }
+
+      100% {
+        transform: rotate(45deg);
+      }
+    }
+
+    @keyframes turnUp {
+      0% {
+        transform: rotate(0);
+      }
+
+      100% {
+        transform: rotate(-45deg);
+      }
+    }
   }
 }

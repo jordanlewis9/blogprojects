@@ -14,6 +14,7 @@
 <p><?php echo $message->current_message; ?></p>
 <?php endif; ?>
 <div class="container__content">
+<h2 class="auth__headline">Login</h2>
 <form action="" method="POST" class="login__form">
   <div class="login__form--inputs">
     <label for="username">Username</label>

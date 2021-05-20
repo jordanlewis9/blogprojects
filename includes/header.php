@@ -18,10 +18,19 @@
 <?php if (isset($auth->role) && $auth->role === "admin"): ?>
       <a href="admin" class="nav__list--link"><li class="nav__list--item">Admin</li></a>
 <?php endif; ?>
+      <div class="nav__list--grouping">
 <?php if($auth->signed_in): ?>
-      <a href="logout.php" class="nav__list--link gen-btn"><li class="nav__list--item">Logout</li></a>
+            <a href="logout.php" class="nav__list--link nav__list--log gen-btn"><li class="nav__list--item">Logout</li></a>
 <?php else: ?>
-      <a href="login.php" class="nav__list--link gen-btn"><li class="nav__list--item">Login</li></a>
+            <a href="login.php" class="nav__list--link nav__list--log gen-btn"><li class="nav__list--item">Login</li></a>
+            <a href="signup.php" class="nav__list--link nav__list--signup gen-btn"><li class="nav__list--item">Sign Up</li></a>
 <?php endif; ?>
+      </div>
     </ul>
+    <button class="nav__hamburger">
+      <div class="nav__hamburger--line line-1"></div>
+      <div class="nav__hamburger--line line-2"></div>
+      <div class="nav__hamburger--line line-3"></div>
+      </button>
+
   </nav>
