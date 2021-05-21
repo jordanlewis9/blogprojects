@@ -49,7 +49,7 @@
     <input type="submit" name="submit" value="Post Comment" class="gen-btn comment__form--button">
   </form>
 <?php else: ?>
-  <p>Sign up or <a href="login.php" class="cta-link">login</a> to comment on this post.</p>
+  <p><a href="signup.php" class="cta-link">Sign up</a> or <a href="login.php" class="cta-link">login</a> to comment on this post.</p>
 <?php endif; ?>
 </div>
 

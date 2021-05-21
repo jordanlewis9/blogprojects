@@ -6,6 +6,7 @@
     <a href="signout.php" class="footer__link"><p>Log Out</p></a>
 <?php else: ?>
     <a href="login.php" class="footer__link"><p>Log In</p></a>
+    <a href="signup.php" class="footer__link"><p>Sign Up</p></a>
 <?php endif; ?>
     <p class="footer__copyright">Copyright by Jordan Lewis &#169; 2021</p>
   </div>
