@@ -60,8 +60,8 @@
 
     &__hamburger {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 15px;
+      right: 15px;
       display: flex;
       width: 2.25rem;
       height: 2.25rem;
@@ -71,6 +71,7 @@
       border: 1px solid $nonContentText;
       border-radius: 5px;
       background-color: transparent;
+      cursor: pointer;
 
       &--line {
         width: 1.5rem;
@@ -84,7 +85,7 @@
       width: 2rem;
       transform: rotate(45deg);
       animation-name: turnDown;
-      animation-duration: 1s;
+      animation-duration: 300ms;
     }
 
     &__x--bottom {
@@ -92,7 +93,7 @@
       width: 2rem;
       transform: rotate(-45deg);
       animation-name: turnUp;
-      animation-duration: 1s;
+      animation-duration: 300ms;
     }
 
     &__hide {
@@ -105,6 +106,8 @@
 
     &__expand {
       height: auto;
+      animation-name: expandMenu;
+      animation-duration: 300ms;
     }
 
     &__list--expand {
@@ -115,6 +118,9 @@
       padding-left: 1rem;
       padding-top: 46px;
       font-size: 1rem;
+      animation-name: showOptions;
+      animation-duration: 300ms;
+      opacity: 1;
     }
 
     &__list--link {
@@ -123,6 +129,26 @@
 
     &__list--grouping {
       margin-top: 0.75rem;
+    }
+
+    @keyframes expandMenu {
+      0% {
+        max-height: 3rem;
+      }
+
+      100% {
+        max-height: 30rem;
+      }
+    }
+
+    @keyframes showOptions {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
 
     @keyframes turnDown {
