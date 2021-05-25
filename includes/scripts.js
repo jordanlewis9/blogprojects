@@ -73,3 +73,20 @@ if (navHamburger) {
   navHamburger.addEventListener("click", openMenu);
   window.addEventListener("resize", throttle(resizedWindow, 100));
 }
+
+// Handling inputs
+
+const username = document.querySelector(".input__username");
+const password = document.querySelector(".input__password");
+
+const inputRequired = (e) => {
+  if (e.target.value === "") {
+    e.target.classList.add("input__required");
+  } else if (e.target.closest(".input__required")) {
+    e.target.classList.remove("input__required");
+  }
+}
+
+let isactive = false;
+
+username.addEventListener("focusout", inputRequired)

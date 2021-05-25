@@ -69,6 +69,10 @@ hr {
   filter: brightness(0.8);
 }
 
+.input__required {
+  border: 1px solid red;
+}
+
 @media screen and (max-width: 600px) {
   .container__content {
     width: 95%;

@@ -56,6 +56,10 @@ hr {
   }
 }
 
+.input__required {
+  border: 1px solid red;
+}
+
 @include phone {
   .container {
     &__content {

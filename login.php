@@ -18,11 +18,11 @@
 <form action="" method="POST" class="login__form">
   <div class="login__form--inputs">
     <label for="username">Username</label>
-    <input type="text" id="username" name="username">
+    <input type="text" class="input__username" id="username" name="username" required>
   </div>
   <div class="login__form--inputs">
     <label for="password">Password</label>
-    <input type="password" id="password" name="password">
+    <input type="password" class="input__password" id="password" name="password" required>
   </div>
   <div class="login__form--inputs">
     <input type="submit" name="login" value="Login" class="gen-btn login__form--btn">
