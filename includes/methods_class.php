@@ -97,4 +97,16 @@ class Methods {
       return true;
     }
   }
+
+  public function format_time() {
+    $created_date = new DateTime($this->created);
+    $now = new DateTime('now');
+    $diff = $created_date->add(new DateInterval('P7D')) > $now;
+    if ($diff) {
+      $day = $created_date->format('l');
+    } else {
+      $day = $created_date->format('n/j/y');
+    }
+    $this->created = "{$day} at {$created_date->format('g:ia')}";
+  }
 }

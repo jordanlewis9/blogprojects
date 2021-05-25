@@ -13,10 +13,10 @@
 <nav class="nav">
     <ul class="nav__list">
       <a href="index.php" class="nav__list--link"><li class="nav__list--item">Home</li></a>
-      <a href="blogs.php" class="nav__list--link"><li class="nav__list--item">Blog Posts</li></a>
+      <a href="blogs.php" class="nav__list--link"><li class="nav__list--item">Blogs</li></a>
       <a href="projects.php" class="nav__list--link"><li class="nav__list--item">Projects</li></a>
 <?php if (isset($auth->role) && $auth->role === "admin"): ?>
-      <a href="admin" class="nav__list--link"><li class="nav__list--item">Admin</li></a>
+      <a href="admin/index.php" class="nav__list--link"><li class="nav__list--item">Admin</li></a>
 <?php endif; ?>
       <div class="nav__list--grouping">
 <?php if($auth->signed_in): ?>
