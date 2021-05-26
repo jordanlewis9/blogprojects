@@ -58,6 +58,12 @@ hr {
 
 .input__required {
   border: 1px solid red;
+  background-color: #f7dcdc;
+}
+
+.input__error {
+  font-size: 0.75rem;
+  color: red;
 }
 
 @include phone {

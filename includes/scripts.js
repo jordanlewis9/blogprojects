@@ -78,15 +78,30 @@ if (navHamburger) {
 
 const username = document.querySelector(".input__username");
 const password = document.querySelector(".input__password");
+const email = document.querySelector(".input__email");
+const firstName = document.querySelector(".input__first-name");
+const lastName = document.querySelector(".input__last-name");
+const comment = document.querySelector(".input__comment");
+
+const userInputs = [username, password, email, firstName, lastName, comment];
 
 const inputRequired = (e) => {
-  if (e.target.value === "") {
+  const messageContainer = e.target.parentNode;
+  if (e.target.value === "" && e.target.classList.contains("input__required")) {
+    return null;
+  } else if (e.target.value === "") {
     e.target.classList.add("input__required");
-  } else if (e.target.closest(".input__required")) {
+    const field = e.target.id.substring(0, 1).toUpperCase() + e.target.id.substring(1);
+    messageContainer.insertAdjacentHTML('beforeend', `<p class="input__error">${field} cannot be empty</p>`);
+  } else if (e.target.classList.contains("input__required")) {
     e.target.classList.remove("input__required");
+    const inputError = messageContainer.querySelector('.input__error');
+    messageContainer.removeChild(inputError);
   }
 }
 
-let isactive = false;
-
-username.addEventListener("focusout", inputRequired)
+userInputs.forEach(input => {
+  if (input) {
+    input.addEventListener("focusout", inputRequired);
+  }
+});

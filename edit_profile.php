@@ -28,23 +28,33 @@ if (isset($_POST['update'])) {
 <form method="POST" action="" class="signup__form">
   <div class="signup__form--inputs">
     <label for="username" class="signup__form--labels">Username</label>
-    <input type="text" name="username" id="username" class="signup__form--content" value="<?php echo $user->username; ?>">
+    <div class="input__container">
+      <input type="text" name="username" id="username" class="signup__form--content input__username" value="<?php echo $user->username; ?>">
+    </div>
   </div>
   <div class="signup__form--inputs">
     <label for="email" class="signup__form--labels">Email</label>
-    <input type="email" name="email" id="email" class="signup__form--content" value="<?php echo $user->email; ?>">
+    <div class="input__container">
+      <input type="email" name="email" id="email" class="signup__form--content input__email" value="<?php echo $user->email; ?>">
+    </div>
   </div>
   <div class="signup__form--inputs">
     <label for="first_name" class="signup__form--labels">First Name</label>
-    <input type="text" name="first_name" id="first_name" class="signup__form--content" value="<?php echo $user->first_name; ?>">
+    <div class="input__container">
+      <input type="text" name="first_name" id="first_name" class="signup__form--content input__first-name" value="<?php echo $user->first_name; ?>">
+    </div>
   </div>
   <div class="signup__form--inputs">
     <label for="last_name" class="signup__form--labels">Last Name</label>
-    <input type="text" name="last_name" id="last_name" class="signup__form--content" value="<?php echo $user->last_name; ?>">
+    <div class="input__container">
+      <input type="text" name="last_name" id="last_name" class="signup__form--content input__last-name" value="<?php echo $user->last_name; ?>">
+    </div>
   </div>
   <div class="signup__form--inputs">
     <label for="password" class="signup__form--labels">Password</label>
-    <input type="password" name="password" id="password" class="signup__form--content" value="<?php echo $user->password; ?>">
+    <div class="input__container">
+      <input type="password" name="password" id="password" class="signup__form--content input__password" value="<?php echo $user->password; ?>">
+    </div>
   </div>
   <div class="signup__form--inputs">
     <input class="gen-btn signup__form--button" type="submit" name="update" value="Save Changes">

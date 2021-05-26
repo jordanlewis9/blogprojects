@@ -25,23 +25,33 @@
 <form method="POST" action="" class="signup__form">
     <div class="signup__form--inputs">
       <label class="signup__form--labels" for="username">Username</label>
-      <input class="signup__form--content" type="text" name="username" id="username">
+      <div class="input__container">
+        <input class="signup__form--content input__username" type="text" name="username" id="username">
+      </div>
     </div>
     <div class="signup__form--inputs">
       <label class="signup__form--labels" for="email">Email</label>
-      <input class="signup__form--content" type="email" name="email" id="email">
+      <div class="input__container">
+        <input class="signup__form--content input__email" type="email" name="email" id="email">
+      </div>
     </div>
     <div class="signup__form--inputs">
       <label class="signup__form--labels" for="first_name">First Name</label>
-      <input class="signup__form--content" type="text" name="first_name" id="first_name">
+      <div class="input__container">
+        <input class="signup__form--content input__first-name" type="text" name="first_name" id="first_name">
+      </div>
     </div>
     <div class="signup__form--inputs">
       <label class="signup__form--labels" for="last_name">Last Name</label>
-      <input class="signup__form--content" type="text" name="last_name" id="last_name">
+      <div class="input__container">
+        <input class="signup__form--content input__last-name" type="text" name="last_name" id="last_name">
+      </div>
     </div>
     <div class="signup__form--inputs">
       <label class="signup__form--labels" for="password">Password</label>
-      <input class="signup__form--content" type="password" name="password" id="password">
+      <div class="input__container">
+        <input class="signup__form--content input__password" type="password" name="password" id="password">
+      </div>
     </div>
     <div class="signup__form--inputs">
       <input class="gen-btn signup__form--button" type="submit" name="submit" value="Sign Up">
