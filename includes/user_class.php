@@ -11,10 +11,21 @@ class User extends Methods {
   public $class_properties = ['id' => 'i', 'username' => 's', 'email' => 's', 'first_name' => 's', 'last_name' => 's', 'password' => 's', 'role' => 's'];
 
   public function add_user() {
-    global $db, $message;
-    $sql = "INSERT INTO users (" . implode(", ", array_slice($this->class_properties, 1, 5)) . ") VALUES ";
-    $sql .= "('{$this->username}', '{$this->email}', '{$this->first_name}', '{$this->last_name}', '{$this->password}')";
-    if ($db->query($sql)) {
+    global $db, $message, $auth;
+    $this->email = $this->validate_email(trim($this->email));
+    $this->username = trim($this->username);
+    if (!$auth->check_username_and_email($this->username, $this->password)) {
+      return false;
+    }
+    list($main_query, $sanitized_items, $types_string) = $this->set_items(array_slice($this->class_properties, 1, 5));
+    $sql = "INSERT INTO users SET " . implode(", ", $main_query);
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param($types_string, ...$sanitized_items);
+    $stmt->execute();
+    // $sql = "INSERT INTO users (" . implode(", ", array_slice($this->class_properties, 1, 5)) . ") VALUES ";
+    // $sql .= "('{$this->username}', '{$this->email}', '{$this->first_name}', '{$this->last_name}', '{$this->password}')";
+    // if ($db->query($sql)) {
+    if ($stmt->affected_rows === 1) {
       $message->set_message("User {$this->username} added successfully.");
       redirect("users.php");
     } else {

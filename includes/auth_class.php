@@ -71,6 +71,34 @@ class Auth {
     unset($_SESSION['role']);
   }
 
+  public function check_username_and_email($username, $email) {
+    global $db, $message;
+    $sql = "SELECT * FROM users WHERE username = ? OR email = ?";
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param('ss', $username, $email);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows > 0) {
+      $result = $stmt->get_result();
+      while ($row = $result->fetch_array()) {
+        print_r($row['username']);
+        print_r($username);
+        print_r($row['email']);
+        print_r($email);
+        if ($row['username'] == $username) {
+          $message->set_message("Username is already in use. Please choose a different one.");
+          break;
+        } else if ($row['email'] == $email) {
+          $message->set_message("Email is already in use. Please choose a different one.");
+          break;
+        }
+      }
+      return false;
+    } else {
+      return true;
+    }
+  }
+
 }
 
 $auth = new Auth();

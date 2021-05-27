@@ -54,22 +54,7 @@ class Methods {
 
   public function update_item($table, $prop_array) {
     global $db;
-    $main_query = [];
-    $sanitized_items = [];
-    $types_string = '';
-    $is_valid = true;
-    foreach ($prop_array as $prop => $type) {
-      $this->$prop = trim($this->$prop);
-      $types_string .= $type;
-      if ($prop === "email") {
-        if (!$this->$prop = $this->validate_email($this->$prop)) {
-          $is_valid = false;
-          break;
-        }
-      }
-      $main_query[] = "{$prop} = ?";
-      $sanitized_items[] = $this->$prop;
-    }
+    list($main_query, $sanitized_items, $types_string, $is_valid) = $this->set_items($prop_array);
     if (!$is_valid) return false;
     $sanitized_items[] = $this->id;
     $types_string .= "i";
@@ -86,8 +71,14 @@ class Methods {
 
   public static function delete_item($table, $id) {
     global $db;
+    $table = trim($table);
+    $id = trim($id);
+    $sql = "DELETE FROM {$table} WHERE id = ?";
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
     $result = $db->query("DELETE FROM {$table} WHERE id = {$id}");
-    if ($db->connection->affected_rows === 1) {
+    if ($stmt->affected_rows === 1) {
       return true;
     } else {
       return false;
@@ -145,5 +136,25 @@ class Methods {
       $message->set_message("Invalid email. Please enter a different email.");
       return false;
     }
+  }
+
+  protected function set_items($prop_array) {
+    $main_query = [];
+    $sanitized_items = [];
+    $types_string = '';
+    $is_valid = true;
+    foreach ($prop_array as $prop => $type) {
+      $this->$prop = trim($this->$prop);
+      $types_string .= $type;
+      if ($prop === "email") {
+        if (!$this->$prop = $this->validate_email($this->$prop)) {
+          $is_valid = false;
+          break;
+        }
+      }
+      $main_query[] = "{$prop} = ?";
+      $sanitized_items[] = $this->$prop;
+    }
+    return [$main_query, $sanitized_items, $types_string, $is_valid];
   }
 }
