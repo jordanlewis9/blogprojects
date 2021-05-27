@@ -15,13 +15,19 @@ class Methods {
 
   public static function get_item_by_id($table, $id) {
     global $db;
-    $result = $db->query("SELECT * FROM {$table} WHERE id = {$id}");
+    $table = trim($table);
+    $id = trim($id);
+    $sql = "SELECT * FROM {$table} WHERE id = ?";
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
     if ($result->num_rows === 0) {
       return false;
     }
     $retreived_item = new static;
     while ($row = $result->fetch_array()) {
-      foreach ($retreived_item->class_properties as $prop) {
+      foreach ($retreived_item->class_properties as $prop => $type) {
         $retreived_item->$prop = $row[$prop];
       }
     }
@@ -30,6 +36,7 @@ class Methods {
 
   public static function get_all_items($table) {
     global $db;
+    $table = trim($table);
     $result = $db->query("SELECT * FROM {$table} ORDER BY id DESC");
     if ($result->num_rows === 0) {
       return false;
@@ -48,11 +55,29 @@ class Methods {
   public function update_item($table, $prop_array) {
     global $db;
     $main_query = [];
-    foreach ($prop_array as $prop) {
-      $main_query[] = "{$prop} = '{$this->$prop}'";
+    $sanitized_items = [];
+    $types_string = '';
+    $is_valid = true;
+    foreach ($prop_array as $prop => $type) {
+      $this->$prop = trim($this->$prop);
+      $types_string .= $type;
+      if ($prop === "email") {
+        if (!$this->$prop = $this->validate_email($this->$prop)) {
+          $is_valid = false;
+          break;
+        }
+      }
+      $main_query[] = "{$prop} = ?";
+      $sanitized_items[] = $this->$prop;
     }
-    $db->query("UPDATE {$table} SET " . implode(", ", $main_query) . " WHERE id = " . $this->id);
-    if ($db->connection->affected_rows === 1) {
+    if (!$is_valid) return false;
+    $sanitized_items[] = $this->id;
+    $types_string .= "i";
+    $sql = "UPDATE {$table} SET " . implode(", ", $main_query) . " WHERE id = ?";
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param($types_string, ...$sanitized_items);
+    $stmt->execute();
+    if ($stmt->affected_rows === 1) {
       return true;
     } else {
       return false;
@@ -108,5 +133,17 @@ class Methods {
       $day = $created_date->format('n/j/y');
     }
     $this->created = "{$day} at {$created_date->format('g:ia')}";
+  }
+
+  protected function validate_email($email) {
+    global $message;
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+    if ($email) {
+      return $email;
+    } else {
+      $message->set_message("Invalid email. Please enter a different email.");
+      return false;
+    }
   }
 }

@@ -16,7 +16,7 @@
   <form method="POST" action="" class="comment__form">
     <label for="comment" class="comment__form--label">Enter Comment</label>
     <div class="input__container">
-      <textarea id="comment" name="comment" rows="6" placeholder="Enter comment here..." class="comment__form--content input__comment"></textarea>
+      <textarea id="comment" name="comment" rows="6" placeholder="Enter comment here..." class="comment__form--content input__comment" required></textarea>
     </div>
     <input type="submit" name="submit" value="Post Comment" class="gen-btn comment__form--button">
   </form>

@@ -8,7 +8,7 @@ class User extends Methods {
   public $last_name;
   public $password;
   public $role;
-  public $class_properties = ['id', 'username', 'email', 'first_name', 'last_name', 'password', 'role'];
+  public $class_properties = ['id' => 'i', 'username' => 's', 'email' => 's', 'first_name' => 's', 'last_name' => 's', 'password' => 's', 'role' => 's'];
 
   public function add_user() {
     global $db, $message;

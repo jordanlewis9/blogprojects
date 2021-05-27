@@ -79,6 +79,10 @@ hr {
   color: red;
 }
 
+.error__message {
+  color: red;
+}
+
 @media screen and (max-width: 600px) {
   .container__content {
     width: 95%;

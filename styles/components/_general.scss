@@ -66,6 +66,10 @@ hr {
   color: red;
 }
 
+.error__message {
+  color: red;
+}
+
 @include phone {
   .container {
     &__content {

@@ -26,31 +26,31 @@
     <div class="signup__form--inputs">
       <label class="signup__form--labels" for="username">Username</label>
       <div class="input__container">
-        <input class="signup__form--content input__username" type="text" name="username" id="username">
+        <input class="signup__form--content input__username" type="text" name="username" id="username" required>
       </div>
     </div>
     <div class="signup__form--inputs">
       <label class="signup__form--labels" for="email">Email</label>
       <div class="input__container">
-        <input class="signup__form--content input__email" type="email" name="email" id="email">
+        <input class="signup__form--content input__email" type="email" name="email" id="email" required>
       </div>
     </div>
     <div class="signup__form--inputs">
       <label class="signup__form--labels" for="first_name">First Name</label>
       <div class="input__container">
-        <input class="signup__form--content input__first-name" type="text" name="first_name" id="first_name">
+        <input class="signup__form--content input__first-name" type="text" name="first_name" id="first_name" required>
       </div>
     </div>
     <div class="signup__form--inputs">
       <label class="signup__form--labels" for="last_name">Last Name</label>
       <div class="input__container">
-        <input class="signup__form--content input__last-name" type="text" name="last_name" id="last_name">
+        <input class="signup__form--content input__last-name" type="text" name="last_name" id="last_name" required>
       </div>
     </div>
     <div class="signup__form--inputs">
       <label class="signup__form--labels" for="password">Password</label>
       <div class="input__container">
-        <input class="signup__form--content input__password" type="password" name="password" id="password">
+        <input class="signup__form--content input__password" type="password" name="password" id="password" required>
       </div>
     </div>
     <div class="signup__form--inputs">
