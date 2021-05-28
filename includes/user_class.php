@@ -14,17 +14,14 @@ class User extends Methods {
     global $db, $message, $auth;
     $this->email = $this->validate_email(trim($this->email));
     $this->username = trim($this->username);
-    if (!$auth->check_username_and_email($this->username, $this->password)) {
-      return false;
+    if (!$auth->check_username_and_email($this->username, $this->email)) {
+      redirect("add_user.php");
     }
     list($main_query, $sanitized_items, $types_string) = $this->set_items(array_slice($this->class_properties, 1, 5));
     $sql = "INSERT INTO users SET " . implode(", ", $main_query);
     $stmt = $db->connection->prepare($sql);
     $stmt->bind_param($types_string, ...$sanitized_items);
     $stmt->execute();
-    // $sql = "INSERT INTO users (" . implode(", ", array_slice($this->class_properties, 1, 5)) . ") VALUES ";
-    // $sql .= "('{$this->username}', '{$this->email}', '{$this->first_name}', '{$this->last_name}', '{$this->password}')";
-    // if ($db->query($sql)) {
     if ($stmt->affected_rows === 1) {
       $message->set_message("User {$this->username} added successfully.");
       redirect("users.php");
@@ -36,9 +33,17 @@ class User extends Methods {
 
   public function public_add_user() {
     global $db, $message, $auth;
-    $sql = "INSERT INTO users (" . implode(", ", array_slice($this->class_properties, 1, 5)) . ") VALUES ";
-    $sql .= "('{$this->username}', '{$this->email}', '{$this->first_name}', '{$this->last_name}', '{$this->password}')";
-    if ($db->query($sql)) {
+    $this->email = $this->validate_email(trim($this->email));
+    $this->username = trim($this->username);
+    if (!$auth->check_username_and_email($this->username, $this->email)) {
+      redirect("signup.php");
+    }
+    list($main_query, $sanitized_items, $types_string) = $this->set_items(array_slice($this->class_properties, 1, 5));
+    $sql = "INSERT INTO users SET " . implode(", ", $main_query);
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param($types_string, ...$sanitized_items);
+    $stmt->execute();
+    if ($stmt->affected_rows === 1) {
       $message->set_message("Welcome to the site, {$this->username}!");
       $auth->login_user($this->username, $this->password);
       redirect("index.php");

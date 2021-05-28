@@ -20,7 +20,7 @@
 <div class="container__content">
 <h2 class="auth__headline">Sign up to take part in the discourse - it's free!</h2>
 <?php if (isset($message->current_message)): ?>
-  <p><?php echo $message->current_message; ?></p>
+  <p class="error__message"><?php echo $message->current_message; ?></p>
 <?php endif; ?>
 <form method="POST" action="" class="signup__form">
     <div class="signup__form--inputs">

@@ -91,7 +91,10 @@ const inputRequired = (e) => {
     return null;
   } else if (e.target.value === "") {
     e.target.classList.add("input__required");
-    const field = e.target.id.substring(0, 1).toUpperCase() + e.target.id.substring(1);
+    let field = e.target.id.substring(0, 1).toUpperCase() + e.target.id.substring(1);
+    if (field.includes('_')) {
+      field = field.replace('_', ' ');
+    }
     messageContainer.insertAdjacentHTML('beforeend', `<p class="input__error">${field} cannot be empty</p>`);
   } else if (e.target.classList.contains("input__required")) {
     e.target.classList.remove("input__required");
