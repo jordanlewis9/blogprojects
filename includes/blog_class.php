@@ -10,20 +10,25 @@ class Blog extends Methods {
   public $views;
   public $tmp_path;
   public $updated;
-  public $class_properties = ["created", "updated", "views", "id", "title", "content", "picture", "author"];
+  public $class_properties = ["created" => "s", "updated" => "s", "views" => "i", "id" => "i", "title" => "s", "content" => "s", "picture" => "s", "author" => "s"];
 
   public function new_blog() {
     global $db, $message;
     if ($this->transfer_image()) {
-      $sql = "INSERT INTO blogs (" . implode(", ", array_slice($this->class_properties, 4)) . ") VALUES (";
-      $sql .= "'{$this->title}', '{$this->content}', '{$this->picture}', '{$this->author}')";
-      $db->query($sql);
+      list($main_query, $sanitized_items, $types_string) = $this->set_items(array_slice($this->class_properties, 4));
+      $sql = "INSERT INTO blogs SET " . implode(", ", $main_query);
+      $stmt = $db->connection->prepare($sql);
+      $stmt->bind_param($types_string, ...$sanitized_items);
+      $stmt->execute();
+      $this->id = $stmt->insert_id;
       $message->set_message("Blog {$this->title} was successfully created! <a href='../blog.php?blog_id={$this->id}'>View here.</a>");
       redirect("blogs.php");
     } else {
       redirect("add_blog.php");
     }
   }
+
+  // need prepared statements for below, comments, and projects!
 
   public function update_blog() {
     global $db, $message;

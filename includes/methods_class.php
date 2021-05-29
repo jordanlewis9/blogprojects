@@ -44,7 +44,7 @@ class Methods {
     $all_items = [];
     while ($row = $result->fetch_array()) {
       $single_item = new static;
-      foreach ($single_item->class_properties as $prop) {
+      foreach ($single_item->class_properties as $prop => $type) {
         $single_item->$prop = $row[$prop];
       }
       $all_items[] = $single_item;
@@ -77,7 +77,6 @@ class Methods {
     $stmt = $db->connection->prepare($sql);
     $stmt->bind_param('i', $id);
     $stmt->execute();
-    $result = $db->query("DELETE FROM {$table} WHERE id = {$id}");
     if ($stmt->affected_rows === 1) {
       return true;
     } else {
