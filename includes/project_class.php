@@ -8,18 +8,21 @@ class Project extends Methods {
   public $snippet;
   public $link;
   public $tmp_path;
-  public $class_properties = ['id', 'title', 'description', 'picture', 'snippet', 'link'];
+  public $class_properties = ['id' => 'i', 'title' => 's', 'description' => 's', 'picture' => 's', 'snippet' => 's', 'link' => 's'];
 
   public function new_project() {
     global $db, $message;
     if ($this->transfer_image()) {
-      $sql = "INSERT INTO projects (" . implode(", ", array_slice($this->class_properties, 1)) . ") VALUES ";
-      $sql .= "('{$this->title}', '{$this->description}', '{$this->picture}', '{$this->snippet}', '{$this->link}')";
-      if($db->query($sql)) {
+      list($main_query, $sanitized_items, $types_string) = $this->set_items(array_slice($this->class_properties, 1));
+      $sql = "INSERT INTO projects SET " . implode(", ", $main_query);
+      $stmt = $db->connection->prepare($sql);
+      $stmt->bind_param($types_string, ...$sanitized_items);
+      $stmt->execute();
+      if ($stmt->affected_rows === 1) {
         $message->set_message("Project {$this->title} inserted successfully. <a href='../project.php?project_id={$this->id}'>View here.</a>");
         redirect("projects.php");
       } else {
-        $message->set_message("There was an error saving project {$this->title}. Please try again.");
+        $message->set_message($stmt->error);
         redirect("add_project.php");
       }
     } else {

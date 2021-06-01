@@ -32,19 +32,43 @@ class Auth {
 
   public function login_user($entered_username, $entered_password) {
     global $db;
-    $result = $db->query("SELECT username, password, role, id FROM users WHERE username = '{$entered_username}'");
-    $result = $result->fetch_array();
-    if ($entered_password === $result['password']) {
-      $_SESSION['username'] = $result['username'];
-      $_SESSION['user_id'] = $result['id'];
-      $_SESSION['role'] = $result['role'];
+    $entered_username = trim($entered_username);
+    $entered_password = trim($entered_password);
+    $sql = "SELECT username, password, role, id FROM users WHERE username = ?";
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param('s', $entered_username);
+    $stmt->execute();
+    // if ($stmt->affected_rows !== 1) {
+    //   return false;
+    // }
+    $stmt->bind_result($username, $password, $role, $id);
+    while ($stmt->fetch()) {
+      if ($entered_password === $password) {
+      $_SESSION['username'] = $username;
+      $_SESSION['user_id'] = $id;
+      $_SESSION['role'] = $role;
       $key = $this->generate_login_key();
       $_SESSION['login_key'] = $key;
-      $db->query("UPDATE users SET login_key = '{$key}' WHERE id = {$result['id']}");
+      $stmt->close();
+      $db->query("UPDATE users SET login_key = '{$key}' WHERE id = {$id}");
       return true;
-    } else {
-      return false;
+      } else {
+        return false;
+      }
     }
+    // $result = $db->query("SELECT username, password, role, id FROM users WHERE username = '{$entered_username}'");
+    // $result = $result->fetch_array();
+    // if ($entered_password === $result['password']) {
+    //   $_SESSION['username'] = $result['username'];
+    //   $_SESSION['user_id'] = $result['id'];
+    //   $_SESSION['role'] = $result['role'];
+    //   $key = $this->generate_login_key();
+    //   $_SESSION['login_key'] = $key;
+    //   $db->query("UPDATE users SET login_key = '{$key}' WHERE id = {$result['id']}");
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   }
 
   public function logout_user() {
