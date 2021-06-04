@@ -1,6 +1,11 @@
 <?php require_once("includes/admin_header.php"); ?>
 <?php 
-$all_users = User::get_all_users();
+if (isset($_GET['page'])) {
+  $paginate = new Paginate(User::count_items('users'), 25, $_GET['page']);
+} else {
+  $paginate = new Paginate(User::count_items('users'), 25, 1);
+}
+$all_users = User::get_all_users($paginate->return_offset(), $paginate->num_per_page);
 ?>
 <p class="admin__headline">Users</p>
 <div class="users__container">
@@ -29,6 +34,7 @@ foreach ($all_users as $user) {
 }
 ?>
   </table>
+  <?php $paginate->show_pagination(); ?>
 </div>
 </div>
 <?php require_once("includes/delete_modal.php"); ?>

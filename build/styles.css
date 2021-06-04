@@ -796,3 +796,67 @@ hr {
     justify-self: start;
   }
 }
+.paginate__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.paginate__prev {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.paginate__prev--arrow-top {
+  position: absolute;
+  top: 4px;
+  width: 8px;
+  border: 1px solid #bbddff;
+  transform: rotate(-45deg);
+}
+.paginate__prev--arrow-mid {
+  width: 12px;
+  border: 1px solid #bbddff;
+}
+.paginate__prev--arrow-bottom {
+  position: absolute;
+  bottom: 4px;
+  width: 8px;
+  border: 1px solid #bbddff;
+  transform: rotate(45deg);
+}
+.paginate__next {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+.paginate__next--arrow-top {
+  position: absolute;
+  top: 4px;
+  width: 8px;
+  border: 1px solid #bbddff;
+  transform: rotate(45deg);
+}
+.paginate__next--arrow-mid {
+  width: 12px;
+  border: 1px solid #bbddff;
+}
+.paginate__next--arrow-bottom {
+  position: absolute;
+  bottom: 4px;
+  width: 8px;
+  border: 1px solid #bbddff;
+  transform: rotate(-45deg);
+}
+.paginate__input {
+  width: 24px;
+  direction: rtl;
+  font-family: inherit;
+}

@@ -1,0 +1,75 @@
+.paginate {
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__prev {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &--arrow-top {
+      position: absolute;
+      top: 4px;
+      width: 8px;
+      border: 1px solid $frontendText;
+      transform: rotate(-45deg);
+    }
+
+    &--arrow-mid {
+      width: 12px;
+      border: 1px solid $frontendText;
+    }
+
+    &--arrow-bottom {
+      position: absolute;
+      bottom: 4px;
+      width: 8px;
+      border: 1px solid $frontendText;
+      transform: rotate(45deg);
+    }
+  }
+
+  &__next {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+
+    &--arrow-top {
+      position: absolute;
+      top: 4px;
+      width: 8px;
+      border: 1px solid $frontendText;
+      transform: rotate(45deg);
+    }
+
+    &--arrow-mid {
+      width: 12px;
+      border: 1px solid $frontendText;
+    }
+
+    &--arrow-bottom {
+      position: absolute;
+      bottom: 4px;
+      width: 8px;
+      border: 1px solid $frontendText;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__input {
+    width: 24px;
+    direction: rtl;
+    font-family: inherit;
+  }
+}

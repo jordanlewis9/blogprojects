@@ -1,6 +1,12 @@
 <?php require_once("includes/header.php"); ?>
 <?php 
-  $all_blogs = Blog::get_all_items('blogs');
+
+  if (isset($_GET['page'])) {
+    $paginate = new Paginate(Blog::count_items('blogs'), 10, $_GET['page']);
+  } else {
+    $paginate = new Paginate(Blog::count_items('blogs'), 10, 1);
+  }
+  $all_blogs = Blog::get_all_items('blogs', $paginate->return_offset(), $paginate->num_per_page);
 ?>
   <div class="container__content">
     <h1 class="page__headline">Blog Posts</h1>
@@ -18,6 +24,7 @@
     ";
   }
 ?>
+<?php $paginate->show_pagination(); ?>
   </div>
 </div>
 <?php require_once("includes/footer.php"); ?>

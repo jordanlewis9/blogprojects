@@ -34,10 +34,10 @@ class Methods {
     return $retreived_item;
   }
 
-  public static function get_all_items($table) {
+  public static function get_all_items($table, $offset, $how_many) {
     global $db;
     $table = trim($table);
-    $result = $db->query("SELECT * FROM {$table} ORDER BY id DESC");
+    $result = $db->query("SELECT * FROM {$table} ORDER BY id DESC LIMIT {$offset}, {$how_many}");
     if ($result->num_rows === 0) {
       return false;
     }
@@ -155,5 +155,12 @@ class Methods {
       $sanitized_items[] = $this->$prop;
     }
     return [$main_query, $sanitized_items, $types_string, $is_valid];
+  }
+
+  public static function count_items($table) {
+    global $db;
+    $result = $db->query("SELECT COUNT(id) FROM {$table}");
+    $row = mysqli_fetch_array($result);
+    return array_shift($row);
   }
 }

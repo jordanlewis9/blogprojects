@@ -1,6 +1,11 @@
 <?php require_once("includes/admin_header.php"); ?>
 <?php 
-$all_comments = Comment::get_all_comments();
+if (isset($_GET['page'])) {
+  $paginate = new Paginate(Comment::count_items('comments'), 25, $_GET['page']);
+} else {
+  $paginate = new Paginate(Comment::count_items('comments'), 25, 1);
+}
+$all_comments = Comment::get_all_comments($paginate->return_offset(), $paginate->num_per_page);
 ?>
 <p class="admin__headline">Comments</p>
 <div class="comments__container">
@@ -34,6 +39,7 @@ foreach ($all_comments as $comment) {
 }
 ?>
   </table>
+  <?php $paginate->show_pagination(); ?>
 </div>
 </div>
 <?php require_once("includes/delete_modal.php"); ?>

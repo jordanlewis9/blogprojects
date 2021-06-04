@@ -1,6 +1,12 @@
 <?php require_once("includes/header.php"); ?>
 <?php
-  $all_projects = Project::get_all_items('projects');
+  if (isset($_GET['page'])) {
+    $paginate = new Paginate(Project::count_items('projects'), 10, $_GET['page']);
+  } else {
+    $paginate = new Paginate(Project::count_items('projects'), 10, 1);
+  }
+
+  $all_projects = Project::get_all_items('projects', $paginate->return_offset(), $paginate->num_per_page);
 ?>
   <div class="container__content">
     <h1 class="page__headline">Projects</h1>
@@ -18,6 +24,7 @@
     ";
   }
 ?>
+<?php $paginate->show_pagination(); ?>
   </div>
 </div>
 <?php require_once("includes/footer.php"); ?>

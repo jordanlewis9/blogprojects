@@ -1,9 +1,10 @@
 <?php require_once("includes/header.php"); ?>
 <?php
   $latest_blog = Blog::get_latest_blog();
-  $all_projects = Project::get_all_items('projects');
-  $random_number = rand(0, (count($all_projects) - 1));
-  $random_project = $all_projects[$random_number];
+  $all_projects = Project::count_items('projects');
+  $random_number = rand(0, ($all_projects - 1));
+  $random_project = Project::get_all_items('projects', $random_number, 1);
+  $random_project = $random_project[0];
 ?>
 <?php if(isset($message->current_message)): ?>
   <p><?php echo $message->current_message; ?></p>

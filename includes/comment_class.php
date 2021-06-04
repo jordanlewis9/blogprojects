@@ -50,9 +50,9 @@ class Comment extends Methods {
     return $single_item;
   }
 
-  public static function get_all_comments() {
+  public static function get_all_comments($offset, $num_per_page) {
     global $db;
-    $sql = "SELECT c.id, c.content, c.status, u.username, b.title, c.created FROM comments c INNER JOIN users u ON c.user_id = u.id INNER JOIN blogs b ON c.blog_id = b.id ORDER BY c.id DESC";
+    $sql = "SELECT c.id, c.content, c.status, u.username, b.title, c.created FROM comments c INNER JOIN users u ON c.user_id = u.id INNER JOIN blogs b ON c.blog_id = b.id ORDER BY c.id DESC LIMIT {$offset}, {$num_per_page}";
     $stmt = $db->connection->prepare($sql);
     $stmt->execute();
     $all_comments = static::create_results($stmt);

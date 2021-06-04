@@ -1,5 +1,11 @@
 <?php require_once("includes/admin_header.php"); ?>
-<?php $all_projects = Project::get_all_items("projects"); ?>
+<?php 
+if (isset($_GET['page'])) {
+  $paginate = $paginate = new Paginate(Project::count_items('projects'), 25, $_GET['page']);
+} else {
+  $paginate = new Paginate(Project::count_items('projects'), 25, 1);
+}
+$all_projects = Project::get_all_items("projects", $paginate->return_offset(), $paginate->num_per_page); ?>
 <p class="admin__headline">Projects</p>
 <div class="projects__container">
 <a href="add_project.php" class="admin__add-button gen-btn">Add Project</a>
@@ -25,6 +31,7 @@ foreach ($all_projects as $project) {
 }
 ?>
   </table>
+  <?php $paginate->show_pagination(); ?>
 </div>
 </div>
 <?php require_once("includes/delete_modal.php"); ?>

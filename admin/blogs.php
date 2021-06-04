@@ -1,6 +1,11 @@
 <?php require_once("includes/admin_header.php"); ?>
 <?php
-  $all_blogs = Blog::get_all_items("blogs");
+if (isset($_GET['page'])) {
+  $paginate = $paginate = new Paginate(Blog::count_items('blogs'), 25, $_GET['page']);
+} else {
+  $paginate = new Paginate(Blog::count_items('blogs'), 25, 1);
+}
+  $all_blogs = Blog::get_all_items("blogs", $paginate->return_offset(), $paginate->num_per_page);
 ?>
 <p class="admin__headline">Blogs</p>
 <div class="blogs__container">
@@ -32,6 +37,7 @@ foreach ($all_blogs as $blog) {
 }
 ?>
   </table>
+  <?php $paginate->show_pagination(); ?>
 </div>
 </div>
 <?php require_once("includes/delete_modal.php"); ?>

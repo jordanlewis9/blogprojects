@@ -53,9 +53,9 @@ class User extends Methods {
     }
   }
 
-  public static function get_all_users() {
+  public static function get_all_users($offset, $num_per_page) {
     global $db;
-    $sql = "SELECT id, username, email, role FROM users ORDER BY id ASC";
+    $sql = "SELECT id, username, email, role FROM users ORDER BY id DESC LIMIT {$offset}, {$num_per_page}";
     $result = $db->query($sql);
     $all_users = [];
     while ($row = $result->fetch_array()) {
