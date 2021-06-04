@@ -8,17 +8,27 @@ class Auth {
   public $user_id;
 
   private function get_current_user_and_auth() {
-    global $db;
-    $user = $db->query("SELECT username, login_key, role, id FROM users WHERE id = {$_SESSION['user_id']} LIMIT 1");
-    $user = $user->fetch_array();
-    if ($_SESSION['login_key'] === $user['login_key'] && $_SESSION['username'] === $user['username']) {
-      $this->signed_in = true;
-      $this->login_key = $user['login_key'];
-      $this->username = $user['username'];
-      $_SESSION['role'] = $this->role = $user['role'];
-      $this->user_id = $user['id'];
-    } else {
-      $this->not_signed_in();
+    global $db, $message;
+    $id = trim($_SESSION['user_id']);
+    $sql = "SELECT username, login_key, role, id FROM users WHERE id = ? LIMIT 1";
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows !== 1) {
+      return $this->not_signed_in();
+    }
+    $stmt->bind_result($username, $login_key, $role, $db_id);
+    while ($stmt->fetch()) {
+      if ($_SESSION['login_key'] === $login_key && $_SESSION['username'] === $username) {
+        $this->signed_in = true;
+        $this->login_key = $login_key;
+        $this->username = $username;
+        $_SESSION['role'] = $this->role = $role;
+        $this->user_id = $db_id;
+      } else {
+        $this->not_signed_in();
+      }
     }
   }
 
@@ -38,9 +48,6 @@ class Auth {
     $stmt = $db->connection->prepare($sql);
     $stmt->bind_param('s', $entered_username);
     $stmt->execute();
-    // if ($stmt->affected_rows !== 1) {
-    //   return false;
-    // }
     $stmt->bind_result($username, $password, $role, $id);
     while ($stmt->fetch()) {
       if ($entered_password === $password) {
@@ -56,25 +63,16 @@ class Auth {
         return false;
       }
     }
-    // $result = $db->query("SELECT username, password, role, id FROM users WHERE username = '{$entered_username}'");
-    // $result = $result->fetch_array();
-    // if ($entered_password === $result['password']) {
-    //   $_SESSION['username'] = $result['username'];
-    //   $_SESSION['user_id'] = $result['id'];
-    //   $_SESSION['role'] = $result['role'];
-    //   $key = $this->generate_login_key();
-    //   $_SESSION['login_key'] = $key;
-    //   $db->query("UPDATE users SET login_key = '{$key}' WHERE id = {$result['id']}");
-    //   return true;
-    // } else {
-    //   return false;
-    // }
   }
 
   public function logout_user() {
     global $db;
-    $db->query("UPDATE users SET login_key = null WHERE id = {$this->user_id}");
-    if ($db->connection->affected_rows === 1) {
+    $id = trim($this->user_id);
+    $sql = "UPDATE users SET login_key = null WHERE id = ?";
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    if ($stmt->affected_rows === 1) {
       $this->not_signed_in();
       return true;
     } else {
