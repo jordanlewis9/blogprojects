@@ -72,4 +72,13 @@ class Blog extends Methods {
     }
     return $retreived_blog;
   }
+
+  public function show_snippet() {
+    if (strlen($this->content) > 150) {
+      $first_space = strpos($this->content, " ", 150);
+      return substr($this->content, 0, $first_space) . "...";
+    } else {
+      return $this->content;
+    }
+  }
 }
