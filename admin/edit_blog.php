@@ -6,6 +6,7 @@ if (isset($_GET['blog_id'])) {
 }
 
 if (isset($_POST['update'])) {
+  $blog->alt_text = $_POST['alt_text'];
   $blog->title = $_POST['title'];
   $blog->author = $_POST['author'];
   $blog->content = $_POST['content'];
@@ -25,6 +26,10 @@ if (isset($_POST['update'])) {
     <p class="admin__form--picture-file"><?php echo $blog->picture; ?></p>
     <label for="picture" class="admin__form--picture-label gen-btn">Upload Picture</label>
     <input type="file" name="picture" id="picture" accept=".png, .jpg, .jpeg">
+  </div>
+  <div class="admin__form--inputs-blog">
+    <label for="alt_text">Alt Text</label>
+    <input type="text" name="alt_text" id="author" value="<?php echo $blog->alt_text; ?>" maxlength="256">
   </div>
   <div class="admin__form--inputs-blog">
     <label for="title">Title</label>

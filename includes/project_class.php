@@ -5,10 +5,11 @@ class Project extends Methods {
   public $title;
   public $description;
   public $picture;
+  public $alt_text;
   public $snippet;
   public $link;
   public $tmp_path;
-  public $class_properties = ['id' => 'i', 'title' => 's', 'description' => 's', 'picture' => 's', 'snippet' => 's', 'link' => 's'];
+  public $class_properties = ['id' => 'i', 'title' => 's', 'description' => 's', 'picture' => 's', 'alt_text' => 's', 'snippet' => 's', 'link' => 's'];
 
   public function new_project() {
     global $db, $message;

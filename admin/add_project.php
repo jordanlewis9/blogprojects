@@ -2,6 +2,7 @@
 <?php 
 if (isset($_POST['submit'])) {
   $project = new Project;
+  $project->alt_text = $_POST['alt_text'];
   $project->title = $_POST['title'];
   $project->description = $_POST['description'];
   $project->snippet = $_POST['snippet'];
@@ -16,6 +17,10 @@ if (isset($_POST['submit'])) {
     <p class="admin__form--picture-file">No File Selected</p>
     <label for="picture" class="admin__form--picture-label gen-btn">Upload Picture</label>
     <input type="file" name="picture" id="picture" accept=".png, .jpg, .jpeg">
+  </div>
+  <div class="admin__form--inputs">
+    <label for="alt_text">Alt Text</label>
+    <input type="text" name="alt_text" id="author" maxlength="256">
   </div>
   <div class="admin__form--inputs">
     <label for="title">Title</label>

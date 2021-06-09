@@ -6,11 +6,12 @@ class Blog extends Methods {
   public $content;
   public $author;
   public $picture;
+  public $alt_text;
   public $created;
   public $views;
   public $tmp_path;
   public $updated;
-  public $class_properties = ["created" => "s", "updated" => "s", "views" => "i", "id" => "i", "title" => "s", "content" => "s", "picture" => "s", "author" => "s"];
+  public $class_properties = ["created" => "s", "updated" => "s", "views" => "i", "id" => "i", "title" => "s", "content" => "s", "picture" => "s", "author" => "s", "alt_text" => "s"];
 
   public function new_blog() {
     global $db, $message;

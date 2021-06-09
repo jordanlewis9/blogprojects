@@ -1,0 +1,19 @@
+.about-me {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+  gap: 1rem;
+
+  &__background {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0 1rem;
+  }
+
+  &__picture {
+    width: 300px;
+    height: auto;
+  }
+}

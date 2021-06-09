@@ -6,6 +6,7 @@ if (isset($_GET['project_id'])) {
 }
 
 if (isset($_POST['update'])) {
+  $project->alt_text = $_POST['alt_text'];
   $project->title = $_POST['title'];
   $project->snippet = $_POST['snippet'];
   $project->description = $_POST['description'];
@@ -26,6 +27,10 @@ if (isset($_POST['update'])) {
     <p class="admin__form--picture-file"><?php echo $project->picture; ?></p>
     <label for="picture" class="admin__form--picture-label gen-btn">Upload Picture</label>
     <input type="file" name="picture" id="picture" accept=".png, .jpg, .jpeg">
+  </div>
+  <div class="admin__form--inputs">
+    <label for="alt_text">Alt Text</label>
+    <input type="text" name="alt_text" id="author" maxlength="256" value="<?php echo $project->alt_text; ?>">
   </div>
   <div class="admin__form--inputs">
     <label for="title">Title</label>

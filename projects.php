@@ -18,7 +18,7 @@
         <a href='project.php?project_id={$project->id}' class='content__section--link content__section--link-title'><h2 class='content__section--title'>{$project->title}</h2></a>
         <p class='content__section--snippet'>{$project->snippet}</p>
       </div>
-      <a href='project.php?project_id={$project->id}' class='content__section--link content__section--link-picture'><img src='admin/images/{$project->picture}' class='content__section--image'></a>
+      <a href='project.php?project_id={$project->id}' class='content__section--link content__section--link-picture'><img src='admin/images/{$project->picture}' class='content__section--image' alt='{$project->alt_text}'></a>
     </section>
     <hr>
     ";

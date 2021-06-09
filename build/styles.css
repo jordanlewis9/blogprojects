@@ -860,3 +860,21 @@ hr {
   direction: rtl;
   font-family: inherit;
 }
+
+.about-me {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+  gap: 1rem;
+}
+.about-me__background {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0 1rem;
+}
+.about-me__picture {
+  width: 300px;
+  height: auto;
+}

@@ -3,6 +3,7 @@
 
 if (isset($_POST['submit'])) {
   $blog = new Blog;
+  $blog->alt_text = $_POST['alt_text'];
   $blog->title = $_POST['title'];
   $blog->content = $_POST['content'];
   $blog->author = $_POST['author'];
@@ -16,6 +17,10 @@ if (isset($_POST['submit'])) {
     <p class="admin__form--picture-file">No File Selected</p>
     <label for="picture" class="admin__form--picture-label gen-btn">Upload Picture</label>
     <input type="file" name="picture" id="picture" accept=".png, .jpg, .jpeg">
+  </div>
+  <div class="admin__form--inputs-blog">
+    <label for="alt_text">Alt Text</label>
+    <input type="text" name="alt_text" id="author" maxlength="256">
   </div>
   <div class="admin__form--inputs-blog">
     <label for="title">Title</label>
