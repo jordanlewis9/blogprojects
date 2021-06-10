@@ -8,11 +8,11 @@
     <section class="about-me">
       <div class="about-me__background">
         <img src="admin/images/<?php echo $section1->picture; ?>" class="about-me__picture" alt="<?php echo $section1->alt_text; ?>">
-        <p class="about-me__paragraph"><?php echo $section1->content; ?><pp>
+        <p class="about-me__paragraph"><?php echo $section1->content; ?></p>
       </div>
       <div class="about-me__technical">
         <img src="admin/images/<?php echo $section2->picture; ?>" class="about-me__picture" alt="<?php echo $section2->alt_text; ?>">
-        <p class="about-me__paragraph"><?php echo $section2->content; ?></p>
+        <p class="about-me__paragraph"><?php echo $section2->content_format_read(); ?></p>
       </div>
     </section>
   </div>
