@@ -7,12 +7,16 @@
     <h1 class="page__headline">About Me</h1>
     <section class="about-me">
       <div class="about-me__background">
-        <img src="admin/images/<?php echo $section1->picture; ?>" class="about-me__picture" alt="<?php echo $section1->alt_text; ?>">
-        <p class="about-me__paragraph"><?php echo $section1->content; ?></p>
+        <div class="about-me__picture--container">
+          <img src="admin/images/<?php echo $section1->picture; ?>" class="about-me__picture" alt="<?php echo $section1->alt_text; ?>">
+        </div>
+        <div class="about-me__paragraph"><?php echo $section1->content; ?></div>
       </div>
       <div class="about-me__technical">
-        <img src="admin/images/<?php echo $section2->picture; ?>" class="about-me__picture" alt="<?php echo $section2->alt_text; ?>">
-        <p class="about-me__paragraph"><?php echo $section2->content_format_read(); ?></p>
+        <div class="about-me__picture--container about-me__picture--tech-container">
+          <img src="admin/images/<?php echo $section2->picture; ?>" class="about-me__picture about-me__picture--tech" alt="<?php echo $section2->alt_text; ?>">
+        </div>
+        <div class="about-me__paragraph about-me__paragraph--tech"><?php echo $section2->content; ?></div>
       </div>
     </section>
   </div>

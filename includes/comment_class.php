@@ -92,6 +92,7 @@ class Comment extends Methods {
 
   public static function add_new_comment($content, $user_id, $blog_id) {
     global $db, $message;
+    $filtered_content = [$content, $user_id, $blog_id];
     $sql = "INSERT INTO comments SET content = ?, user_id = ?, blog_id = ?";
     $stmt = $db->connection->prepare($sql);
     $stmt->bind_param('sii', $content, $user_id, $blog_id);

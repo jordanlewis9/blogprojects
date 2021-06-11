@@ -144,7 +144,6 @@ class Methods {
     $is_valid = true;
     foreach ($prop_array as $prop => $type) {
       $this->$prop = trim($this->$prop);
-      $this->$prop = strip_tags($this->$prop);
       $types_string .= $type;
       if ($prop === "email") {
         if (!$this->$prop = $this->validate_email($this->$prop)) {
@@ -163,15 +162,5 @@ class Methods {
     $result = $db->query("SELECT COUNT(id) FROM {$table}");
     $row = mysqli_fetch_array($result);
     return array_shift($row);
-  }
-
-  public function content_format_read() {
-    $this->content = str_replace('&nbsp;', '<br /><br />', $this->content);
-    return $this->content;
-  }
-
-  public function content_format_edit() {
-    $this->content = str_replace('&nbsp;', '<p>&nbsp;</p>', $this->content);
-    return $this->content;
   }
 }

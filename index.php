@@ -16,7 +16,7 @@
   echo "
   <a href='blog.php?blog_id={$latest_blog->id}' class='home__blog--link'><h3 class='home__blog--title'>{$latest_blog->title}</h3></a>
   <a href='blog.php?blog_id={$latest_blog->id}' class='home__blog--link'><img src='admin/images/{$latest_blog->picture}' class='home__blog--image' alt='{$latest_blog->alt_text}'></a>
-  <p class='home__blog--snippet'>{$latest_blog->show_snippet()}</p>
+  <div class='home__blog--snippet'>{$latest_blog->show_snippet()}</div>
   ";
 ?>
       </section>
@@ -27,7 +27,7 @@
   echo "
   <a href='project.php?project_id={$random_project->id}' class='home__blog--link'><h3 class='home__blog--title'>{$random_project->title}</h3></a>
   <a href='project.php?project_id={$random_project->id}' class='home__blog--link'><img src='admin/images/{$random_project->picture}' class='home__blog--image' alt='{$random_project->alt_text}'></a>
-  <p class='home__blog--snippet'>{$random_project->snippet}</p>
+  <div class='home__blog--snippet'>{$random_project->snippet}</div>
   ";
 ?>
       </section>

@@ -27,10 +27,9 @@
 <?php endif; ?>
 <?php echo $blog->created; ?>
   </p>
-  <article class="blog__content"><?php echo $blog->content_format_read(); ?></article>
+  <article class="blog__content"><?php echo $blog->content; ?></article>
   <div class="comment__container">
     <h3 class="comment__headline">Comments</h3>
-  <?php echo nl2br("Hello, my name\n is Jordan"); ?>
 <?php require_once("includes/comments.php"); ?>
 </div>
 

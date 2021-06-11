@@ -864,9 +864,9 @@ hr {
 .about-me {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto;
   width: 100%;
-  gap: 1rem;
+  gap: 2rem;
 }
 .about-me__background {
   display: grid;
@@ -875,6 +875,49 @@ hr {
   gap: 0 1rem;
 }
 .about-me__picture {
-  width: 300px;
+  max-width: 90%;
   height: auto;
+  align-self: flex-start;
+}
+.about-me__picture--container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.about-me__picture--tech-container {
+  grid-area: techimg;
+}
+.about-me__paragraph--tech {
+  grid-area: techtext;
+}
+.about-me__technical {
+  display: grid;
+  grid-template-areas: "techtext techimg";
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .about-me__background {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    width: 100%;
+    gap: 1rem;
+  }
+  .about-me__technical {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    width: 100%;
+    grid-template-areas: "techimg" "techtext";
+    gap: 1rem;
+  }
+  .about-me__picture {
+    margin-top: 0;
+  }
+  .about-me__picture--container {
+    display: flex;
+    justify-content: center;
+  }
 }
