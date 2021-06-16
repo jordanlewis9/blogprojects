@@ -9,7 +9,7 @@ if (isset($_POST['update'])) {
   $user->email = $_POST['email'];
   $user->first_name = $_POST['first_name'];
   $user->last_name = $_POST['last_name'];
-  $user->password = $_POST['password'];
+  $user->password = $_POST['password'] ?? $user->password;
   $user->role = $_POST['role'];
   if ($user->update_item('users', $user->class_properties)) {
     $message->set_message("User {$user->username} updated successfully.");

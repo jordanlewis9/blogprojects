@@ -14,6 +14,7 @@ class User extends Methods {
     global $db, $message, $auth;
     $this->email = $this->validate_email(trim($this->email));
     $this->username = trim($this->username);
+    $this->password = $this->encrypt_password($this->password);
     if (!$auth->check_username_and_email($this->username, $this->email)) {
       redirect("add_user.php");
     }
@@ -35,6 +36,7 @@ class User extends Methods {
     global $db, $message, $auth;
     $this->email = $this->validate_email(trim($this->email));
     $this->username = trim($this->username);
+    $this->password = $this->encrypt_password($this->password);
     if (!$auth->check_username_and_email($this->username, $this->email)) {
       redirect("signup.php");
     }
@@ -51,6 +53,11 @@ class User extends Methods {
       $message->set_message("There has been an error. Please try again.");
       redirect("signup.php");
     }
+  }
+
+  protected function encrypt_password($entered_password) {
+    $entered_password = trim($entered_password);
+    return password_hash($entered_password, PASSWORD_DEFAULT);
   }
 
   public static function get_all_users($offset, $num_per_page) {

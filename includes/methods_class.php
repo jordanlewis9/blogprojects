@@ -151,6 +151,12 @@ class Methods {
           break;
         }
       }
+      if ($prop === "password") {
+        if(!$this->$prop = $this->encrypt_password($this->$prop)) {
+          $is_valid = false;
+          break;
+        }
+      }
       $main_query[] = "{$prop} = ?";
       $sanitized_items[] = $this->$prop;
     }

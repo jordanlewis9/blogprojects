@@ -32,6 +32,9 @@ class Auth {
     }
   }
 
+  // have function that compares passwords. if default password is unchanged, do not hash password.
+  // if default password is changed, hash password like normal
+
   function __construct() {
     if (isset($_SESSION['login_key']) && isset($_SESSION['username']) && isset($_SESSION['user_id']) && isset($_SESSION['role'])) {
       $this->get_current_user_and_auth();
@@ -50,7 +53,7 @@ class Auth {
     $stmt->execute();
     $stmt->bind_result($username, $password, $role, $id);
     while ($stmt->fetch()) {
-      if ($entered_password === $password) {
+      if (password_verify($entered_password, $password)) {
       $_SESSION['username'] = $username;
       $_SESSION['user_id'] = $id;
       $_SESSION['role'] = $role;
@@ -114,6 +117,11 @@ class Auth {
       return false;
     }
     return true;
+  }
+
+  private function encrypt_password($entered_password) {
+    $entered_password = trim($entered_password);
+    return password_hash($entered_password, PASSWORD_DEFAULT);
   }
 
 }
