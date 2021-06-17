@@ -146,9 +146,11 @@ class Methods {
       $this->$prop = trim($this->$prop);
       $types_string .= $type;
       if ($prop === "email") {
-        if (!$this->$prop = $this->validate_email($this->$prop)) {
-          $is_valid = false;
-          break;
+        if (isset($this->id)) {
+          if (!$this->$prop = $this->validate_email($this->$prop)) {
+            $is_valid = false;
+            break;
+          }
         }
       }
       if ($prop === "password") {

@@ -83,6 +83,16 @@ hr {
   color: red;
 }
 
+.input__invalid {
+  border: 1px solid red;
+  background-color: #f7dcdc;
+}
+
+.input__fail {
+  font-size: 0.75rem;
+  color: red;
+}
+
 @media screen and (max-width: 600px) {
   .container__content {
     width: 95%;

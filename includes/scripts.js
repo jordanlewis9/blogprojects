@@ -76,6 +76,9 @@ if (navHamburger) {
 
 // Handling inputs
 
+const loginForm = document.querySelector(".login__form");
+const signupForm = document.querySelector(".signup__form");
+const commentForm = document.querySelector(".comment__form");
 const username = document.querySelector(".input__username");
 const password = document.querySelector(".input__password");
 const email = document.querySelector(".input__email");
@@ -84,6 +87,11 @@ const lastName = document.querySelector(".input__last-name");
 const comment = document.querySelector(".input__comment");
 
 const userInputs = [username, password, email, firstName, lastName, comment];
+const userForms = [loginForm, signupForm, commentForm];
+
+const usernameValidate = (input) => {
+  return /^(\w|\d){4,15}$/.test(input);
+}
 
 const inputRequired = (e) => {
   const messageContainer = e.target.parentNode;
@@ -103,8 +111,46 @@ const inputRequired = (e) => {
   }
 }
 
-userInputs.forEach(input => {
-  if (input) {
-    input.addEventListener("focusout", inputRequired);
+const validateInput = e => {
+  userInputs.forEach(input => {
+    if (input) {
+      if (input.classList.contains("input__invalid")) {
+        input.classList.remove("input__invalid");
+        const inputError = input.parentNode.querySelector('.input__fail');
+        input.parentNode.removeChild(inputError);
+      }
+    }
+  })
+  let isValid = true;
+  userInputs.forEach(input => {
+    if (!input) {
+      return null;
+    }
+    const messageContainer = input.parentNode;
+    if (input === username) {
+      if (!usernameValidate(username.value)) {
+        isValid = false;
+        username.classList.add("input__invalid");
+        messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Username must be alphanumeric and 4-15 characters in length</p>`);
+      }
+    }
+  })
+  if (isValid) {
+    loginForm.submit();
+  } else {
+    e.preventDefault();
   }
-});
+}
+
+if (loginForm || signupForm || commentForm) {
+  userForms.forEach(form => {
+    if (form) {
+      form.addEventListener("submit", validateInput);
+    }
+  })
+  userInputs.forEach(input => {
+    if (input) {
+      input.addEventListener("focusout", inputRequired);
+    }
+  });
+}
