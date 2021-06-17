@@ -152,9 +152,13 @@ class Methods {
         }
       }
       if ($prop === "password") {
-        if(!$this->$prop = $this->encrypt_password($this->$prop)) {
-          $is_valid = false;
-          break;
+        if (isset($this->id)) {
+          if ($this->password_changed($this->$prop)) {
+            if(!$this->$prop = $this->encrypt_password($this->$prop)) {
+              $is_valid = false;
+              break;
+            }
+          }
         }
       }
       $main_query[] = "{$prop} = ?";

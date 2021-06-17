@@ -40,7 +40,7 @@ if (isset($_POST['update'])) {
   </div>
   <div class="admin__form--inputs">
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" value="<?php echo $user->password; ?>">
+    <input type="password" name="password" id="password">
   </div>
   <div class="admin__form--inputs">
     <label for="role">Role</label>

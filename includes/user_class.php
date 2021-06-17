@@ -60,6 +60,19 @@ class User extends Methods {
     return password_hash($entered_password, PASSWORD_DEFAULT);
   }
 
+  protected function password_changed($entered_password) {
+    global $db;
+    $sql = "SELECT password FROM users WHERE id = {$this->id}";
+    $result = $db->query($sql);
+    $result = $result->fetch_assoc();
+    $password = $result['password'];
+    if ($entered_password === $password) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   public static function get_all_users($offset, $num_per_page) {
     global $db;
     $sql = "SELECT id, username, email, role FROM users ORDER BY id DESC LIMIT {$offset}, {$num_per_page}";

@@ -9,7 +9,7 @@ if (isset($_POST['update'])) {
   $user->email = $_POST['email'];
   $user->first_name = $_POST['first_name'];
   $user->last_name = $_POST['last_name'];
-  $user->password = $_POST['password'];
+  $user->password = $_POST['password'] ?? $user->password;
   if ($user->update_item('users', $user->class_properties)) {
     $message->set_message("Profile changes saved.");
     redirect("edit_profile.php");
@@ -56,7 +56,7 @@ if (isset($_POST['update'])) {
   <div class="signup__form--inputs">
     <label for="password" class="signup__form--labels">Password</label>
     <div class="input__container">
-      <input type="password" name="password" id="password" class="signup__form--content input__password" value="<?php echo $user->password; ?>" required>
+      <input type="password" name="password" id="password" class="signup__form--content input__password" required>
     </div>
   </div>
   <div class="signup__form--inputs">
