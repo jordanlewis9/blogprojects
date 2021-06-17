@@ -93,6 +93,14 @@ const usernameValidate = (input) => {
   return /^(\w|\d){4,15}$/.test(input);
 }
 
+const passwordValidate = (input) => {
+  let isValid = [];
+  isValid.push(/[A-Z]/.test(input));
+  isValid.push(/[a-z]/.test(input));
+  isValid.push(/^\S{6,20}$/.test(input));
+  return !isValid.some(bool => bool === false);
+}
+
 const inputRequired = (e) => {
   const messageContainer = e.target.parentNode;
   if (e.target.value === "" && e.target.classList.contains("input__required")) {
@@ -132,6 +140,13 @@ const validateInput = e => {
         isValid = false;
         username.classList.add("input__invalid");
         messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Username must be alphanumeric and 4-15 characters in length</p>`);
+      }
+    }
+    if (input === password) {
+      if (!passwordValidate(password.value)) {
+        isValid = false;
+        password.classList.add("input__invalid");
+        messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Password must have at least one uppercase letter, one lowercase letter, and be 6-20 characters in length</p>`);
       }
     }
   })
