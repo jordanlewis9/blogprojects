@@ -101,6 +101,18 @@ const passwordValidate = (input) => {
   return !isValid.some(bool => bool === false);
 }
 
+const emailValidate = (input) => {
+  return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{2,63}@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/i.test(input);
+}
+
+const nameValidate = (input) => {
+  return /^[a-zA-Z]{2,}(-[a-zA-Z]{2,}|\s[a-zA-Z]{2,})?(\.)?$/i.test(input);
+}
+
+const commentValidate = (input) => {
+  return /^.{2,}$/.test(input);
+}
+
 const inputRequired = (e) => {
   const messageContainer = e.target.parentNode;
   if (e.target.value === "" && e.target.classList.contains("input__required")) {
@@ -135,19 +147,45 @@ const validateInput = e => {
       return null;
     }
     const messageContainer = input.parentNode;
-    if (input === username) {
-      if (!usernameValidate(username.value)) {
-        isValid = false;
-        username.classList.add("input__invalid");
-        messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Username must be alphanumeric and 4-15 characters in length</p>`);
-      }
-    }
-    if (input === password) {
-      if (!passwordValidate(password.value)) {
-        isValid = false;
-        password.classList.add("input__invalid");
-        messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Password must have at least one uppercase letter, one lowercase letter, and be 6-20 characters in length</p>`);
-      }
+    switch (input) {
+      case username:
+        if (!usernameValidate(input.value)) {
+          isValid = false;
+          username.classList.add("input__invalid");
+          messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Username must be alphanumeric and 4-15 characters in length</p>`);
+        }
+        break;
+      case password:
+        if (!passwordValidate(input.value)) {
+          isValid = false;
+          password.classList.add("input__invalid");
+          messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Password must have at least one uppercase letter, one lowercase letter, and be 6-20 characters in length</p>`);
+        }
+        break;
+      case email:
+        if (!emailValidate(input.value)) {
+          isValid = false;
+          email.classList.add("input__invalid");
+          messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Email is invalid. Please use a different one</p>`);
+        }
+        break;
+      case firstName:
+      case lastName:
+        if (!nameValidate(input.value)) {
+          isValid = false;
+          input.classList.add("input__invalid");
+          messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Name is invalid. First and last name must be at least 2 letter long</p>`);
+        }
+        break;
+      case comment:
+        if (!commentValidate(input.value)) {
+          isValid = false;
+          input.classList.add("input__invalid");
+          messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Name is invalid. First and last name must be at least 2 letter long</p>`);
+        }
+        break;
+      default:
+        return null;
     }
   })
   if (isValid) {
