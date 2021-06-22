@@ -6,13 +6,20 @@
   }
 
   if (isset($_POST['submit'])) {
+    $clean_input = new Clean_Input;
     $new_user = new User;
-    $new_user->username = $_POST['username'];
-    $new_user->email = $_POST['email'];
-    $new_user->first_name = $_POST['first_name'];
-    $new_user->last_name = $_POST['last_name'];
-    $new_user->password = $_POST['password'];
-    $new_user->public_add_user();
+    $clean_input->isValid[] = $new_user->username = $clean_input->validate_username($_POST['username']);
+    $clean_input->isValid[] = $new_user->email = $clean_input->validate_email($_POST['email']);
+    $clean_input->isValid[] = $new_user->first_name = $clean_input->validate_name($_POST['first_name']);
+    $clean_input->isValid[] = $new_user->last_name = $clean_input->validate_name($_POST['last_name']);
+    $clean_input->isValid[] = $new_user->password = $clean_input->validate_password($_POST['password']);
+    if (array_search(false, $clean_input->isValid)) {
+      print_r($clean_input->isValid);
+      // redirect("signup.php");
+    } else {
+      print_r($clean_input->isValid);
+      // $new_user->public_add_user();
+    }
   }
 
 ?>

@@ -14,7 +14,7 @@
   }
 
   if (isset($_POST['submit']) && $auth->signed_in) {
-    Comment::add_new_comment($_POST['comment'], $auth->user_id, $_GET['blog_id']);
+    Comment::add_new_comment(htmlspecialchars($_POST['comment'], ENT_QUOTES), $auth->user_id, $_GET['blog_id']);
   }
 ?>
 <div class="container__content">

@@ -13,6 +13,7 @@
       <section class="home__blog">
         <h2 class="home__blog--header">Latest Blog Post</h2>
 <?php
+
   echo "
   <a href='blog.php?blog_id={$latest_blog->id}' class='home__blog--link'><h3 class='home__blog--title'>{$latest_blog->title}</h3></a>
   <a href='blog.php?blog_id={$latest_blog->id}' class='home__blog--link'><img src='admin/images/{$latest_blog->picture}' class='home__blog--image' alt='{$latest_blog->alt_text}'></a>
