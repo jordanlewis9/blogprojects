@@ -1,10 +1,15 @@
 <?php require_once("includes/header.php"); ?>
 <?php 
   if (isset($_POST['login'])) {
-    if($auth->login_user($_POST['username'], $_POST['password'])) {
-      redirect("index.php");
+    $clean_input = new Clean_Input;
+    if ($username = $clean_input->validate_username($_POST['username'])) {
+      if($auth->login_user($username, $_POST['password'])) {
+        redirect("index.php");
+      } else {
+        $message->set_message("Username or password incorrect");
+        redirect("login.php");
+      }
     } else {
-      $message->set_message("Username or password incorrect");
       redirect("login.php");
     }
   }

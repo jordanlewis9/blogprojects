@@ -13,12 +13,10 @@
     $clean_input->isValid[] = $new_user->first_name = $clean_input->validate_name($_POST['first_name']);
     $clean_input->isValid[] = $new_user->last_name = $clean_input->validate_name($_POST['last_name']);
     $clean_input->isValid[] = $new_user->password = $clean_input->validate_password($_POST['password']);
-    if (array_search(false, $clean_input->isValid)) {
-      print_r($clean_input->isValid);
-      // redirect("signup.php");
+    if (in_array(false, $clean_input->isValid, true)) {
+      redirect("signup.php");
     } else {
-      print_r($clean_input->isValid);
-      // $new_user->public_add_user();
+      $new_user->public_add_user();
     }
   }
 

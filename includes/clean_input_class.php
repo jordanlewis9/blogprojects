@@ -20,7 +20,7 @@ class Clean_Input {
     $isValid[] = preg_match("/[A-Z]/", $password);
     $isValid[] = preg_match("/[a-z]/", $password);
     $isValid[] = preg_match("/^\S{6,20}$/", $password);
-    if (array_search(false, $isValid)) {
+    if (in_array(false, $isValid)) {
       $message->set_message("Invalid password. Passwords must be between 6-20 characters long, have 1 uppercase letter, 1 lowercase letter, and no spaces.");
       return false;
     } else {

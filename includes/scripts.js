@@ -86,124 +86,124 @@ const firstName = document.querySelector(".input__first-name");
 const lastName = document.querySelector(".input__last-name");
 const comment = document.querySelector(".input__comment");
 
-// const userInputs = [username, password, email, firstName, lastName, comment];
-// const userForms = [loginForm, signupForm, commentForm];
+const userInputs = [username, password, email, firstName, lastName, comment];
+const userForms = [loginForm, signupForm, commentForm];
 
-// const usernameValidate = (input) => {
-//   return /^(\w|\d){4,15}$/.test(input);
-// }
+const usernameValidate = (input) => {
+  return /^(\w|\d){4,15}$/.test(input);
+}
 
-// const passwordValidate = (input) => {
-//   let isValid = [];
-//   isValid.push(/[A-Z]/.test(input));
-//   isValid.push(/[a-z]/.test(input));
-//   isValid.push(/^\S{6,20}$/.test(input));
-//   return !isValid.some(bool => bool === false);
-// }
+const passwordValidate = (input) => {
+  let isValid = [];
+  isValid.push(/[A-Z]/.test(input));
+  isValid.push(/[a-z]/.test(input));
+  isValid.push(/^\S{6,20}$/.test(input));
+  return !isValid.some(bool => bool === false);
+}
 
-// const emailValidate = (input) => {
-//   return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{2,63}@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/i.test(input);
-// }
+const emailValidate = (input) => {
+  return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{2,63}@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/i.test(input);
+}
 
-// const nameValidate = (input) => {
-//   return /^[a-zA-Z']{1,30}(-[a-zA-Z']{1,20}|\s[a-zA-Z']{1,20})?([\s-a-zA-Z']{1,20})?$/i.test(input);
-// }
+const nameValidate = (input) => {
+  return /^[a-zA-Z']{1,30}(-[a-zA-Z']{1,20}|\s[a-zA-Z']{1,20})?([\s-a-zA-Z']{1,20})?$/i.test(input);
+}
 
-// const commentValidate = (input) => {
-//   return /^.{2,}$/.test(input);
-// }
+const commentValidate = (input) => {
+  return /^.{2,}$/.test(input);
+}
 
-// const inputRequired = (e) => {
-//   const messageContainer = e.target.parentNode;
-//   if (e.target.value === "" && e.target.classList.contains("input__required")) {
-//     return null;
-//   } else if (e.target.value === "") {
-//     e.target.classList.add("input__required");
-//     let field = e.target.id.substring(0, 1).toUpperCase() + e.target.id.substring(1);
-//     if (field.includes('_')) {
-//       field = field.replace('_', ' ');
-//     }
-//     messageContainer.insertAdjacentHTML('beforeend', `<p class="input__error">${field} cannot be empty</p>`);
-//   } else if (e.target.classList.contains("input__required")) {
-//     e.target.classList.remove("input__required");
-//     const inputError = messageContainer.querySelector('.input__error');
-//     messageContainer.removeChild(inputError);
-//   }
-// }
+const inputRequired = (e) => {
+  const messageContainer = e.target.parentNode;
+  if (e.target.value === "" && e.target.classList.contains("input__required")) {
+    return null;
+  } else if (e.target.value === "") {
+    e.target.classList.add("input__required");
+    let field = e.target.id.substring(0, 1).toUpperCase() + e.target.id.substring(1);
+    if (field.includes('_')) {
+      field = field.replace('_', ' ');
+    }
+    messageContainer.insertAdjacentHTML('beforeend', `<p class="input__error">${field} cannot be empty</p>`);
+  } else if (e.target.classList.contains("input__required")) {
+    e.target.classList.remove("input__required");
+    const inputError = messageContainer.querySelector('.input__error');
+    messageContainer.removeChild(inputError);
+  }
+}
 
-// const validateInput = e => {
-//   userInputs.forEach(input => {
-//     if (input) {
-//       if (input.classList.contains("input__invalid")) {
-//         input.classList.remove("input__invalid");
-//         const inputError = input.parentNode.querySelector('.input__fail');
-//         input.parentNode.removeChild(inputError);
-//       }
-//     }
-//   })
-//   let isValid = true;
-//   userInputs.forEach(input => {
-//     if (!input) {
-//       return null;
-//     }
-//     const messageContainer = input.parentNode;
-//     switch (input) {
-//       case username:
-//         if (!usernameValidate(input.value)) {
-//           isValid = false;
-//           username.classList.add("input__invalid");
-//           messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Username must be alphanumeric and 4-15 characters in length</p>`);
-//         }
-//         break;
-//       case password:
-//         if (!passwordValidate(input.value)) {
-//           isValid = false;
-//           password.classList.add("input__invalid");
-//           messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Password must have at least one uppercase letter, one lowercase letter, be 6-20 characters in length, and contain no spaces</p>`);
-//         }
-//         break;
-//       case email:
-//         if (!emailValidate(input.value)) {
-//           isValid = false;
-//           email.classList.add("input__invalid");
-//           messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Email is invalid. Please use a different one</p>`);
-//         }
-//         break;
-//       case firstName:
-//       case lastName:
-//         if (!nameValidate(input.value)) {
-//           isValid = false;
-//           input.classList.add("input__invalid");
-//           messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Name is invalid. First and last name must be at least 2 letter long</p>`);
-//         }
-//         break;
-//       case comment:
-//         if (!commentValidate(input.value)) {
-//           isValid = false;
-//           input.classList.add("input__invalid");
-//           messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Name is invalid. First and last name must be at least 2 letter long</p>`);
-//         }
-//         break;
-//       default:
-//         return null;
-//     }
-//   })
-//   if (isValid) {
-//     loginForm.submit();
-//   } else {
-//     e.preventDefault();
-//   }
-// }
+const validateInput = e => {
+  userInputs.forEach(input => {
+    if (input) {
+      if (input.classList.contains("input__invalid")) {
+        input.classList.remove("input__invalid");
+        const inputError = input.parentNode.querySelector('.input__fail');
+        input.parentNode.removeChild(inputError);
+      }
+    }
+  })
+  let isValid = true;
+  userInputs.forEach(input => {
+    if (!input) {
+      return null;
+    }
+    const messageContainer = input.parentNode;
+    switch (input) {
+      case username:
+        if (!usernameValidate(input.value)) {
+          isValid = false;
+          username.classList.add("input__invalid");
+          messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Username must be alphanumeric and 4-15 characters in length</p>`);
+        }
+        break;
+      case password:
+        if (!passwordValidate(input.value)) {
+          isValid = false;
+          password.classList.add("input__invalid");
+          messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Password must have at least one uppercase letter, one lowercase letter, be 6-20 characters in length, and contain no spaces</p>`);
+        }
+        break;
+      case email:
+        if (!emailValidate(input.value)) {
+          isValid = false;
+          email.classList.add("input__invalid");
+          messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Email is invalid. Please use a different one</p>`);
+        }
+        break;
+      case firstName:
+      case lastName:
+        if (!nameValidate(input.value)) {
+          isValid = false;
+          input.classList.add("input__invalid");
+          messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Name is invalid. First and last name must be at least 2 letter long</p>`);
+        }
+        break;
+      case comment:
+        if (!commentValidate(input.value)) {
+          isValid = false;
+          input.classList.add("input__invalid");
+          messageContainer.insertAdjacentHTML('beforeend', `<p class="input__fail">Name is invalid. First and last name must be at least 2 letter long</p>`);
+        }
+        break;
+      default:
+        return null;
+    }
+  })
+  if (isValid) {
+    loginForm.submit();
+  } else {
+    e.preventDefault();
+  }
+}
 
-// if (loginForm || signupForm || commentForm) {
-//   userForms.forEach(form => {
-//     if (form) {
-//       form.addEventListener("submit", validateInput);
-//     }
-//   })
-//   userInputs.forEach(input => {
-//     if (input) {
-//       input.addEventListener("focusout", inputRequired);
-//     }
-//   });
-// }
+if (loginForm || signupForm || commentForm) {
+  userForms.forEach(form => {
+    if (form) {
+      form.addEventListener("submit", validateInput);
+    }
+  })
+  userInputs.forEach(input => {
+    if (input) {
+      input.addEventListener("focusout", inputRequired);
+    }
+  });
+}

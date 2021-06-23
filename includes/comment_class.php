@@ -98,7 +98,7 @@ class Comment extends Methods {
     $stmt->bind_param('sii', $content, $user_id, $blog_id);
     $stmt->execute();
     if ($stmt->affected_rows === 1) {
-      $message->set_message("Comment has been sent for approval.");
+      $message->set_message("Comment has been successfully sent for approval.");
       redirect("blog.php?blog_id={$blog_id}");
     } else {
       $message->set_message("Comment could not be saved. Please try again.");

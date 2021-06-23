@@ -14,10 +14,22 @@
   }
 
   if (isset($_POST['submit']) && $auth->signed_in) {
-    Comment::add_new_comment(htmlspecialchars($_POST['comment'], ENT_QUOTES), $auth->user_id, $_GET['blog_id']);
+    $clean_input = new Clean_Input;
+    if ($comment = $clean_input->validate_comment($_POST['comment'])) {
+      Comment::add_new_comment($comment, $auth->user_id, $_GET['blog_id']);
+    } else {
+      redirect("blog.php?blog_id={$_GET['blog_id']}");
+    }
   }
 ?>
 <div class="container__content">
+  <?php
+  if (isset($message->current_message) && stripos($message->current_message, 'success')) {
+    echo "<p class='success__message'>{$message->current_message}</p>";
+  } else if (isset($message->current_message)) {
+    echo "<p class='error__message'>{$message->current_message}</p>";
+  }
+  ?>
   <h1 class="blog__headline"><?php echo $blog->title; ?></h1>
   <img src="admin/images/<?php echo $blog->picture; ?>" class="blog__image" alt="<?php echo $blog->alt_text; ?>">
   <p class="blog__author">By <?php echo $blog->author; ?></p>
