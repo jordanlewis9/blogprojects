@@ -6,11 +6,12 @@ class Auth {
   private $login_key;
   public $role;
   public $user_id;
+  public $email;
 
   private function get_current_user_and_auth() {
     global $db, $message;
     $id = trim($_SESSION['user_id']);
-    $sql = "SELECT username, login_key, role, id FROM users WHERE id = ? LIMIT 1";
+    $sql = "SELECT username, login_key, role, email, id FROM users WHERE id = ? LIMIT 1";
     $stmt = $db->connection->prepare($sql);
     $stmt->bind_param('i', $id);
     $stmt->execute();
@@ -18,13 +19,14 @@ class Auth {
     if ($stmt->num_rows !== 1) {
       return $this->not_signed_in();
     }
-    $stmt->bind_result($username, $login_key, $role, $db_id);
+    $stmt->bind_result($username, $login_key, $role, $email, $db_id);
     while ($stmt->fetch()) {
       if ($_SESSION['login_key'] === $login_key && $_SESSION['username'] === $username) {
         $this->signed_in = true;
         $this->login_key = $login_key;
         $this->username = $username;
-        $_SESSION['role'] = $this->role = $role;
+        $this->email = $email;
+        $this->role = $role;
         $this->user_id = $db_id;
       } else {
         $this->not_signed_in();
@@ -114,6 +116,19 @@ class Auth {
           break;
         }
       } 
+      return false;
+    }
+    return true;
+  }
+
+  public function does_email_exist($email) {
+    global $db;
+    $sql = "SELECT email FROM users WHERE email = ?";
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows === 0) {
       return false;
     }
     return true;

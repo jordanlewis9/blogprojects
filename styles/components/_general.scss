@@ -84,11 +84,19 @@ hr {
   color: red;
 }
 
+#change__password--label {
+  justify-self: center;
+}
+
 @include phone {
   .container {
     &__content {
       width: 95%;
       margin: 4rem auto 5rem;
     }
+  }
+
+  #change__password--label {
+    justify-self: start;
   }
 }

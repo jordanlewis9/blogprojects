@@ -97,10 +97,18 @@ hr {
   color: red;
 }
 
+#change__password--label {
+  justify-self: center;
+}
+
 @media screen and (max-width: 600px) {
   .container__content {
     width: 95%;
     margin: 4rem auto 5rem;
+  }
+
+  #change__password--label {
+    justify-self: start;
   }
 }
 .nav {
@@ -785,6 +793,24 @@ hr {
   text-align: center;
 }
 
+.change-password__form {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: 1fr;
+  justify-items: center;
+  row-gap: 1rem;
+}
+.change-password--inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 1rem;
+  align-items: center;
+}
+.change-password--inputs > label {
+  justify-self: end;
+}
+
 @media screen and (max-width: 600px) {
   .login__form--inputs {
     display: grid;
@@ -807,6 +833,16 @@ hr {
     row-gap: 0.25rem;
   }
   .signup__form--labels {
+    justify-self: start;
+  }
+
+  .change-password--inputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 0.25rem;
+  }
+  .change-password--inputs > label {
     justify-self: start;
   }
 }

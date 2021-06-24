@@ -79,12 +79,14 @@ if (navHamburger) {
 const loginForm = document.querySelector(".login__form");
 const signupForm = document.querySelector(".signup__form");
 const commentForm = document.querySelector(".comment__form");
+const changePasswordForm = document.querySelector(".change-password__form");
 const username = document.querySelector(".input__username");
 const password = document.querySelector(".input__password");
 const email = document.querySelector(".input__email");
 const firstName = document.querySelector(".input__first-name");
 const lastName = document.querySelector(".input__last-name");
 const comment = document.querySelector(".input__comment");
+const confirmPassword = document.querySelector(".confirm__password");
 
 const userInputs = [username, password, email, firstName, lastName, comment];
 const userForms = [loginForm, signupForm, commentForm];
@@ -193,6 +195,30 @@ const validateInput = e => {
   } else {
     e.preventDefault();
   }
+}
+
+const comparePasswords = e => {
+  const passwordFields = [password, confirmPassword];
+  passwordFields.forEach(input => {
+    if (input) {
+      if (input.classList.contains("input__invalid")) {
+        input.classList.remove("input__invalid");
+        const inputError = input.parentNode.querySelector('.input__fail');
+        input.parentNode.removeChild(inputError);
+      }
+    }
+  })
+  if (password.value !== confirmPassword.value) {
+    e.preventDefault();
+    confirmPassword.classList.add("input__invalid");
+    confirmPassword.parentNode.insertAdjacentHTML('beforeend', `<p class="input__fail">New password and confirm password fields do not match.</p>`);
+  } else {
+    validateInput(e);
+  }
+}
+
+if (confirmPassword) {
+  changePasswordForm.addEventListener("submit", comparePasswords);
 }
 
 if (loginForm || signupForm || commentForm) {

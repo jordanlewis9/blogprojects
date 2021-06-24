@@ -100,6 +100,24 @@ class User extends Methods {
     }
     return $all_users;
   }
+
+  public static function create_password_change_token_id($user_id) {
+    global $db;
+    $pw_token = random_bytes(20);
+    $pw_token = bin2hex($pw_token);
+    $sql = "UPDATE users SET new_pw_token = '{$pw_token}', new_pw_token_time = now() WHERE id = {$user_id}";
+    $result = $db->query($sql);
+    return $pw_token;
+  }
+
+  public static function create_password_change_token_email($user_email) {
+    global $db;
+    $pw_token = random_bytes(20);
+    $pw_token = bin2hex($pw_token);
+    $sql = "UPDATE users SET new_pw_token = '{$pw_token}', new_pw_token_time = now() WHERE email = '{$user_email}'";
+    $result = $db->query($sql);
+    return $pw_token;
+  }
 }
 
 
