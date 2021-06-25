@@ -20,7 +20,7 @@ function send_email($user_email, $tokenforlink) {
   //SMTP::DEBUG_OFF = off (for production use)
   //SMTP::DEBUG_CLIENT = client messages
   //SMTP::DEBUG_SERVER = client and server messages
-  $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+  $mail->SMTPDebug = SMTP::DEBUG_CONNECTION;
 
   //Set the hostname of the mail server
   $mail->Host = 'smtp.gmail.com';
@@ -42,16 +42,16 @@ function send_email($user_email, $tokenforlink) {
   $mail->SMTPAuth = true;
 
   //Username to use for SMTP authentication - use full email address for gmail
-  $mail->Username = INSERT EMAIL;
+  $mail->Username = ENTER EMAIL;
 
   //Password to use for SMTP authentication
-  $mail->Password = INSERT PASSWORD;
+  $mail->Password = ENTER PASSWORD;
 
   //Set who the message is to be sent from
   //Note that with gmail you can only use your account address (same as `Username`)
   //or predefined aliases that you have configured within your account.
   //Do not use user-submitted addresses in here
-  $mail->setFrom(INSERT EMAIL, 'Jordan');
+  $mail->setFrom(ENTER EMAIL, 'Jordan');
 
   //Set an alternative reply-to address
   //This is a good place to put user-submitted addresses
@@ -76,10 +76,10 @@ function send_email($user_email, $tokenforlink) {
 
   //send the message, check for errors
   if (!$mail->send()) {
-      return 'Mailer Error: ' . $mail->ErrorInfo;
+      echo 'Mailer Error: ' . $mail->ErrorInfo;
       // return "not sent";
   } else {
-      return 'Message sent!';
+      echo 'Message sent!';
       // return "sent";
       //Section 2: IMAP
       //Uncomment these to save your message in the 'Sent Mail' folder.

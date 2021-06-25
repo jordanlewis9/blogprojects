@@ -41,7 +41,7 @@
       } 
     }
     // redirect("index.php");
-    redirect("update_password.php");
+    // redirect("request_password_change.php");
   }
   ?>
 
@@ -53,7 +53,7 @@ if (isset($message->current_message)) {
 ?>
 <div class="container__content">
   <h2 class="auth__headline">Request Password Change</h2>
-  <form action="update_password.php" method="POST">
+  <form action="request_password_change.php" method="POST">
     <div class="login__form--inputs">
       <label for="email" id="change__password--label">Enter email</label>
       <div class="input__container">
