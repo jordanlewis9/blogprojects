@@ -3,10 +3,10 @@
 class Database {
 
   public $connection;
-  private $db_host = "localhost";
-  private $db_user = "root";
-  private $db_pass = "";
-  private $db_name = "blog";
+  private $db_host = DB_HOST;
+  private $db_user = DB_USER;
+  private $db_pass = DB_PASSWORD;
+  private $db_name = DB_NAME;
 
   function __construct() {
     $this->connect_db();

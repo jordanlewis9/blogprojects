@@ -1,47 +1,31 @@
 <?php require_once("includes/header.php"); ?>
 <?php
 
+if ($auth->signed_in && $auth->role !== "admin") {
+  $token = User::create_password_change_token_id($auth->user_id);
+  if(send_email($auth->email, $token)) {
+    $message->set_message("An email has been sent to {$auth->email} for directions on changing your password.");
+  } else {
+    $message->set_message("There was an error sending an email to the stored address. Please try again.");
+  }
+  redirect("index.php");
+}
+
   if (isset($_POST['send_email'])) {
-    // check if email exists
-    if ($auth->email && $auth->email === $_POST['email']) {
-      // send email
-      $token = User::create_password_change_token_id($auth->user_id);
-      $msg = send_email('jlewis2008@live.com', '1234');
-      $message->set_message($msg);
-      // if(send_email('jlewis2008@live.com', $token)) {
-          // $message->set_message("An email has been sent to {$_POST['send_email']} for directions on changing your password.");
-      // } else {
-        // $message->set_message("There was an error sending the email. Please try again.");
-      // }
-          // set message
-
-              //redirect
-              // redirect("index.php");
-    } else {
-      $clean_input = new Clean_Input;
-      if ($email = $clean_input->validate_email($_POST['email'])){
-        if ($auth->does_email_exist($email)) {
-          $token = User::create_password_change_token_email($email);
-          $msg = send_email('jlewis2008@live.com', '1234');
-          $message->set_message($msg);
-          // if (send_email('jlewis2008@live.com', $token)) {
-          //   $message->set_message("An email has been sent to {$email} for directions on changing your password.");
-          // } else {
-            // $message->set_message("There was an error sending the email. Please try again.");
-          // }
+    $clean_input = new Clean_Input;
+    if ($email = $clean_input->validate_email($_POST['email'])){
+      if ($auth->does_email_exist($email)) {
+        $token = User::create_password_change_token_email($email);
+        if (send_email($email, $token)) {
+          $message->set_message("An email has been sent to {$email} for directions on changing your password.");
         } else {
-          // $message->set_message("An email has been sent to {$email} for directions on changing your password.");
+          $message->set_message("There was an error sending the email. Please try again.");
         }
-            // send email
-
-                // set message
-                // $message->set_message("An email has been sent to {$email} for directions on changing your password.");
-                    //redirect
-                    // redirect("index.php");
-      } 
-    }
-    // redirect("index.php");
-    // redirect("request_password_change.php");
+      } else {
+        $message->set_message("An email has been sent to {$email} for directions on changing your password.");
+      }
+    } 
+    redirect("index.php");
   }
   ?>
 

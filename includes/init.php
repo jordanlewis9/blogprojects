@@ -1,4 +1,5 @@
 <?php
+require_once("C:/wamp64/www/blog/config/config.php");
 ob_start();
 session_start();
 require_once("functions.php");
