@@ -104,19 +104,40 @@ class User extends Methods {
   public static function create_password_change_token_id($user_id) {
     global $db;
     $pw_token = random_bytes(20);
-    $pw_token = bin2hex($pw_token);
     $sql = "UPDATE users SET new_pw_token = '{$pw_token}', new_pw_token_time = now() WHERE id = {$user_id}";
     $result = $db->query($sql);
+    $pw_token = bin2hex($pw_token);
     return $pw_token;
   }
 
   public static function create_password_change_token_email($user_email) {
     global $db;
     $pw_token = random_bytes(20);
-    $pw_token = bin2hex($pw_token);
     $sql = "UPDATE users SET new_pw_token = '{$pw_token}', new_pw_token_time = now() WHERE email = '{$user_email}'";
     $result = $db->query($sql);
+    $pw_token = bin2hex($pw_token);
     return $pw_token;
+  }
+
+  public static function find_user_by_pw_token($token) {
+    global $db;
+    $token = hex2bin($token);
+    echo $token;
+    $sql = "SELECT * FROM users WHERE token = ?";
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param('s', $token);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows === 0) {
+      return false;
+    }
+    $retreived_item = new static;
+    while ($row = $result->fetch_array()) {
+      foreach ($retreived_item->class_properties as $prop => $type) {
+        $retreived_item->$prop = $row[$prop];
+      }
+    }
+    return $retreived_item;
   }
 }
 

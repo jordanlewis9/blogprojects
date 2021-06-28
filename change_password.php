@@ -1,5 +1,13 @@
 <?php require_once("includes/header.php"); ?>
 
+<?php
+  if (isset($_GET['token'])) {
+    $user = User::find_user_by_pw_token($_GET['token']);
+  }
+
+?>
+
+<?php echo $user->username; ?>
 <div class="container__content">
   <h2 class="auth__headline">Change Password</h2>
   <form action="change_password.php" method="POST" class="change-password__form">
