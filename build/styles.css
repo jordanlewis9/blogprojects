@@ -745,6 +745,12 @@ hr {
 .login__form--inputs > label {
   justify-self: end;
 }
+.login__form--link {
+  grid-column: 1/3;
+  justify-self: center;
+  text-decoration: underline;
+  color: #ddd;
+}
 .login__form--btn {
   background-color: #2baabd;
   color: #ddd;
@@ -778,6 +784,12 @@ hr {
   height: 1.5rem;
   font-family: inherit;
 }
+.signup__form--link {
+  grid-column: 1/3;
+  justify-self: center;
+  text-decoration: underline;
+  color: #ddd;
+}
 .signup__form--button {
   grid-column: 1/3;
   justify-self: center;
@@ -799,6 +811,17 @@ hr {
   grid-template-columns: 1fr;
   justify-items: center;
   row-gap: 1rem;
+}
+.change-password__form--btn {
+  background-color: #2baabd;
+  color: #ddd;
+  grid-column: 1/3;
+  justify-self: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+.change-password__form--btn:hover {
+  background-color: #1c707d;
 }
 .change-password--inputs {
   display: grid;

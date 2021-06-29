@@ -62,3 +62,5 @@ class Clean_Input {
     }
   }
 }
+
+$clean_input = new Clean_Input;

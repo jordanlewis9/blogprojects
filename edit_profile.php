@@ -5,11 +5,11 @@ if (isset($auth->user_id)) {
 }
 
 if (isset($_POST['update'])) {
-  $user->username = $_POST['username'];
+  $user->username = $user->username;
   $user->email = $_POST['email'];
   $user->first_name = $_POST['first_name'];
   $user->last_name = $_POST['last_name'];
-  $user->password = $_POST['password'] ?? $user->password;
+  $user->password = $user->password;
   if ($user->update_item('users', $user->class_properties)) {
     $message->set_message("Profile changes saved.");
     redirect("edit_profile.php");
@@ -24,17 +24,13 @@ if (isset($_POST['update'])) {
 ?>
 
 <div class="container__content">
-<?php if (isset($message->current_message)): ?>
+<?php if (isset($message->current_message) && stripos($message->current_message, 'error')): ?>
   <p class="error__message"><?php echo $message->current_message; ?></p>
+<?php elseif (isset($message->current_message)): ?>
+  <p class="success__message"><?php echo $message->current_message; ?></p>
 <?php endif; ?>
 <h2 class="auth__headline">Edit Profile</h2>
 <form method="POST" action="" class="signup__form">
-  <div class="signup__form--inputs">
-    <label for="username" class="signup__form--labels">Username</label>
-    <div class="input__container">
-      <input type="text" name="username" id="username" class="signup__form--content input__username" value="<?php echo $user->username; ?>" required>
-    </div>
-  </div>
   <div class="signup__form--inputs">
     <label for="email" class="signup__form--labels">Email</label>
     <div class="input__container">
@@ -54,10 +50,7 @@ if (isset($_POST['update'])) {
     </div>
   </div>
   <div class="signup__form--inputs">
-    <label for="password" class="signup__form--labels">Password</label>
-    <div class="input__container">
-      <input type="password" name="password" id="password" class="signup__form--content input__password" required>
-    </div>
+    <a href="request_password_change.php" class="signup__form--link">Change Password</a>
   </div>
   <div class="signup__form--inputs">
     <input class="gen-btn signup__form--button" type="submit" name="update" value="Save Changes">

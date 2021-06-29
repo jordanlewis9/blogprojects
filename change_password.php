@@ -5,12 +5,33 @@
     $user = User::find_user_by_pw_token($_GET['token']);
   }
 
+  if (isset($_POST['confirm'])) {
+    if ($user->compare_passwords($_POST['password'], $_POST['confirm_password'])) {
+      if ($user->update_item("users", $user->class_properties)) {
+        if ($user->reset_pw_token()) {
+          $message->set_message("Your password has successfully been changed.");
+          $auth->login_user($user->username, $_POST['password']);
+          redirect("index.php");
+        } else {
+          redirect("index.php");
+        }
+      } else {
+        $message->set_message("There was an error resetting your password. Please try again.");
+        redirect("change_password.php?token={$_GET['token']}");
+      }
+    } else {
+      redirect("change_password.php?token={$_GET['token']}");
+    }
+  }
+
 ?>
 
-<?php echo $user->username; ?>
 <div class="container__content">
+<?php if (isset($message->current_message)): ?>
+  <p class="error__message"><?php echo $message->current_message; ?></p>
+<?php endif; ?>
   <h2 class="auth__headline">Change Password</h2>
-  <form action="change_password.php" method="POST" class="change-password__form">
+  <form action="change_password.php?token=<?php echo $_GET['token']; ?>" method="POST" class="change-password__form">
     <div class="change-password--inputs">
       <label for="password">New Password</label>
       <div class="input__container">
@@ -24,7 +45,7 @@
       </div>
     </div>
     <div class="change-password--inputs">
-      <input type="submit" name="submit" value="Confirm" class="gen-btn login__form--btn">
+      <input type="submit" name="confirm" value="Confirm" class="gen-btn change-password__form--btn">
     </div>
   </form>
 </div>

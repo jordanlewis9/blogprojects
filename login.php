@@ -15,10 +15,10 @@
   }
 ?> 
 
+<div class="container__content">
 <?php if (isset($message->current_message)): ?>
 <p><?php echo $message->current_message; ?></p>
 <?php endif; ?>
-<div class="container__content">
 <h2 class="auth__headline">Login</h2>
 <form action="login.php" method="POST" class="login__form">
   <div class="login__form--inputs">
@@ -32,6 +32,9 @@
     <div class="input__container">
       <input type="password" class="input__password" id="password" name="password" required>
     </div>
+  </div>
+  <div class="login__form--inputs">
+    <a href="request_password_change.php" class="login__form--link">Forgot Password?</a>
   </div>
   <div class="login__form--inputs">
     <input type="submit" name="login" value="Login" class="gen-btn login__form--btn">

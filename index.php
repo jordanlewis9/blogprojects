@@ -6,10 +6,12 @@
   $random_project = Project::get_all_items('projects', $random_number, 1);
   $random_project = $random_project[0];
 ?>
-<?php if(isset($message->current_message)): ?>
-  <p><?php echo $message->current_message; ?></p>
-<?php endif; ?>
     <div class="container__content">
+    <?php if(isset($message->current_message) && stripos($message->current_message, 'error')): ?>
+      <p class="error__message"><?php echo $message->current_message; ?></p>
+    <?php elseif(isset($message->current_message)): ?>
+      <p class="client__message"><?php echo $message->current_message; ?></p>
+    <?php endif; ?>
       <section class="home__blog">
         <h2 class="home__blog--header">Latest Blog Post</h2>
 <?php

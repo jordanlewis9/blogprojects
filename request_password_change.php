@@ -2,9 +2,12 @@
 <?php
 
 if ($auth->signed_in && $auth->role !== "admin") {
-  $token = User::create_password_change_token_id($auth->user_id);
-  if(send_email($auth->email, $token)) {
-    $message->set_message("An email has been sent to {$auth->email} for directions on changing your password.");
+  if ($token = User::create_password_change_token_id($auth->user_id)) {
+    if(send_email($auth->email, $token)) {
+      $message->set_message("An email has been sent to {$auth->email} for directions on changing your password.");
+    } else {
+      $message->set_message("There was an error sending an email to the stored address. Please try again.");
+    }
   } else {
     $message->set_message("There was an error sending an email to the stored address. Please try again.");
   }
@@ -15,9 +18,12 @@ if ($auth->signed_in && $auth->role !== "admin") {
     $clean_input = new Clean_Input;
     if ($email = $clean_input->validate_email($_POST['email'])){
       if ($auth->does_email_exist($email)) {
-        $token = User::create_password_change_token_email($email);
-        if (send_email($email, $token)) {
-          $message->set_message("An email has been sent to {$email} for directions on changing your password.");
+        if ($token = User::create_password_change_token_email($email)) {
+          if (send_email($email, $token)) {
+            $message->set_message("An email has been sent to {$email} for directions on changing your password.");
+          } else {
+            $message->set_message("There was an error sending the email. Please try again.");
+          }
         } else {
           $message->set_message("There was an error sending the email. Please try again.");
         }
@@ -29,12 +35,6 @@ if ($auth->signed_in && $auth->role !== "admin") {
   }
   ?>
 
-<?php
-
-if (isset($message->current_message)) {
-  echo $message->current_message;
-}
-?>
 <div class="container__content">
   <h2 class="auth__headline">Request Password Change</h2>
   <form action="request_password_change.php" method="POST">

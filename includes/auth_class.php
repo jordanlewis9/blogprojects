@@ -34,9 +34,6 @@ class Auth {
     }
   }
 
-  // have function that compares passwords. if default password is unchanged, do not hash password.
-  // if default password is changed, hash password like normal
-
   function __construct() {
     if (isset($_SESSION['login_key']) && isset($_SESSION['username']) && isset($_SESSION['user_id']) && isset($_SESSION['role'])) {
       $this->get_current_user_and_auth();

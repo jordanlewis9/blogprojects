@@ -104,26 +104,32 @@ class User extends Methods {
   public static function create_password_change_token_id($user_id) {
     global $db;
     $pw_token = random_bytes(20);
+    $pw_token = bin2hex($pw_token);
     $sql = "UPDATE users SET new_pw_token = '{$pw_token}', new_pw_token_time = now() WHERE id = {$user_id}";
     $result = $db->query($sql);
-    $pw_token = bin2hex($pw_token);
-    return $pw_token;
+    if ($db->connection->affected_rows === 1) {
+      return $pw_token;
+    } else {
+      return false;
+    }
   }
 
   public static function create_password_change_token_email($user_email) {
     global $db;
     $pw_token = random_bytes(20);
+    $pw_token = bin2hex($pw_token);
     $sql = "UPDATE users SET new_pw_token = '{$pw_token}', new_pw_token_time = now() WHERE email = '{$user_email}'";
     $result = $db->query($sql);
-    $pw_token = bin2hex($pw_token);
-    return $pw_token;
+    if ($db->connection->affected_rows === 1) {
+      return $pw_token;
+    } else {
+      return false;
+    }
   }
 
   public static function find_user_by_pw_token($token) {
     global $db;
-    $token = hex2bin($token);
-    echo $token;
-    $sql = "SELECT * FROM users WHERE token = ?";
+    $sql = "SELECT * FROM users WHERE new_pw_token = ?";
     $stmt = $db->connection->prepare($sql);
     $stmt->bind_param('s', $token);
     $stmt->execute();
@@ -138,6 +144,32 @@ class User extends Methods {
       }
     }
     return $retreived_item;
+  }
+
+  public function compare_passwords($new_password, $confirm_password) {
+    global $clean_input, $message;
+    if ($new_password === $confirm_password) {
+      if ($new_password = $clean_input->validate_password($new_password)) {
+        $this->password = $new_password;
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      $message->set_message("New password and Confirm password do not match.");
+      return false;
+    }
+  }
+
+  public function reset_pw_token() {
+    global $db;
+    $sql = "UPDATE users SET new_pw_token = null, new_pw_token_time = null WHERE id = {$this->id}";
+    $result = $db->query($sql);
+    if ($db->connection->affected_rows === 1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
