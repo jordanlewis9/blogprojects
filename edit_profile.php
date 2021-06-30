@@ -10,7 +10,7 @@ if (isset($_POST['update'])) {
   $user->first_name = $_POST['first_name'];
   $user->last_name = $_POST['last_name'];
   $user->password = $user->password;
-  if ($user->update_item('users', $user->class_properties)) {
+  if ($stmt = $user->update_item('users', $user->class_properties)) {
     $message->set_message("Profile changes saved.");
     redirect("edit_profile.php");
   } else {

@@ -5,8 +5,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link href="build/styles.css" rel="stylesheet">
+  <title>jordanlewis.dev</title>
+<?php if ($_SERVER['PHP_SELF'] === "/blog/contact_me.php"): ?>
+  <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+<?php endif; ?>
+  <link href="C:/wamp64/www/blog/build/styles.css" rel="stylesheet">
 </head>
 <body class="frontend__body">
 <div class="container">

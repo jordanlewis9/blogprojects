@@ -36,8 +36,8 @@ function send_email($user_email, $tokenforlink) {
 
   $mail->Subject = 'Password change requested';
 
-  $mail->Body = "A password change request was submitted for jordanlewis.dev. Visit <a href='localhost/blog/change_password.php?token={$tokenforlink}'>this link</a> to change your password. The link will expire in 15 minutes.";
-  $mail->Body .= " If your email host does not allow clicking on links, copy and past the following address: localhost/blog/change_password.php?token={$tokenforlink}";
+  $mail->Body = "A password change request was submitted for jordanlewis.dev. Visit <a href='" . WEBSITE . "/blog/change_password.php?token={$tokenforlink}'>this link</a> to change your password. The link will expire in 15 minutes.";
+  $mail->Body .= " If your email host does not allow clicking on links, copy and past the following address: " . WEBSITE . "/blog/change_password.php?token={$tokenforlink}";
 
   $mail->AltBody = "This is a link to change your password for jordanlewis.dev. Copy and paste the following into your browser. This link expires in 15 minutes. localhost/blog/change_password.php?token={$tokenforlink}";
 

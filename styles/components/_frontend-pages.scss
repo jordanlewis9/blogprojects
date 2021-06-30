@@ -88,6 +88,28 @@
 }
 
 @include phone {
+  .content {
+    &__section {
+      &:nth-of-type(odd) {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr;
+        grid-template-areas: "content" "pic";
+        justify-items: center;
+        gap: 1.5rem;
+      }
+
+      &:nth-of-type(even) {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr;
+        grid-template-areas: "content" "pic";
+        justify-items: center;
+        gap: 1.5rem;
+      }
+    }
+  }
+
   .blog {
     &__image {
       width: 100%;

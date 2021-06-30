@@ -9,6 +9,7 @@
     <a href="login.php" class="footer__link"><p>Log In</p></a>
     <a href="signup.php" class="footer__link"><p>Sign Up</p></a>
 <?php endif; ?>
+    <a href="contact_me.php" class="footer__link"><p>Contact Me</p></a>
     <p class="footer__copyright">Copyright by Jordan Lewis &#169; 2021</p>
   </div>
 </div>

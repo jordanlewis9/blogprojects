@@ -43,7 +43,7 @@ class Auth {
   }
 
   public function login_user($entered_username, $entered_password) {
-    global $db;
+    global $db, $message;
     $entered_username = trim($entered_username);
     $entered_password = trim($entered_password);
     $sql = "SELECT username, password, role, id FROM users WHERE username = ?";
@@ -60,6 +60,7 @@ class Auth {
       $_SESSION['login_key'] = $key;
       $stmt->close();
       $db->query("UPDATE users SET login_key = '{$key}' WHERE id = {$id}");
+      $message->set_message("Thanks for logging in, {$username}");
       return true;
       } else {
         return false;

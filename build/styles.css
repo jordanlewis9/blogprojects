@@ -84,7 +84,7 @@ hr {
 }
 
 .success__message {
-  color: green;
+  color: #0fdb2b;
 }
 
 .input__invalid {
@@ -595,6 +595,23 @@ hr {
 }
 
 @media screen and (max-width: 600px) {
+  .content__section:nth-of-type(odd) {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas: "content" "pic";
+    justify-items: center;
+    gap: 1.5rem;
+  }
+  .content__section:nth-of-type(even) {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas: "content" "pic";
+    justify-items: center;
+    gap: 1.5rem;
+  }
+
   .blog__image {
     width: 100%;
   }
@@ -993,4 +1010,25 @@ hr {
     display: flex;
     justify-content: center;
   }
+}
+.contact__me--container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-items: center;
+  gap: 3rem 0;
+}
+.contact__me--icon {
+  width: 100%;
+  font-size: 100px;
+  color: #bbddff;
+}
+.contact__me--icon-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
 }

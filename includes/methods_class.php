@@ -62,7 +62,7 @@ class Methods {
     $stmt = $db->connection->prepare($sql);
     $stmt->bind_param($types_string, ...$sanitized_items);
     $stmt->execute();
-    if ($stmt->affected_rows === 1) {
+    if ($stmt->affected_rows === 1 || $stmt->sqlstate === "00000" && $stmt->affected_rows === 0) {
       return true;
     } else {
       return false;
