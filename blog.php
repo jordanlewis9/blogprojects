@@ -31,7 +31,7 @@
   }
   ?>
   <h1 class="blog__headline"><?php echo $blog->title; ?></h1>
-  <img src="admin/images/<?php echo $blog->picture; ?>" class="blog__image" alt="<?php echo $blog->alt_text; ?>">
+  <img src="/blog/admin/images/<?php echo $blog->picture; ?>" class="blog__image" alt="<?php echo $blog->alt_text; ?>">
   <p class="blog__author">By <?php echo $blog->author; ?></p>
   <p class="blog__time">
 <?php if ($blog->updated): ?>

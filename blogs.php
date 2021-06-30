@@ -15,10 +15,10 @@
     echo "
     <section class='content__section'>
       <div class='content__section--content'>
-        <a href='blog.php?blog_id={$blog->id}' class='content__section--link content__section--link-title'><h2 class='content__section--title'>{$blog->title}</h2></a>
+        <a href='/blog/blogs/{$blog->id}' class='content__section--link content__section--link-title'><h2 class='content__section--title'>{$blog->title}</h2></a>
         <div class='content__section--snippet'>{$blog->show_snippet()}</div>
       </div>
-      <a href='blog.php?blog_id={$blog->id}' class='content__section--link content__section--link-picture'><img src='admin/images/{$blog->picture}' class='content__section--image' alt='{$blog->alt_text}'></a>
+      <a href='/blog/blogs/{$blog->id}' class='content__section--link content__section--link-picture'><img src='/blog/admin/images/{$blog->picture}' class='content__section--image' alt='{$blog->alt_text}'></a>
     </section>
     <hr>
     ";
