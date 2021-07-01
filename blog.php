@@ -2,15 +2,15 @@
 <?php
   if (isset($_GET['blog_id'])) {
     $blog = Blog::get_item_by_id('blogs', $_GET['blog_id']);
-    $comments = Comment::get_blog_comments($_GET['blog_id']);
     if (!$blog) {
       $message->set_message("No blog exists at the given id {$_GET['blog_id']}.");
-      redirect("blogs.php");
+      redirect("/blog/blogs");
     }
+    $comments = Comment::get_blog_comments($_GET['blog_id']);
     $blog->format_time();
   } else {
     $message->set_message("Improper parameters given.");
-    redirect("blogs.php");
+    redirect("/blog/blogs");
   }
 
   if (isset($_POST['submit']) && $auth->signed_in) {
@@ -18,7 +18,7 @@
     if ($comment = $clean_input->validate_comment($_POST['comment'])) {
       Comment::add_new_comment($comment, $auth->user_id, $_GET['blog_id']);
     } else {
-      redirect("blog.php?blog_id={$_GET['blog_id']}");
+      redirect("/blog/blogs/{$GET['blog_id']}");
     }
   }
 ?>

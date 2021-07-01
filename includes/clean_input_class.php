@@ -61,6 +61,17 @@ class Clean_Input {
       return false;
     }
   }
+
+  public function validate_content($content, $field) {
+    global $message;
+    if (preg_match("/^.{2,}$/", $content)) {
+      $content = htmlspecialchars($content, ENT_QUOTES);
+      return $content;
+    } else {
+      $message->set_message("Invalid {$field}. Please try again.");
+      return false;
+    }
+  }
 }
 
 $clean_input = new Clean_Input;

@@ -7,7 +7,7 @@ if (isset($_GET['page'])) {
 }
   $all_blogs = Blog::get_all_items("blogs", $paginate->return_offset(), $paginate->num_per_page);
 ?>
-<p class="admin__headline">Blogs</p>
+<h2 class="admin__headline">Blogs</h2>
 <div class="blogs__container">
 <a href="add_blog.php" class="admin__add-button gen-btn">Add Blog</a>
   <table class="admin__table">

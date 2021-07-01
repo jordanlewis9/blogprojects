@@ -28,10 +28,10 @@
 <?php endif; ?>
       <div class="nav__list--grouping">
 <?php if($auth->signed_in): ?>
-            <a href="/blog/logout.php" class="nav__list--link nav__list--log gen-btn"><li class="nav__list--item">Logout</li></a>
+            <a href="/blog/logout" class="nav__list--link nav__list--log gen-btn"><li class="nav__list--item">Logout</li></a>
 <?php else: ?>
-            <a href="/blog/login.php" class="nav__list--link nav__list--log gen-btn"><li class="nav__list--item">Login</li></a>
-            <a href="/blog/signup.php" class="nav__list--link nav__list--signup gen-btn"><li class="nav__list--item">Sign Up</li></a>
+            <a href="/blog/login" class="nav__list--link nav__list--log gen-btn"><li class="nav__list--item">Login</li></a>
+            <a href="/blog/signup" class="nav__list--link nav__list--signup gen-btn"><li class="nav__list--item">Sign Up</li></a>
 <?php endif; ?>
       </div>
     </ul>

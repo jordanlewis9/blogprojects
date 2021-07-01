@@ -20,7 +20,7 @@ class Project extends Methods {
       $stmt->bind_param($types_string, ...$sanitized_items);
       $stmt->execute();
       if ($stmt->affected_rows === 1) {
-        $message->set_message("Project {$this->title} inserted successfully. <a href='../project.php?project_id={$this->id}'>View here.</a>");
+        $message->set_message("Project {$this->title} inserted successfully. <a href='/blog/projects/{$this->id}'>View here.</a>");
         redirect("projects.php");
       } else {
         $message->set_message($stmt->error);
@@ -35,7 +35,7 @@ class Project extends Methods {
     global $message;
     if ($this->transfer_image()) {
       if ($this->update_item("projects", $this->class_properties)) {
-        $message->set_message("Project {$this->title} updated successfully. <a href='../project.php?project_id={$this->id}'>View here.</a>");
+        $message->set_message("Project {$this->title} updated successfully. <a href='/blog/projects/{$this->id}'>View here.</a>");
         redirect("projects.php");
       } else {
         $message->set_message("There was an error updating project {$this->title}. Please try again.");

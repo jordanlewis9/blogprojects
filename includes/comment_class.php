@@ -12,18 +12,6 @@ class Comment extends Methods {
   public $created;
   public $class_properties = ["username" => 's', "title" => 's', "id" => 'i', "content" => 's', "status" => 's', "created" => 's', "blog_id" => 'i', "user_id" => 'i'];
 
-  // public static function create_results($result) {
-  //   $all_items = [];
-  //   while ($row = $result->fetch_array()) {
-  //     $single_item = new static;
-  //     foreach (array_slice($single_item->class_properties, 0, 6) as $prop => $type) {
-  //       $single_item->$prop = $row[$prop];
-  //     }
-  //     $all_items[] = $single_item;
-  //   }
-  //   return $all_items;
-  // }
-
   private static function create_results($stmt) {
     $all_items = [];
     $stmt->bind_result($id, $content, $status, $username, $title, $created);
@@ -99,10 +87,10 @@ class Comment extends Methods {
     $stmt->execute();
     if ($stmt->affected_rows === 1) {
       $message->set_message("Comment has been successfully sent for approval.");
-      redirect("blog.php?blog_id={$blog_id}");
+      redirect("/blog/blogs/{$blog_id}");
     } else {
       $message->set_message("Comment could not be saved. Please try again.");
-      redirect("blog.php?blog_id={$blog_id}");
+      redirect("/blog/blogs/{$blog_id}");
     }
   }
 

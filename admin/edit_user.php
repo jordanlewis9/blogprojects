@@ -5,11 +5,15 @@ if (isset($_GET['user_id'])) {
 }
 
 if (isset($_POST['update'])) {
-  $user->username = $_POST['username'];
-  $user->email = $_POST['email'];
-  $user->first_name = $_POST['first_name'];
-  $user->last_name = $_POST['last_name'];
-  $user->password = $_POST['password'] ?? $user->password;
+  $clean_input = new Clean_Input;
+  $clean_input->isValid[] = $user->username = $clean_input->validate_username($_POST['username']);
+  $clean_input->isValid[] = $user->email = $clean_input->validate_email($_POST['email']);
+  $clean_input->isValid[] = $user->first_name = $clean_input->validate_name($_POST['first_name']);
+  $clean_input->isValid[] = $user->last_name = $clean_input->validate_name($_POST['last_name']);
+  if (in_array(false, $clean_input->isValid, true)) {
+    redirect("edit_user.php?user_id={$user->id}");
+  }
+  $user->password = $user->password;
   $user->role = $_POST['role'];
   if ($user->update_item('users', $user->class_properties)) {
     $message->set_message("User {$user->username} updated successfully.");
@@ -37,10 +41,6 @@ if (isset($_POST['update'])) {
   <div class="admin__form--inputs">
     <label for="last_name">Last Name</label>
     <input type="text" name="last_name" id="last_name" value="<?php echo $user->last_name; ?>">
-  </div>
-  <div class="admin__form--inputs">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
   </div>
   <div class="admin__form--inputs">
     <label for="role">Role</label>

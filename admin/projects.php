@@ -6,7 +6,7 @@ if (isset($_GET['page'])) {
   $paginate = new Paginate(Project::count_items('projects'), 25, 1);
 }
 $all_projects = Project::get_all_items("projects", $paginate->return_offset(), $paginate->num_per_page); ?>
-<p class="admin__headline">Projects</p>
+<h2 class="admin__headline">Projects</h2>
 <div class="projects__container">
 <a href="add_project.php" class="admin__add-button gen-btn">Add Project</a>
   <table class="admin__table">

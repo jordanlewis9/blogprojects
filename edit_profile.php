@@ -5,20 +5,24 @@ if (isset($auth->user_id)) {
 }
 
 if (isset($_POST['update'])) {
+  $clean_input = new Clean_Input;
   $user->username = $user->username;
-  $user->email = $_POST['email'];
-  $user->first_name = $_POST['first_name'];
-  $user->last_name = $_POST['last_name'];
+  $clean_input->isValid[] = $user->email = $clean_input->validate_email($_POST['email']);
+  $clean_input->isValid[] = $user->first_name = $clean_input->validate_name($_POST['first_name']);
+  $clean_input->isValid[] = $user->last_name = $clean_input->validate_name($_POST['last_name']);
   $user->password = $user->password;
+  if (in_array(false, $clean_input->isValid, true)) {
+    redirect("/blog/edit_profile");
+  }
   if ($stmt = $user->update_item('users', $user->class_properties)) {
     $message->set_message("Profile changes saved.");
-    redirect("edit_profile.php");
+    redirect("/blog/edit_profile");
   } else {
     if (isset($_SESSION['message'])) {
-      redirect("edit_profile.php");
+      redirect("/blog/edit_profile");
     }
     $message->set_message("There was an error saving your changes. Please try again.");
-    redirect("edit_profile.php");
+    redirect("/blog/edit_profile");
   }
 }
 ?>

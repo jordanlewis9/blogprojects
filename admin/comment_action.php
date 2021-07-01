@@ -1,7 +1,7 @@
 <?php require_once("../includes/init.php"); ?>
 <?php
 if (!$auth->signed_in && $auth->role !== "admin") {
-  redirect("../index.php");
+  redirect("/blog");
 }
 ?>
 <?php

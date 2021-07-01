@@ -2,11 +2,15 @@
 <?php
 
 if (isset($_POST['submit'])) {
+  $clean_input = new Clean_Input;
   $blog = new Blog;
-  $blog->alt_text = $_POST['alt_text'];
-  $blog->title = $_POST['title'];
-  $blog->content = $_POST['content'];
-  $blog->author = $_POST['author'];
+  $clean_input->isValid[] = $blog->alt_text = $clean_input->validate_content($_POST['alt_text'], 'alt_text');
+  $clean_input->isValid[] = $blog->title = $clean_input->validate_content($_POST['title'], 'title');
+  $clean_input->isValid[] = $blog->content = $clean_input->validate_content($_POST['content'], 'content');
+  $clean_input->isValid[] = $blog->author = $clean_input->validate_content($_POST['author'], 'author');
+  if (in_array(false, $clean_input->isValid, true)) {
+    redirect("add_blog.php");
+  }
   $blog->set_file($_FILES['picture']);
   $blog->new_blog();
 }

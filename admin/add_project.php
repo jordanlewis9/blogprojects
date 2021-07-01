@@ -1,12 +1,16 @@
 <?php require_once("includes/admin_header.php"); ?>
 <?php 
 if (isset($_POST['submit'])) {
+  $clean_input = new Clean_Input;
   $project = new Project;
-  $project->alt_text = $_POST['alt_text'];
-  $project->title = $_POST['title'];
-  $project->description = $_POST['description'];
-  $project->snippet = $_POST['snippet'];
-  $project->link = $_POST['link'];
+  $clean_input->isValid[] = $project->alt_text = $clean_input->validate_content($_POST['alt_text'], 'alt_text');
+  $clean_input->isValid[] = $project->title = $clean_input->validate_content($_POST['title'], 'title');
+  $clean_input->isValid[] = $project->description = $clean_input->validate_content($_POST['description'], 'description');
+  $clean_input->isValid[] = $project->snippet = $clean_input->validate_content($_POST['snippet'], 'snippet');
+  $clean_input->isValid[] = $project->link = $clean_input->validate_content($_POST['link'], 'link');
+  if (in_array(false, $clean_input->isValid, true)) {
+    redirect("add_project.php");
+  }
   $project->set_file($_FILES['picture']);
   $project->new_project();
 }

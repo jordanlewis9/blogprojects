@@ -7,7 +7,7 @@ if (isset($_GET['page'])) {
 }
 $all_comments = Comment::get_all_comments($paginate->return_offset(), $paginate->num_per_page);
 ?>
-<p class="admin__headline">Comments</p>
+<h2 class="admin__headline">Comments</h2>
 <div class="comments__container">
   <table class="admin__table">
     <tr class="admin__table--header-row">

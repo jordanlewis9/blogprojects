@@ -7,7 +7,7 @@ if (isset($_GET['page'])) {
 }
 $all_users = User::get_all_users($paginate->return_offset(), $paginate->num_per_page);
 ?>
-<p class="admin__headline">Users</p>
+<h2 class="admin__headline">Users</h2>
 <div class="users__container">
   <a href="add_user.php" class="admin__add-button gen-btn">Add User</a>
   <table class="admin__table">

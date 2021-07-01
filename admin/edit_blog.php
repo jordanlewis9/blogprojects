@@ -6,10 +6,14 @@ if (isset($_GET['blog_id'])) {
 }
 
 if (isset($_POST['update'])) {
-  $blog->alt_text = $_POST['alt_text'];
-  $blog->title = $_POST['title'];
-  $blog->author = $_POST['author'];
-  $blog->content = $_POST['content'];
+  $clean_input = new Clean_Input;
+  $clean_input->isValid[] = $blog->alt_text = $clean_input->validate_content($_POST['alt_text'], 'alt_text');
+  $clean_input->isValid[] = $blog->title = $clean_input->validate_content($_POST['title'], 'title');
+  $clean_input->isValid[] = $blog->content = $clean_input->validate_content($_POST['content'], 'content');
+  $clean_input->isValid[] = $blog->author = $clean_input->validate_content($_POST['author'], 'author');
+  if (in_array(false, $clean_input->isValid, true)) {
+    redirect("edit_blog.php?blog_id={$blog->id}");
+  }
   if (empty($_FILES['picture']['name'])) {
     $blog->update_blog();
   } else {

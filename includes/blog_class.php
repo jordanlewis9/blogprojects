@@ -23,7 +23,7 @@ class Blog extends Methods {
       $stmt->execute();
       if ($stmt->affected_rows === 1) {
         $this->id = $stmt->insert_id;
-        $message->set_message("Blog {$this->title} was successfully created! <a href='../blog.php?blog_id={$this->id}'>View here.</a>");
+        $message->set_message("Blog {$this->title} was successfully created! <a href='/blog/blogs/{$this->id}'>View here.</a>");
         redirect("blogs.php");
       } else {
         $message->set_message($stmt->error);
@@ -48,7 +48,7 @@ class Blog extends Methods {
       $stmt->bind_param($types_string, ...$sanitized_items);
       $stmt->execute();
       if ($stmt->affected_rows === 1) {
-        $message->set_message("Blog {$this->title} was successfully updated! <a href='../blog.php?blog_id={$this->id}'>View here.</a>");
+        $message->set_message("Blog {$this->title} was successfully updated! <a href='/blog/blogs/{$this->id}'>View here.</a>");
         redirect("blogs.php");
       } else {
         $message->set_message($stmt->error);

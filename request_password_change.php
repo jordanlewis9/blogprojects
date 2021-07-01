@@ -11,7 +11,7 @@ if ($auth->signed_in && $auth->role !== "admin") {
   } else {
     $message->set_message("There was an error sending an email to the stored address. Please try again.");
   }
-  redirect("index.php");
+  redirect("/blog");
 }
 
   if (isset($_POST['send_email'])) {
@@ -31,7 +31,7 @@ if ($auth->signed_in && $auth->role !== "admin") {
         $message->set_message("An email has been sent to {$email} for directions on changing your password.");
       }
     } 
-    redirect("index.php");
+    redirect("/blog");
   }
   ?>
 

@@ -1,7 +1,7 @@
 <?php require_once("../includes/init.php"); ?>
 <?php
 if (!$auth->signed_in || $auth->role !== "admin") {
-  redirect("../index.php");
+  redirect("/blog");
 }
 ?>
 <!DOCTYPE html>
@@ -27,6 +27,8 @@ if (!$auth->signed_in || $auth->role !== "admin") {
     </ul>
   </nav>
   <div class="admin__container">
-<?php if (isset($message->current_message)): ?>
-<p class="admin__message"><?php echo $message->current_message; ?></p>
+<?php if (isset($message->current_message) && stripos($message->current_message, 'success')): ?>
+  <p class="admin__message success__message"><?php echo $message->current_message; ?></p>
+<?php elseif (isset($message->current_message)): ?>
+  <p class="admin__message error__message"><?php echo $message->current_message; ?></p>
 <?php endif; ?>

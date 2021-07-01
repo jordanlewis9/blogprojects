@@ -9,11 +9,11 @@
     if ($user->compare_passwords($_POST['password'], $_POST['confirm_password'])) {
       if ($user->update_item("users", $user->class_properties)) {
         if ($user->reset_pw_token()) {
-          $message->set_message("Your password has successfully been changed.");
           $auth->login_user($user->username, $_POST['password']);
-          redirect("index.php");
+          $message->set_message("Your password has successfully been changed.");
+          redirect("/blog");
         } else {
-          redirect("index.php");
+          redirect("/blog");
         }
       } else {
         $message->set_message("There was an error resetting your password. Please try again.");

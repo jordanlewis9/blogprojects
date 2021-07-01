@@ -4,13 +4,13 @@
     $clean_input = new Clean_Input;
     if ($username = $clean_input->validate_username($_POST['username'])) {
       if($auth->login_user($username, $_POST['password'])) {
-        redirect("index.php");
+        redirect("/blog");
       } else {
         $message->set_message("Username or password incorrect");
-        redirect("login.php");
+        redirect("/blog/login");
       }
     } else {
-      redirect("login.php");
+      redirect("/blog/login");
     }
   }
 ?> 
@@ -34,7 +34,7 @@
     </div>
   </div>
   <div class="login__form--inputs">
-    <a href="request_password_change.php" class="login__form--link">Forgot Password?</a>
+    <a href="/blog/request_password_change" class="login__form--link">Forgot Password?</a>
   </div>
   <div class="login__form--inputs">
     <input type="submit" name="login" value="Login" class="gen-btn login__form--btn">

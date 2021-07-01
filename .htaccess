@@ -1,6 +1,6 @@
 RewriteEngine On
 Options -MultiViews
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(index|contact_me|edit_profile|login|signup|about_me|projects|blogs|request_password_change|change_password)$ $1.php [NC,L]
+RewriteRule ^(index|contact_me|edit_profile|login|signup|about_me|projects|blogs|request_password_change|logout)$ $1.php [NC,L]
 RewriteRule ^blogs/(\d+)$ blog.php?blog_id=$1 [NC,L]
 RewriteRule ^projects/(\d+)$ project.php?project_id=$1 [NC,L]

@@ -1,14 +1,19 @@
 <?php require_once("includes/admin_header.php"); ?>
 <?php
-if (isset($_POST['submit'])) {
-  $new_user = new User;
-  $new_user->username = $_POST['username'];
-  $new_user->email = $_POST['email'];
-  $new_user->first_name = $_POST['first_name'];
-  $new_user->last_name = $_POST['last_name'];
-  $new_user->password = $_POST['password'];
-  $new_user->add_user();
-}
+  if (isset($_POST['submit'])) {
+    $clean_input = new Clean_Input;
+    $new_user = new User;
+    $clean_input->isValid[] = $new_user->username = $clean_input->validate_username($_POST['username']);
+    $clean_input->isValid[] = $new_user->email = $clean_input->validate_email($_POST['email']);
+    $clean_input->isValid[] = $new_user->first_name = $clean_input->validate_name($_POST['first_name']);
+    $clean_input->isValid[] = $new_user->last_name = $clean_input->validate_name($_POST['last_name']);
+    $clean_input->isValid[] = $new_user->password = $clean_input->validate_password($_POST['password']);
+    if (in_array(false, $clean_input->isValid, true)) {
+      redirect("add_user.php");
+    } else {
+      $new_user->add_user();
+    }
+  }
 ?>
 
 <form method="POST" action="" class="admin__form">

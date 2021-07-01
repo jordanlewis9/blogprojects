@@ -96,6 +96,25 @@ class Auth {
     unset($_SESSION['role']);
   }
 
+  public function does_email_exist($email) {
+    global $db;
+    $sql = "SELECT email FROM users WHERE email = ?";
+    $stmt = $db->connection->prepare($sql);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  private function encrypt_password($entered_password) {
+    $entered_password = trim($entered_password);
+    return password_hash($entered_password, PASSWORD_DEFAULT);
+  }
+
+  
   public function check_username_and_email($username, $email) {
     global $db, $message;
     $sql = "SELECT username, email FROM users WHERE username = ? OR email = ?";
@@ -117,24 +136,6 @@ class Auth {
       return false;
     }
     return true;
-  }
-
-  public function does_email_exist($email) {
-    global $db;
-    $sql = "SELECT email FROM users WHERE email = ?";
-    $stmt = $db->connection->prepare($sql);
-    $stmt->bind_param('s', $email);
-    $stmt->execute();
-    $stmt->store_result();
-    if ($stmt->num_rows === 0) {
-      return false;
-    }
-    return true;
-  }
-
-  private function encrypt_password($entered_password) {
-    $entered_password = trim($entered_password);
-    return password_hash($entered_password, PASSWORD_DEFAULT);
   }
 
 }

@@ -6,11 +6,15 @@ if (isset($_GET['project_id'])) {
 }
 
 if (isset($_POST['update'])) {
-  $project->alt_text = $_POST['alt_text'];
-  $project->title = $_POST['title'];
-  $project->snippet = $_POST['snippet'];
-  $project->description = $_POST['description'];
-  $project->link = $_POST['link'];
+  $clean_input = new Clean_Input;
+  $clean_input->isValid[] = $project->alt_text = $clean_input->validate_content($_POST['alt_text'], 'alt_text');
+  $clean_input->isValid[] = $project->title = $clean_input->validate_content($_POST['title'], 'title');
+  $clean_input->isValid[] = $project->description = $clean_input->validate_content($_POST['description'], 'description');
+  $clean_input->isValid[] = $project->snippet = $clean_input->validate_content($_POST['snippet'], 'snippet');
+  $clean_input->isValid[] = $project->link = $clean_input->validate_content($_POST['link'], 'link');
+  if (in_array(false, $clean_input->isValid, true)) {
+    redirect("edit_project.php?project_id={$project->id}");
+  }
   if (empty($_FILES['picture']['name'])) {
     $project->update_project();
   } else {
