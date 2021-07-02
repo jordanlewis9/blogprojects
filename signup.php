@@ -14,6 +14,7 @@
     $clean_input->isValid[] = $new_user->last_name = $clean_input->validate_name($_POST['last_name']);
     $clean_input->isValid[] = $new_user->password = $clean_input->validate_password($_POST['password']);
     if (in_array(false, $clean_input->isValid, true)) {
+      $message->set_message("Why is this here?");
       redirect("/blog/signup");
     } else {
       $new_user->public_add_user();

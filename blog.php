@@ -8,6 +8,7 @@
     }
     $comments = Comment::get_blog_comments($_GET['blog_id']);
     $blog->format_time();
+    $blog->update_blog_views();
   } else {
     $message->set_message("Improper parameters given.");
     redirect("/blog/blogs");

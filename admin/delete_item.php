@@ -1,7 +1,7 @@
 <?php require_once("../includes/init.php"); ?>
 <?php
 if (!$auth->signed_in || $auth->role !== "admin") {
-  redirect("../index.php");
+  redirect("/blog");
 }
 ?>
 <?php
@@ -27,6 +27,10 @@ if (isset($_GET['project_id'])) {
 }
 
 if (isset($_GET['user_id'])) {
+  if ($_GET['user_id'] === "1") {
+    $message->set_message("This user cannot be deleted.");
+    redirect("/blog");
+  }
   if (User::delete_item('users', $_GET['user_id'])) {
     $message->set_message("User deleted successfully.");
     redirect("users.php");

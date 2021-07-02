@@ -73,6 +73,9 @@ class Methods {
     global $db;
     $table = trim($table);
     $id = trim($id);
+    if ($table === "users" && $id === "1") {
+      return false;
+    }
     $sql = "DELETE FROM {$table} WHERE id = ?";
     $stmt = $db->connection->prepare($sql);
     $stmt->bind_param('i', $id);

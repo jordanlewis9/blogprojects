@@ -82,4 +82,10 @@ class Blog extends Methods {
       return $this->content;
     }
   }
+
+  public function update_blog_views() {
+    global $db;
+    $sql = "UPDATE blogs SET views = views + 1 WHERE id = {$this->id}";
+    $db->query($sql);
+  }
 }

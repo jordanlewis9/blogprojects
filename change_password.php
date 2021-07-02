@@ -2,7 +2,9 @@
 
 <?php
   if (isset($_GET['token'])) {
-    $user = User::find_user_by_pw_token($_GET['token']);
+    if (!$user = User::find_user_by_pw_token($_GET['token'])) {
+      redirect("/blog");
+    }
   }
 
   if (isset($_POST['confirm'])) {

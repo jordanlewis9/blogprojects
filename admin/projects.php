@@ -25,7 +25,7 @@ foreach ($all_projects as $project) {
     <td class='admin__table--entry'>{$project->title}</td>
     <td class='admin__table--entry'>{$project->snippet}</td>
     <td class='admin__table--entry'><a href='edit_project.php?project_id={$project->id}'>Edit</a></td>
-    <td class='admin__table--entry'><a href='#' data-id='{$project->id}' data-table='project' data-single='{$project->title}' class='delete__link'>Delete</td>
+    <td class='admin__table--entry'><a href='/blog/projects/{$project->id}' data-id='{$project->id}' data-table='project' data-single='{$project->title}' class='delete__link'>Delete</td>
   </tr>
   ";
 }

@@ -7,6 +7,7 @@ class User extends Methods {
   public $first_name;
   public $last_name;
   public $password;
+  private $non_encrypted_password;
   public $role;
   public $class_properties = ['id' => 'i', 'username' => 's', 'email' => 's', 'first_name' => 's', 'last_name' => 's', 'password' => 's', 'role' => 's'];
 
@@ -32,6 +33,7 @@ class User extends Methods {
 
   public function public_add_user() {
     global $db, $message, $auth;
+    $this->non_encrypted_password = $this->password;
     $this->password = $this->encrypt_password($this->password);
     if (!$auth->check_username_and_email($this->username, $this->email)) {
       redirect("/blog/signup");
@@ -42,9 +44,9 @@ class User extends Methods {
     $stmt->bind_param($types_string, ...$sanitized_items);
     $stmt->execute();
     if ($stmt->affected_rows === 1) {
-      send_new_user_email($this->email, $this->username);
+      $auth->login_user($this->username, $this->non_encrypted_password);
       $message->set_message("Welcome to the site, {$this->username}!");
-      $auth->login_user($this->username, $this->password);
+      send_new_user_email($this->email, $this->username);
       redirect("/blog");
     } else {
       $message->set_message("There has been an error. Please try again.");
@@ -113,17 +115,25 @@ class User extends Methods {
   }
 
   public static function find_user_by_pw_token($token) {
-    global $db;
+    global $db, $message;
     $sql = "SELECT * FROM users WHERE new_pw_token = ?";
     $stmt = $db->connection->prepare($sql);
     $stmt->bind_param('s', $token);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows === 0) {
+      $message->set_message("Token invalid.");
       return false;
     }
     $retreived_item = new static;
     while ($row = $result->fetch_array()) {
+      $created_date = new DateTime($row['new_pw_token_time']);
+      $now = new DateTime('now');
+      $diff = $created_date->add(new DateInterval('PT15M')) < $now;
+      if ($diff) {
+        $message->set_message("Token has expired. Please try again.");
+        return false;
+      }
       foreach ($retreived_item->class_properties as $prop => $type) {
         $retreived_item->$prop = $row[$prop];
       }

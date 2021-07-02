@@ -26,7 +26,7 @@ foreach ($all_blogs as $blog) {
   echo "
   <tr class='admin__table--row'>
     <td class='admin__table--entry'>{$blog->id}</td>
-    <td class='admin__table--entry'><a href='../blog.php?blog_id={$blog->id}'>{$blog->title}</a></td>
+    <td class='admin__table--entry'><a href='/blog/blogs/{$blog->id}'>{$blog->title}</a></td>
     <td class='admin__table--entry'>{$blog->views}</td>
     <td class='admin__table--entry'>{$blog->created}</td>
     <td class='admin__table--entry'>{$blog->updated}</td>
