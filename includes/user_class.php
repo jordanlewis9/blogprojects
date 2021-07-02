@@ -12,19 +12,11 @@ class User extends Methods {
 
   public function add_user() {
     global $db, $message, $auth;
-    if(!$this->email = $this->validate_email(trim($this->email))) {
-      redirect("add_user.php");
-    }
-    $this->username = trim($this->username);
     $this->password = $this->encrypt_password($this->password);
     if (!$auth->check_username_and_email($this->username, $this->email)) {
       redirect("add_user.php");
     }
-    list($main_query, $sanitized_items, $types_string, $is_valid) = $this->set_items(array_slice($this->class_properties, 1, 5));
-    if (!$is_valid) {
-      $message->set_message("Password is invalid. Please try again.");
-      redirect("add_user.php");
-    }
+    list($main_query, $sanitized_items, $types_string) = $this->set_items(array_slice($this->class_properties, 1, 5));
     $sql = "INSERT INTO users SET " . implode(", ", $main_query);
     $stmt = $db->connection->prepare($sql);
     $stmt->bind_param($types_string, ...$sanitized_items);
@@ -40,8 +32,8 @@ class User extends Methods {
 
   public function public_add_user() {
     global $db, $message, $auth;
-    $this->password = $auth->encrypt_password($this->password);
-    if (!$this->check_username_and_email($this->username, $this->email)) {
+    $this->password = $this->encrypt_password($this->password);
+    if (!$auth->check_username_and_email($this->username, $this->email)) {
       redirect("/blog/signup");
     }
     list($main_query, $sanitized_items, $types_string) = $this->set_items(array_slice($this->class_properties, 1, 5));
@@ -50,6 +42,7 @@ class User extends Methods {
     $stmt->bind_param($types_string, ...$sanitized_items);
     $stmt->execute();
     if ($stmt->affected_rows === 1) {
+      send_new_user_email($this->email, $this->username);
       $message->set_message("Welcome to the site, {$this->username}!");
       $auth->login_user($this->username, $this->password);
       redirect("/blog");
