@@ -28,19 +28,27 @@ if (isset($_POST['update'])) {
 <form method="POST" action="" class="admin__form">
   <div class="admin__form--inputs">
     <label for="username">Username</label>
-    <input type="text" name="username" id="username" value="<?php echo $user->username; ?>">
+    <div class="admin__input--container">
+      <input type="text" name="username" id="username" value="<?php echo $user->username; ?>">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="email">Email</label>
-    <input type="email" name="email" id="email" value="<?php echo $user->email; ?>">
+    <div class="admin__input--container">
+      <input type="email" name="email" id="email" value="<?php echo $user->email; ?>">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="first_name">First Name</label>
-    <input type="text" name="first_name" id="first_name" value="<?php echo $user->first_name; ?>">
+    <div class="admin__input--container">
+      <input type="text" name="first_name" id="first_name" value="<?php echo $user->first_name; ?>">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="last_name">Last Name</label>
-    <input type="text" name="last_name" id="last_name" value="<?php echo $user->last_name; ?>">
+    <div class="admin__input--container">
+      <input type="text" name="last_name" id="last_name" value="<?php echo $user->last_name; ?>">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="role">Role</label>

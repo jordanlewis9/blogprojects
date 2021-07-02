@@ -24,7 +24,7 @@ if (isset($_POST['update'])) {
 
 ?>
 
-<form method="POST" action="" class="admin__form" enctype="multipart/form-data">
+<form method="POST" action="" class="admin__form" id="admin-blog-form" enctype="multipart/form-data">
   <div class="admin__form--inputs" id="admin__form--picture-container">
     <img class="admin__form--picture-preview" src="images/<?php echo $blog->picture; ?>">
     <p class="admin__form--picture-file"><?php echo $blog->picture; ?></p>
@@ -33,19 +33,27 @@ if (isset($_POST['update'])) {
   </div>
   <div class="admin__form--inputs-blog">
     <label for="alt_text">Alt Text</label>
-    <input type="text" name="alt_text" id="author" value="<?php echo $blog->alt_text; ?>" maxlength="256">
+    <div class="admin__input--container">
+      <input type="text" name="alt_text" id="author" value="<?php echo $blog->alt_text; ?>" maxlength="256">
+    </div>
   </div>
   <div class="admin__form--inputs-blog">
     <label for="title">Title</label>
-    <input type="text" name="title" id="title" value="<?php echo $blog->title; ?>">
+    <div class="admin__input--container">
+      <input type="text" name="title" id="title" value="<?php echo $blog->title; ?>">
+    </div>
   </div>
   <div class="admin__form--inputs-blog">
     <label for="author">Author</label>
-    <input type="text" name="author" id="author" value="<?php echo $blog->author; ?>">
+    <div class="admin__input--container">
+      <input type="text" name="author" id="author" value="<?php echo $blog->author; ?>">
+    </div>
   </div>
   <div class="admin__form--inputs-blog">
     <label for="content">Content</label>
-    <textarea class="editor" name="content" id="content"><?php echo $blog->content; ?></textarea>
+    <div class="admin__input--container">
+      <textarea class="editor" name="content" id="content"><?php echo $blog->content; ?></textarea>
+    </div>
   </div>
   <div class="admin__form--inputs">
     <a href="delete_item.php?blog_id=<?php echo $blog->id; ?>" class="gen-btn admin__form--delete">Delete</a>

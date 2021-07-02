@@ -19,23 +19,33 @@
 <form method="POST" action="" class="admin__form">
   <div class="admin__form--inputs">
     <label for="username">Username</label>
-    <input type="text" name="username" id="username">
+    <div class="admin__input--container">
+      <input type="text" name="username" id="username">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="email">Email</label>
-    <input type="email" name="email" id="email">
+    <div class="admin__input--container">
+      <input type="email" name="email" id="email">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="first_name">First Name</label>
-    <input type="text" name="first_name" id="first_name">
+    <div class="admin__input--container">
+      <input type="text" name="first_name" id="first_name">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="last_name">Last Name</label>
-    <input type="text" name="last_name" id="last_name">
+    <div class="admin__input--container">
+      <input type="text" name="last_name" id="last_name">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="password">Password</label>
-    <input type="password" name="password" id="password">
+    <div class="admin__input--container">
+      <input type="password" name="password" id="password">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <input class="gen-btn" type="submit" name="submit" value="Add User" id="add_item">

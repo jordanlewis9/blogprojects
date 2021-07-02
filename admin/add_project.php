@@ -24,24 +24,34 @@ if (isset($_POST['submit'])) {
   </div>
   <div class="admin__form--inputs">
     <label for="alt_text">Alt Text</label>
-    <input type="text" name="alt_text" id="author" maxlength="256">
-  </div>
+    <div class="admin__input--container">
+      <input type="text" name="alt_text" id="author" maxlength="256">
+    </div>
+</div>
   <div class="admin__form--inputs">
     <label for="title">Title</label>
-    <input type="text" name="title" id="title">
-  </div>
+    <div class="admin__input--container">
+      <input type="text" name="title" id="title">
+    </div>
+</div>
   <div class="admin__form--inputs">
     <label for="description">Description</label>
-    <textarea name="description" id="description" rows="4" cols="40"></textarea>
-  </div>
+    <div class="admin__input--container">
+      <textarea name="description" id="description" rows="4" cols="40"></textarea>
+    </div>
+</div>
   <div class="admin__form--inputs">
     <label for="snippet">Snippet</label>
-    <textarea id="snippet" name="snippet" rows="4" cols="40"></textarea>
-  </div>
+    <div class="admin__input--container">
+      <textarea id="snippet" name="snippet" rows="4" cols="40"></textarea>
+    </div>
+</div>
   <div class="admin__form--inputs">
     <label for="link">Link</label>
-    <input type="text" name="link" id="link">
-  </div>
+    <div class="admin__input--container">
+      <input type="text" name="link" id="link">
+    </div>
+</div>
   <div class="admin__form--inputs">
     <input class="gen-btn" type="submit" name="submit" value="Add Project" id="add_item">
   </div>

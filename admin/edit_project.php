@@ -34,23 +34,33 @@ if (isset($_POST['update'])) {
   </div>
   <div class="admin__form--inputs">
     <label for="alt_text">Alt Text</label>
-    <input type="text" name="alt_text" id="author" maxlength="256" value="<?php echo $project->alt_text; ?>">
+    <div class="admin__input--container">
+      <input type="text" name="alt_text" id="author" maxlength="256" value="<?php echo $project->alt_text; ?>">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="title">Title</label>
-    <input type="text" name="title" id="title" value="<?php echo $project->title; ?>">
+    <div class="admin__input--container">
+      <input type="text" name="title" id="title" value="<?php echo $project->title; ?>">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="description">Description</label>
-    <textarea name="description" id="description" rows="4" cols="40"><?php echo $project->description; ?></textarea>
+    <div class="admin__input--container">
+      <textarea name="description" id="description" rows="4" cols="40"><?php echo $project->description; ?></textarea>
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="snippet">Snippet</label>
-    <textarea id="snippet" name="snippet" rows="4" cols="40"><?php echo $project->snippet; ?></textarea>
+    <div class="admin__input--container">
+      <textarea id="snippet" name="snippet" rows="4" cols="40"><?php echo $project->snippet; ?></textarea>
+    </div>
   </div>
   <div class="admin__form--inputs">
     <label for="link">Link</label>
-    <input type="text" name="link" id="link" value="<?php echo $project->link; ?>">
+    <div class="admin__input--container">
+      <input type="text" name="link" id="link" value="<?php echo $project->link; ?>">
+    </div>
   </div>
   <div class="admin__form--inputs">
     <a href="delete_item.php?project_id=<?php echo $project->id; ?>" class="gen-btn admin__form--delete">Delete</a>

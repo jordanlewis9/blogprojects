@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<form method="POST" action="" class="admin__form" enctype="multipart/form-data">
+<form method="POST" action="" class="admin__form" id="admin-blog-form" enctype="multipart/form-data">
   <div class="admin__form--inputs" id="admin__form--picture-container">
     <p class="admin__form--picture-file">No File Selected</p>
     <label for="picture" class="admin__form--picture-label gen-btn">Upload Picture</label>
@@ -24,23 +24,31 @@ if (isset($_POST['submit'])) {
   </div>
   <div class="admin__form--inputs-blog">
     <label for="alt_text">Alt Text</label>
-    <input type="text" name="alt_text" id="author" maxlength="256">
+    <div class="admin__input--container">
+      <input type="text" name="alt_text" id="alt_text" maxlength="256">
+    </div>
   </div>
   <div class="admin__form--inputs-blog">
     <label for="title">Title</label>
-    <input type="text" name="title" id="title">
+    <div class="admin__input--container">
+      <input type="text" name="title" id="title">
+    </div>
   </div>
   <div class="admin__form--inputs-blog">
     <label for="author">Author</label>
-    <input type="text" name="author" id="author">
+    <div class="admin__input--container">
+      <input type="text" name="author" id="author">
+    </div>
   </div>
   <div class="admin__form--inputs-blog">
     <label for="content">Content</label>
+    <div class="admin__input--container">
 <?php if (isset($message->blog_content)): ?>
-    <textarea name="content" class="editor" id="content" cols="40" rows="8"><?php echo $message->blog_content; ?></textarea>
+      <textarea name="content" class="editor" id="content" cols="40" rows="8"><?php echo $message->blog_content; ?></textarea>
 <?php else: ?>
-    <textarea name="content" class="editor" id="content" cols="40" rows="8"></textarea>
+      <textarea name="content" class="editor" id="content" cols="40" rows="8"></textarea>
 <?php endif; ?>
+    </div>
   </div>
   <div class="admin__form--inputs">
     <input class="gen-btn" type="submit" name="submit" value="Publish Blog" id="add_item">

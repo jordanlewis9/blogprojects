@@ -17,13 +17,13 @@ if (!$auth->signed_in || $auth->role !== "admin") {
 <body>
   <nav class="admin__nav">
     <ul class="admin__nav--list">
-      <a href="../index.php" class="admin__nav--item-link"><li class="admin__nav--item">Blog Home</li></a>
+      <a href="/blog" class="admin__nav--item-link"><li class="admin__nav--item">Blog Home</li></a>
       <a href="index.php" class="admin__nav--item-link"><li class="admin__nav--item">Admin Home</li></a>
       <a href="projects.php" class="admin__nav--item-link"><li class="admin__nav--item">Projects</li></a>
       <a href="blogs.php" class="admin__nav--item-link"><li class="admin__nav--item">Blogs</li></a>
       <a href="comments.php" class="admin__nav--item-link"><li class="admin__nav--item">Comments</li></a>
       <a href="users.php" class="admin__nav--item-link"><li class="admin__nav--item">Users</li></a>
-      <a href="../logout.php" class="admin__nav--item-link"><li class="admin__nav--item">Logout</li></a>
+      <a href="/blog/logout" class="admin__nav--item-link"><li class="admin__nav--item">Logout</li></a>
     </ul>
   </nav>
   <div class="admin__container">
