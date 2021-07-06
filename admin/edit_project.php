@@ -25,7 +25,7 @@ if (isset($_POST['update'])) {
 
 ?>
 
-<form method="POST" action="" class="admin__form" enctype="multipart/form-data">
+<form method="POST" action="" class="admin__form" enctype="multipart/form-data" id="admin-project-form">
   <div class="admin__form--inputs" id="admin__form--picture-container">
     <img class="admin__form--picture-preview" src="images/<?php echo $project->picture; ?>">
     <p class="admin__form--picture-file"><?php echo $project->picture; ?></p>
@@ -35,7 +35,7 @@ if (isset($_POST['update'])) {
   <div class="admin__form--inputs">
     <label for="alt_text">Alt Text</label>
     <div class="admin__input--container">
-      <input type="text" name="alt_text" id="author" maxlength="256" value="<?php echo $project->alt_text; ?>">
+      <input type="text" name="alt_text" id="alt_text" maxlength="256" value="<?php echo $project->alt_text; ?>">
     </div>
   </div>
   <div class="admin__form--inputs">

@@ -84,6 +84,26 @@ const password = document.querySelector("#password");
 const adminInputs = [altText, title, author, content, description, snippet, link, username, email, firstName, lastName, password];
 const adminForms = [blogForm, projectForm, userForm];
 
+const usernameValidate = (input) => {
+  return /^(\w|\d){4,15}$/.test(input);
+}
+
+const passwordValidate = (input) => {
+  let isValid = [];
+  isValid.push(/[A-Z]/.test(input));
+  isValid.push(/[a-z]/.test(input));
+  isValid.push(/^\S{6,20}$/.test(input));
+  return !isValid.some(bool => bool === false);
+}
+
+const emailValidate = (input) => {
+  return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{2,63}@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/i.test(input);
+}
+
+const nameValidate = (input) => {
+  return /^[a-zA-Z']{1,30}(-[a-zA-Z']{1,20}|\s[a-zA-Z']{1,20})?([\s-a-zA-Z']{1,20})?$/i.test(input);
+}
+
 const inputRequired = (e) => {
   const messageContainer = e.target.parentNode;
   if (e.target.value === "" && e.target.classList.contains("input__required")) {
@@ -103,7 +123,7 @@ const inputRequired = (e) => {
 }
 
 const validateInput = e => {
-  userInputs.forEach(input => {
+  adminInputs.forEach(input => {
     if (input) {
       if (input.classList.contains("input__invalid")) {
         input.classList.remove("input__invalid");
@@ -113,7 +133,7 @@ const validateInput = e => {
     }
   })
   let isValid = true;
-  userInputs.forEach(input => {
+  adminInputs.forEach(input => {
     if (!input) {
       return null;
     }
@@ -153,7 +173,7 @@ const validateInput = e => {
     }
   })
   if (isValid) {
-    loginForm.submit();
+    e.submit();
   } else {
     e.preventDefault();
   }

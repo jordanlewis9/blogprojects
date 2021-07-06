@@ -12,7 +12,9 @@ if (!$auth->signed_in || $auth->role !== "admin") {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../build/styles.css" rel="stylesheet">
   <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
-  <title>Document</title>
+  <title>admin - jordanlewis.dev</title>
+  <link rel="shortcut icon" href="/blog/admin/images/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/blog/admin/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <nav class="admin__nav">

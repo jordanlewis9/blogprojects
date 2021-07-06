@@ -423,6 +423,7 @@ hr {
   grid-auto-rows: auto;
   grid-template-columns: 1fr;
   gap: 1rem;
+  padding-bott0m: 3rem;
 }
 .admin__form--inputs {
   display: grid;

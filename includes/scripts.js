@@ -191,7 +191,7 @@ const validateInput = e => {
     }
   })
   if (isValid) {
-    loginForm.submit();
+    e.submit();
   } else {
     e.preventDefault();
   }

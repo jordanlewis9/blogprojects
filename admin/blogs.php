@@ -1,15 +1,18 @@
 <?php require_once("includes/admin_header.php"); ?>
 <?php
-if (isset($_GET['page'])) {
-  $paginate = $paginate = new Paginate(Blog::count_items('blogs'), 25, $_GET['page']);
-} else {
-  $paginate = new Paginate(Blog::count_items('blogs'), 25, 1);
+if ($num_blogs = Blog::count_items('blogs')) {
+  if (isset($_GET['page'])) {
+    $paginate = $paginate = new Paginate($num_blogs, 25, $_GET['page']);
+  } else {
+    $paginate = new Paginate($num_blogs, 25, 1);
+  }
+    $all_blogs = Blog::get_all_items("blogs", $paginate->return_offset(), $paginate->num_per_page);
 }
-  $all_blogs = Blog::get_all_items("blogs", $paginate->return_offset(), $paginate->num_per_page);
 ?>
 <h2 class="admin__headline">Blogs</h2>
 <div class="blogs__container">
 <a href="add_blog.php" class="admin__add-button gen-btn">Add Blog</a>
+<?php if ($num_blogs): ?>
   <table class="admin__table">
     <tr class="admin__table--header-row">
       <th class="admin__table--heading">ID</th>
@@ -38,6 +41,9 @@ foreach ($all_blogs as $blog) {
 ?>
   </table>
   <?php $paginate->show_pagination(); ?>
+<?php else: ?>
+  <p>No blogs published to display</p>
+<?php endif; ?>
 </div>
 </div>
 <?php require_once("includes/delete_modal.php"); ?>

@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
   $blog = new Blog;
   $clean_input->isValid[] = $blog->alt_text = $clean_input->validate_content($_POST['alt_text'], 'alt_text');
   $clean_input->isValid[] = $blog->title = $clean_input->validate_content($_POST['title'], 'title');
-  $clean_input->isValid[] = $blog->content = $clean_input->validate_content($_POST['content'], 'content');
+  $blog->content = $_POST['content'];
   $clean_input->isValid[] = $blog->author = $clean_input->validate_content($_POST['author'], 'author');
   if (in_array(false, $clean_input->isValid, true)) {
     redirect("add_blog.php");

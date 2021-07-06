@@ -15,6 +15,8 @@
     />
 <?php endif; ?>
   <link href="/blog/build/styles.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/blog/admin/images/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/blog/admin/images/favicon.ico" type="image/x-icon" />
 </head>
 <body class="frontend__body">
 <div class="container">

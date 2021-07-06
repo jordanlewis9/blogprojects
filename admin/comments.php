@@ -1,14 +1,17 @@
 <?php require_once("includes/admin_header.php"); ?>
 <?php 
-if (isset($_GET['page'])) {
-  $paginate = new Paginate(Comment::count_items('comments'), 25, $_GET['page']);
-} else {
-  $paginate = new Paginate(Comment::count_items('comments'), 25, 1);
+if ($num_comments = Comment::count_items('comments')) {
+  if (isset($_GET['page'])) {
+    $paginate = new Paginate($num_comments, 25, $_GET['page']);
+  } else {
+    $paginate = new Paginate($num_comments, 25, 1);
+  }
+  $all_comments = Comment::get_all_comments($paginate->return_offset(), $paginate->num_per_page);
 }
-$all_comments = Comment::get_all_comments($paginate->return_offset(), $paginate->num_per_page);
 ?>
 <h2 class="admin__headline">Comments</h2>
 <div class="comments__container">
+<?php if($num_comments): ?>
   <table class="admin__table">
     <tr class="admin__table--header-row">
       <th class="admin__table--heading">ID</th>
@@ -40,6 +43,9 @@ foreach ($all_comments as $comment) {
 ?>
   </table>
   <?php $paginate->show_pagination(); ?>
+<?php else: ?>
+  <p>No comments to display</p>
+<?php endif; ?>
 </div>
 </div>
 <?php require_once("includes/delete_modal.php"); ?>

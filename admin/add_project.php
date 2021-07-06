@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<form method="POST" action="" class="admin__form" enctype="multipart/form-data">
+<form method="POST" action="" class="admin__form" enctype="multipart/form-data" id="admin-project-form">
   <div class="admin__form--inputs" id="admin__form--picture-container">
     <p class="admin__form--picture-file">No File Selected</p>
     <label for="picture" class="admin__form--picture-label gen-btn">Upload Picture</label>

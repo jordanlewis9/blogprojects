@@ -10,6 +10,7 @@
     <a href="/blog/signup" class="footer__link"><p>Sign Up</p></a>
 <?php endif; ?>
     <a href="/blog/contact_me" class="footer__link"><p>Contact Me</p></a>
+    <a href="/blog/about_me" class="footer__link"><p>About Me</p></a>
     <p class="footer__copyright">Copyright by Jordan Lewis &#169; 2021</p>
   </div>
 </div>

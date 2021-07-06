@@ -16,7 +16,7 @@
   }
 ?>
 
-<form method="POST" action="" class="admin__form">
+<form method="POST" action="" class="admin__form" id="admin-user-form">
   <div class="admin__form--inputs">
     <label for="username">Username</label>
     <div class="admin__input--container">
