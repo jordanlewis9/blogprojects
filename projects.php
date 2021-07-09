@@ -15,7 +15,7 @@
     echo "
     <section class='content__section'>
       <div class='content__section--content'>
-        <a href='/blog/projects/{$project->id}' class='content__section--link content__section--link-title'><h2 class='content__section--title'>{$project->title}</h2></a>
+        <a href='/blog/projects/{$project->id}' class='content__section--link content__section--link-title'><h3 class='content__section--title'>{$project->title}</h3></a>
         <p class='content__section--snippet'>{$project->snippet}</p>
       </div>
       <a href='/blog/projects/{$project->id}' class='content__section--link content__section--link-picture'><img src='/blog/admin/images/{$project->picture}' class='content__section--image' alt='{$project->alt_text}'></a>

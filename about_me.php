@@ -4,7 +4,7 @@
   $section2 = Blog::get_item_by_id('blogs', 10);
 ?>
   <div class="container__content">
-    <h1 class="page__headline">About Me</h1>
+    <h1 class="page__headline">Meet Jordan</h1>
     <section class="about-me">
       <div class="about-me__background">
         <div class="about-me__picture--container">
